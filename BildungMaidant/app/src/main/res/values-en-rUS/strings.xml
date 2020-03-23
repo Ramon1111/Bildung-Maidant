@@ -33,4 +33,39 @@
     <string name="str_home">H O M E</string>
     <string name="Escuela_o_institución_a_la_que_pertenece_el_grupo">School</string>
     >>>>>>> c0d8c64574204244b1518d846fd5c4b8a992b11c
+
+    <string name="app_name">BildungMaidant</string>
+    <string name="ferBTNActualizar">Update</string>
+    <string name="ferTWIndicacion03">Add a field</string>
+    <string name="frtSWBusqueda">Search</string>
+    <string name="fugBTNCancelar">Cancel</string>
+    <string name="fcgBTNCancelar">Cancel</string>
+    <string name="ferBTNCancelar">Cancel</string>
+    <string name="fnrBTNCancelar">Cancel</string>
+    <string name="firBTNCompletar">Complete</string>
+    <string name="fcgBTNCrear">Create</string>
+    <string name="fnrBTNCrear">Create</string>
+    <string name="fcgTWEncabezado">Create a group</string>
+    <string name="ferTWIndicacion02">Description</string>
+    <string name="fnrTWIndicacion04">Description</string>
+    <string name="firTWDescripcion">Description</string>
+    <string name="fcgTWIndicacion02">Group description</string>
+    <string name="firBTNEditar">Edite</string>
+    <string name="ferTWIndicacion01">Edit reminder\'s name</string>
+    <string name="firBTNEliminar">Eliminate</string>
+    <string name="fcgTWIndicacion03">School or institution you belong</string>
+    <string name="ferTWIndicacion04">Date</string>
+    <string name="fnrTWIndicacion02">Date</string>
+    <string name="firTWFecha">Date</string>
+    <string name="firTWHora">Time</string>
+    <string name="fnrTWIndicacion03">Time</string>
+    <string name="fugTWIndicacion01">Add group\'s code</string>
+    <string name="fcgTWIndicacion01">Name group</string>
+    <string name="fnrTWIndicacion01">Reminder name</string>
+    <string name="frtTWNuevoR">New reminder</string>
+    <string name="fnrTWEncabezado">New reminder</string>
+    <string name="frtTWCalendario">Reminders and more to do</string>
+    <string name="ferTWIndicacion05">Select a time</string>
+    <string name="fugBTNUnirse">Join</string>
+    <string name="fugTWEncabezado">Join a work group</string>
 </resources>
