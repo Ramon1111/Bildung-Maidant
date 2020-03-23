@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/fcgTWEncabezado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/fcgTWEncabezado"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/primary"
+        ></TextView>
+
+    <TextView
+        android:id="@+id/fcgTWIndicacion01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/fcgTWIndicacion01"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/primary_text"
+        ></TextView>
+
+    <EditText
+        android:id="@+id/fcgETNombreGrupo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:textColor="@color/primary_text"
+        ></EditText>
+
+    <TextView
+        android:id="@+id/fcgTWIndicacion02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/fcgTWIndicacion02"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/primary_text"
+        ></TextView>
+
+    <EditText
+        android:id="@+id/fcgETDescripcionGrupo"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:textColor="@color/primary_text"
+        ></EditText>
+
+    <TextView
+        android:id="@+id/fcgTWIndicacion03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/fcgTWIndicacion03"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/primary_text"
+        ></TextView>
+
+    <EditText
+        android:id="@+id/fcgETNEscuelaInstitucion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:textColor="@color/primary_text"
+        ></EditText>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:id="@+id/fcgBTNCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="60dp"
+            android:text="@string/fugBTNCancelar"
+            android:textStyle="bold"
+            android:textColor="@color/primary_text"
+            android:textSize="20dp"
+            android:background="@color/accent"
+            ></Button>
+        <Button
+            android:id="@+id/fcgBTNCrear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="80dp"
+            android:text="@string/fcgBTNCrear"
+            android:textStyle="bold"
+            android:textColor="@color/primary_text"
+            android:textSize="20dp"
+            android:background="@color/accent"
+            ></Button>
+    </LinearLayout>
+
+</LinearLayout>
