@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/frecuTWnombregrupo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/frecuTLBRrecursos"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:fontFamily="sans-serif-condensed-light"
+        android:gravity="center"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="79dp"
+        android:layout_marginLeft="79dp"
+        android:layout_marginTop="142dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginRight="76dp"
+        android:text="@string/Nombre_del_grupo"
+        android:textColor="@color/primary_text"
+        android:textSize="30dp" />
+
+    <android.widget.Toolbar
+        android:id="@+id/frecuTLBRrecursos"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/divider" />
+
+    <android.widget.ListView
+        android:id="@+id/frecuLTVWlistacontenidos"
+        android:layout_width="wrap_content"
+        android:layout_height="322dp"
+        android:layout_below="@+id/frecuTLBRrecursos"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="61dp"
+        android:layout_marginLeft="61dp"
+        android:layout_marginTop="202dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginRight="61dp"
+        android:background="@color/primary_light">
+    </android.widget.ListView>
+
+
+    <TextView
+        android:id="@+id/frecuTWregresar"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_below="@+id/faviTLBRavisos"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="287dp"
+        android:layout_marginRight="287dp"
+        android:layout_marginBottom="627dp"
+        android:text="@string/Regresar"
+        android:fontFamily="sans-serif-condensed-light"
+        android:textColor="@color/primary_text"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/frecuIWflecha"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/frecuTLBRrecursos"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="381dp"
+        android:layout_marginRight="381dp"
+        app:srcCompat="@drawable/ic_keyboard_arrow_left" />
+
+    <TextView
+        android:id="@+id/frecuTWaquihay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/frecuTLBRrecursos"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:text="@string/Aquí_hay_contenido_para_ti"
+        android:textColor="@color/primary"
+        android:fontFamily="sans-serif-condensed-light"
+        android:gravity="center"
+        android:textSize="30dp" />
+
+</RelativeLayout>

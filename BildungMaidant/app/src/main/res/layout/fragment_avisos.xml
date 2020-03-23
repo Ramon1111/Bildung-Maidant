@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/faviTWaviso3"
+        android:layout_width="256dp"
+        android:layout_height="46dp"
+        android:layout_alignBottom="@+id/faviTWaviso2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="78dp"
+        android:layout_marginLeft="78dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginRight="75dp"
+        android:layout_marginBottom="-57dp"
+        android:background="@color/divider"
+        android:text="@string/Aviso3"
+        android:fontFamily="sans-serif-condensed-light"
+        android:textColor="@color/primary_text"
+        android:textSize="25dp" />
+
+    <android.widget.Toolbar
+        android:id="@+id/faviTLBRavisos"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/divider" />
+
+    <ImageView
+        android:id="@+id/faviICNexclamacion"
+        android:layout_width="115dp"
+        android:layout_height="65dp"
+        android:layout_below="@+id/faviTLBRavisos"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="63dp"
+        android:layout_marginLeft="63dp"
+        android:layout_marginTop="49dp"
+        android:layout_marginEnd="233dp"
+        android:layout_marginRight="233dp"
+        app:srcCompat="@drawable/ic_action_warning" />
+
+    <TextView
+        android:id="@+id/faviTWavisotitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/faviTLBRavisos"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="148dp"
+        android:layout_marginLeft="148dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="144dp"
+        android:layout_marginRight="144dp"
+        android:text="@string/Avisos"
+        android:fontFamily="sans-serif-condensed-light"
+        android:textColor="@color/primary_dark"
+        android:textSize="40dp" />
+
+    <TextView
+        android:id="@+id/faviTWnombregrupo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/faviTLBRavisos"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="115dp"
+        android:layout_marginLeft="115dp"
+        android:layout_marginTop="122dp"
+        android:layout_marginEnd="115dp"
+        android:layout_marginRight="118dp"
+        android:text="@string/Nombre_del_grupo"
+        android:fontFamily="sans-serif-condensed-light"
+        android:textColor="@color/primary_text"
+        android:textSize="22dp" />
+
+    <ImageView
+        android:id="@+id/faviIWflecha"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/faviTLBRavisos"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="379dp"
+        android:layout_marginRight="379dp"
+        app:srcCompat="@drawable/ic_keyboard_arrow_left" />
+
+    <TextView
+        android:id="@+id/faviTWregresar"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_below="@+id/faviTLBRavisos"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="287dp"
+        android:layout_marginRight="287dp"
+        android:layout_marginBottom="627dp"
+        android:text="@string/Regresar"
+        android:fontFamily="sans-serif-condensed-light"
+        android:textColor="@color/primary_text"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/faviTWaviso1"
+        android:layout_width="256dp"
+        android:layout_height="46dp"
+        android:layout_alignBottom="@+id/faviTWnombregrupo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="77dp"
+        android:layout_marginLeft="77dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginRight="76dp"
+        android:layout_marginBottom="-78dp"
+        android:background="@color/divider"
+        android:text="@string/Aviso1"
+        android:fontFamily="sans-serif-condensed-light"
+        android:textColor="@color/primary_text"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/faviTWaviso2"
+        android:layout_width="256dp"
+        android:layout_height="46dp"
+        android:layout_alignBottom="@+id/faviTWaviso1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="77dp"
+        android:layout_marginLeft="77dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginRight="75dp"
+        android:layout_marginBottom="-57dp"
+        android:background="@color/divider"
+        android:text="@string/Aviso2"
+        android:fontFamily="sans-serif-condensed-light"
+        android:textColor="@color/primary_text"
+        android:textSize="25dp" />
+
+
+</RelativeLayout>

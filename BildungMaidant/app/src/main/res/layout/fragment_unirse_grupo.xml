@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/fuICNlapiz"
+        android:layout_width="115dp"
+        android:layout_height="65dp"
+        android:layout_below="@+id/fuTLBRunirse"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="298dp"
+        android:layout_marginLeft="298dp"
+        android:layout_marginTop="78dp"
+        android:layout_marginEnd="-2dp"
+        android:layout_marginRight="-2dp"
+        app:srcCompat="@drawable/ic_mode_edit" />
+
+    <EditText
+        android:id="@+id/fuEDTcodigo"
+        android:layout_width="204dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="117dp"
+        android:layout_marginLeft="117dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginRight="88dp"
+        android:layout_marginBottom="361dp"
+        android:background="@color/primary_light"
+        android:gravity="center"
+        android:hint="@string/Código"
+        android:fontFamily="sans-serif-condensed-light"
+        android:textSize="20dp" />
+
+    <android.widget.Toolbar
+        android:id="@+id/fuTLBRunirse"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/divider" />
+
+    <TextView
+        android:id="@+id/fuTWregresar"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_below="@+id/faviTLBRavisos"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="31dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="284dp"
+        android:layout_marginRight="284dp"
+        android:layout_marginBottom="626dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="@string/Regresar"
+        android:textColor="@color/primary_text"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/fuIWflecha"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/fuTLBRunirse"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="380dp"
+        android:layout_marginRight="380dp"
+        app:srcCompat="@drawable/ic_keyboard_arrow_left" />
+
+    <TextView
+        android:id="@+id/fuTWunirseaun"
+        android:layout_width="239dp"
+        android:layout_height="93dp"
+        android:layout_below="@+id/fuTLBRunirse"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginEnd="91dp"
+        android:layout_marginRight="91dp"
+        android:gravity="center"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="@string/Unirse_a_un_grupo_de_trabajo"
+        android:textColor="@color/primary"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/fuTWingresecod"
+        android:layout_width="327dp"
+        android:layout_height="42dp"
+        android:layout_below="@+id/fuTWunirseaun"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="41dp"
+        android:layout_marginLeft="41dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginRight="42dp"
+        android:layout_marginBottom="429dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="@string/Ingrese_el_código_del_grupo"
+        android:gravity="center"
+        android:textColor="@color/extra"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/fuBTNunirse"
+        android:layout_width="103dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="168dp"
+        android:layout_marginLeft="168dp"
+        android:layout_marginEnd="139dp"
+        android:layout_marginRight="139dp"
+        android:layout_marginBottom="232dp"
+        android:background="@color/accent"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="@string/Unirse" />
+
+    <Button
+        android:id="@+id/fuBTNcancel"
+        android:layout_width="103dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="169dp"
+        android:layout_marginLeft="169dp"
+        android:layout_marginEnd="138dp"
+        android:layout_marginRight="138dp"
+        android:layout_marginBottom="119dp"
+        android:background="@color/accent"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="@string/Cancelar" />
+
+</RelativeLayout>

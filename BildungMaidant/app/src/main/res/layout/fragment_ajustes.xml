@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <ImageView
+        android:id="@+id/faICNaviso"
+        android:layout_width="115dp"
+        android:layout_height="65dp"
+        android:layout_below="@+id/faTLBajustes"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="66dp"
+        android:layout_marginLeft="66dp"
+        android:layout_marginTop="77dp"
+        android:layout_marginEnd="230dp"
+        android:layout_marginRight="230dp"
+        app:srcCompat="@drawable/ic_action_gear" />
+
+    <android.widget.ListView
+        android:id="@+id/faLVajustes"
+        android:layout_width="wrap_content"
+        android:layout_height="322dp"
+        android:layout_below="@+id/faTLBajustes"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="77dp"
+        android:layout_marginLeft="77dp"
+        android:layout_marginTop="184dp"
+        android:layout_marginEnd="77dp"
+        android:layout_marginRight="77dp"
+        android:layout_marginBottom="155dp"
+        android:background="@color/accent"
+        android:fontFamily="sans-serif-condensed-light"
+        />
+
+    <android.widget.Toolbar
+        android:id="@+id/faTLBajustes"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/divider" />
+
+    <TextView
+        android:id="@+id/faTWbackajustes"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_below="@+id/faviTLBRavisos"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="31dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="284dp"
+        android:layout_marginRight="284dp"
+        android:layout_marginBottom="626dp"
+        android:text="@string/Regresar"
+        android:fontFamily="sans-serif-condensed-light"
+        android:textColor="@color/primary_text"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/faIWarrowajustes"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/faTLBajustes"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="379dp"
+        android:layout_marginRight="379dp"
+        app:srcCompat="@drawable/ic_keyboard_arrow_left" />
+
+    <TextView
+        android:id="@+id/faTWajustes"
+        android:layout_width="118dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/faTLBajustes"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="157dp"
+        android:layout_marginLeft="157dp"
+        android:layout_marginTop="86dp"
+        android:layout_marginEnd="136dp"
+        android:layout_marginRight="136dp"
+        android:text="@string/Ajustes"
+        android:fontFamily="sans-serif-condensed-light"
+        android:textColor="@color/primary"
+        android:textSize="35dp" />
+</RelativeLayout>

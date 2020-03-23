@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">BildungMaidant</string>
+    <string name="Ajustes">Ajustes</string>
+    <string name="Regresar">Regresar</string>
+    <string name="Miembros">Miembros</string>
+    <string name="Administrador">Administrador</string>
+    <string name="Usuarios">Usuarios</string>
+    <string name="Avisos">Avisos</string>
+    <string name="Agregar_miembro">Agregar miembro</string>
+    <string name="Aquí_hay_contenido_para_ti">Aquí hay contenido para ti...</string>
+    <string name="Nombre_del_grupo">Nombre del grupo</string>
+    <string name="Unirse_a_un_grupo_de_trabajo">Unirse a un grupo de trabajo</string>
+    <string name="Ingrese_el_código_del_grupo">Ingrese el código del grupo</string>
+    <string name="Código">Código</string>
+    <string name="Unirse">Unirse</string>
+    <string name="Cancelar">Cancelar</string>
+    <string name="Crear_un_grupo">Crear un grupo</string>
+    <string name="Descripción_del_grupo">Descripción del grupo</string>
+    <string name="Ingrese_Nombre">Ingrese Nombre</string>
+    <string name="Ingrese_Descripción">Ingrese Descripción</string>
+    <string name="Escuela_o_institución_a_la_que_pertenece_el_grupo">Escuela o institución a la que pertenece el grupo</string>
+    <string name="Ingrese_institución">Ingrese Institución</string>
+    <string name="Crear">Crear</string>
+    <string name="Aviso1">Aviso1</string>
+    <string name="Aviso2">Aviso2</string>
+    <string name="Aviso3">Aviso3</string>
 </resources>
