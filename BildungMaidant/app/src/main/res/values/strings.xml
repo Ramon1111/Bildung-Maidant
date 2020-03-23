@@ -32,5 +32,6 @@
     <string name="login">Ingresar</string>
     <string name="newUserString">¿Eres nuevo en Bildung Maidant?</string>
     <string name="CreateAccount">Crear una Cuenta</string>
->>>>>>> c0d8c64574204244b1518d846fd5c4b8a992b11c
+    <string name="str_home">I N I C I O</string>
+    >>>>>>> c0d8c64574204244b1518d846fd5c4b8a992b11c
 </resources>

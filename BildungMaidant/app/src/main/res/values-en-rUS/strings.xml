@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 <<<<<<< HEAD
-    <string name="app_name">BildungMaidant</string>
     <string name="Ajustes">Settings</string>
     <string name="Regresar">Back</string>
     <string name="Miembros">Members</string>
@@ -31,5 +30,7 @@
     <string name="login">Login</string>
     <string name="newUserString">Are you new in Bildung Maidant?</string>
     <string name="CreateAccount">Sign Up</string>
->>>>>>> c0d8c64574204244b1518d846fd5c4b8a992b11c
+    <string name="str_home">H O M E</string>
+    <string name="Escuela_o_institución_a_la_que_pertenece_el_grupo">School</string>
+    >>>>>>> c0d8c64574204244b1518d846fd5c4b8a992b11c
 </resources>
