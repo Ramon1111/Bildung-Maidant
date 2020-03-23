@@ -1,4 +1,5 @@
 <resources>
+<<<<<<< HEAD
     <string name="app_name">BildungMaidant</string>
     <string name="Ajustes">Ajustes</string>
     <string name="Regresar">Regresar</string>
@@ -24,4 +25,12 @@
     <string name="Aviso1">Aviso1</string>
     <string name="Aviso2">Aviso2</string>
     <string name="Aviso3">Aviso3</string>
+=======
+    <string name="app_name" translatable="false">BildungMaidant</string>
+    <string name="email">Correo Electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Ingresar</string>
+    <string name="newUserString">¿Eres nuevo en Bildung Maidant?</string>
+    <string name="CreateAccount">Crear una Cuenta</string>
+>>>>>>> c0d8c64574204244b1518d846fd5c4b8a992b11c
 </resources>

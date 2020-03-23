@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<<<<<<< HEAD
     <string name="app_name">BildungMaidant</string>
     <string name="Ajustes">Settings</string>
     <string name="Regresar">Back</string>
@@ -24,4 +25,11 @@
     <string name="Aviso1">Notice 1</string>
     <string name="Aviso2">Notice 2</string>
     <string name="Aviso3">Notice 3</string>
+=======
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="newUserString">Are you new in Bildung Maidant?</string>
+    <string name="CreateAccount">Sign Up</string>
+>>>>>>> c0d8c64574204244b1518d846fd5c4b8a992b11c
 </resources>
