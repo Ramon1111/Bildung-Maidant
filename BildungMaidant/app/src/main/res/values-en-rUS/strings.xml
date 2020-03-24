@@ -67,4 +67,14 @@
     <string name="ferTWIndicacion05">Select a time</string>
     <string name="fugBTNUnirse">Join</string>
     <string name="fugTWEncabezado">Join a work group</string>
+    <string name="fcgETIndicacion01h">Add name\'s group</string>
+    <string name="tvRegresar">Return</string>
+    <string name="fcgETIndicacion02h">Add description\'s group</string>
+    <string name="fcgETIndicacion03h">Add school or institution you belong</string>
+    <string name="ferTWEncabezado">Reminder Editer</string>
+    <string name="ferETIndicacion01h">Edit reminder\'s name</string>
+    <string name="ferETIndicacion02h">Edit description</string>
+    <string name="fnrETIndicacion01h">Add reminder\'s name</string>
+    <string name="fnrETIndicacion04h">Add description</string>
+    <string name="fugETIndicacion01h">Add code\'s group</string>
 </resources>

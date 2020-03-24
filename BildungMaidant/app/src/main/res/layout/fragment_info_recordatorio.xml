@@ -4,7 +4,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginTop="40dp">
+>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/firIVBackArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="13dp"
+            android:src="@drawable/ic_keyboard_arrow_left"
+            ></ImageView>
+        <TextView
+            android:id="@+id/firTVRegresar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="@string/tvRegresar"
+            style="@style/NormalTextView"
+            ></TextView>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/firTWEncabezado"
@@ -13,9 +34,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
         android:text="@string/firTWEncabezado"
-        android:textStyle="bold"
-        android:textSize="30dp"
-        android:textColor="@color/primary"
+        style="@style/TitleTextView"
         ></TextView>
 
     <LinearLayout
@@ -37,36 +56,33 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="7dp"
             android:text="@string/firTWDescripcion"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@color/third_text"
+            style="@style/NormalTextView"
             ></TextView>
     </LinearLayout>
 
     <EditText
         android:id="@+id/firETDescripcion"
-        android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:layout_marginTop="20dp"
-        android:textSize="20dp"
-        android:textColor="@color/primary_text"
-        android:inputType="text"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        style="@style/NormalTextView"
+        android:background="@color/primary_light"
+        android:hint="@string/firETDescripcionh"
         ></EditText>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="20dp">
         <TextView
             android:id="@+id/firTWFecha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="30dp"
             android:text="@string/firTWFecha"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@color/third_text"
+            style="@style/NormalTextView"
             ></TextView>
 
         <TextView
@@ -75,9 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="127dp"
             android:text="@string/firTWHora"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@color/third_text"
+            style="@style/NormalTextView"
             ></TextView>
     </LinearLayout>
 
@@ -99,6 +113,7 @@
             android:layout_height="wrap_content"
             android:inputType="date"
             android:focusable="false"
+            android:hint="@string/firETFechah"
             ></EditText>
         <ImageView
             android:id="@+id/firIBHorario"
@@ -112,6 +127,7 @@
             android:layout_height="wrap_content"
             android:inputType="time"
             android:focusable="false"
+            android:hint="@string/firETHorah"
             ></EditText>
     </LinearLayout>
 
@@ -126,10 +142,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:text="@string/firBTNEliminar"
-            android:textStyle="bold"
-            android:textColor="@color/primary_text"
-            android:background="@color/accent"
-            android:textSize="20dp"
+            style="@style/NormalButton"
             ></Button>
         <Button
         android:id="@+id/firBTNEditar"
@@ -137,10 +150,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:text="@string/firBTNEditar"
-        android:textStyle="bold"
-        android:textColor="@color/primary_text"
-        android:background="@color/accent"
-        android:textSize="20dp"
+            style="@style/NormalButton"
         ></Button>
         <Button
             android:id="@+id/firBTNCompletar"
@@ -148,10 +158,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:text="@string/firBTNCompletar"
-            android:textStyle="bold"
-            android:textColor="@color/primary_text"
-            android:background="@color/accent"
-            android:textSize="20dp"
+            style="@style/NormalButton"
             ></Button>
     </LinearLayout>
 </LinearLayout>

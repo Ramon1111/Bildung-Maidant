@@ -36,7 +36,8 @@
     <string name="frtSWBusqueda">Búsqueda</string>
     <string name="frtTWNuevoR">Nuevo recordatorio</string>
     <string name="fugTWEncabezado">Unirse a un grupo de trabajo</string>
-    <string name="fugTWIndicacion01">Ingrese el código del grupo</string>
+    <string name="fugTWIndicacion01">Código del grupo</string>
+    <string name="fugETIndicacion01h">Ingrese el código del grupo</string>
     <string name="fugBTNUnirse">Unirse</string>
     <string name="fugBTNCancelar">Cancelar</string>
     <string name="fcgTWEncabezado">Crear un grupo</string>
@@ -48,24 +49,36 @@
     <string name="fcgETIndicacion03h">Ingrese escuela o institución a la que pertenece</string>
     <string name="fcgBTNCrear">Crear</string>
     <string name="fcgBTNCancelar">Cancelar</string>
-    <string name="ferTWIndicacion01">Editar nombre del recordatorio</string>
+    <string name="ferTWEncabezado">Editar Recordatorio</string>
+    <string name="ferTWIndicacion01">Nombre del recordatorio</string>
+    <string name="ferETIndicacion01h">Editar nombre del recordatorio</string>
     <string name="ferTWIndicacion02">Descripción</string>
+    <string name="ferETIndicacion02h">Editar descripción</string>
     <string name="ferTWIndicacion03">Añadir campo</string>
     <string name="ferTWIndicacion04">Fecha</string>
+    <string name="ferETFechah" translatable="false">DD/MM/AAAA</string>
     <string name="ferTWIndicacion05">Seleccionar horario</string>
+    <string name="ferETHorah" translatable="false">HH:MM</string>
     <string name="ferBTNCancelar">Cancelar</string>
     <string name="ferBTNActualizar">Actualizar</string>
     <string name="fnrTWEncabezado">Nuevo Recordatorio</string>
     <string name="fnrTWIndicacion01">Nombre del recordatorio</string>
+    <string name="fnrETIndicacion01h">Agregar nombre del recordatorio</string>
     <string name="fnrTWIndicacion02">Fecha</string>
+    <string name="fnrETFechah" translatable="false">DD/MM/AAAA</string>
     <string name="fnrTWIndicacion03">Horario</string>
+    <string name="fnrETHorah" translatable="false">HH:MM</string>
     <string name="fnrTWIndicacion04">Descripción</string>
+    <string name="fnrETIndicacion04h">Agregar descripción</string>
     <string name="fnrBTNCrear">Crear</string>
     <string name="fnrBTNCancelar">Cancelar</string>
     <string name="firTWEncabezado" translatable="false">NomRecordaSTRvar</string>
     <string name="firTWDescripcion">Descripción</string>
+    <string name="firETDescripcionh" translatable="false">Esto es una descripción variable.</string>
     <string name="firTWFecha">Fecha</string>
+    <string name="firETFechah" translatable="false">DD/MM/AAAA</string>
     <string name="firTWHora">Hora</string>
+    <string name="firETHorah" translatable="false">HH:MM</string>
     <string name="firBTNEliminar">Eliminar</string>
     <string name="firBTNEditar">Editar</string>
     <string name="firBTNCompletar">Completar</string>

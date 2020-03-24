@@ -4,6 +4,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/fugIVBackArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="13dp"
+            android:src="@drawable/ic_keyboard_arrow_left"
+            ></ImageView>
+        <TextView
+            android:id="@+id/fugTVRegresar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="@string/tvRegresar"
+            style="@style/NormalTextView"
+            ></TextView>
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,11 +35,9 @@
             android:id="@+id/fugTWEncabezado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="30dp"
             android:text="@string/fugTWEncabezado"
-            android:textSize="28dp"
-            android:textColor="@color/primary_text"
-            android:textStyle="bold"
+            style="@style/TitleTextView"
             ></TextView>
         <ImageView
             android:id="@+id/fugIVEncabezado"
@@ -30,21 +50,20 @@
         android:id="@+id/fugTWIndicacion01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="70dp"
         android:text="@string/fugTWIndicacion01"
-        android:textSize="20dp"
-        android:textColor="@color/third_text"
-        android:textStyle="bold"
+        style="@style/NormalTextView"
         ></TextView>
     <EditText
         android:id="@+id/fugETCodigoNumero"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:inputType="number"
-        android:textSize="20dp"
-        android:textColor="@color/primary_text"
+        android:layout_width="350dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        style="@style/NormalTextView"
+        android:background="@color/primary_light"
+        android:hint="@string/fugETIndicacion01h"
         ></EditText>
     <Button
         android:id="@+id/fugBTNUnirse"
@@ -53,21 +72,15 @@
         android:layout_marginTop="30dp"
         android:layout_marginLeft="160dp"
         android:text="@string/fugBTNUnirse"
-        android:textStyle="bold"
-        android:textColor="@color/primary_text"
-        android:textSize="20dp"
-        android:background="@color/accent"
+        style="@style/NormalButton"
         ></Button>
     <Button
         android:id="@+id/fugBTNCancelar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="155dp"
+        android:layout_marginLeft="160dp"
         android:text="@string/fugBTNCancelar"
-        android:textStyle="bold"
-        android:textColor="@color/primary_text"
-        android:textSize="20dp"
-        android:background="@color/accent"
+        style="@style/NormalButton"
         ></Button>
 </LinearLayout>

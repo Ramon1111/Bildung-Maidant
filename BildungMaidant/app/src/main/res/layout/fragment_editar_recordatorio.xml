@@ -5,32 +5,63 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/ferIVBackArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="13dp"
+            android:src="@drawable/ic_keyboard_arrow_left"
+            ></ImageView>
+        <TextView
+            android:id="@+id/ferTVRegresar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="@string/tvRegresar"
+            style="@style/NormalTextView"
+            ></TextView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/ferTWEncabezado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:text="@string/ferTWEncabezado"
+        style="@style/TitleTextView"
+        ></TextView>
+
     <TextView
         android:id="@+id/ferTWIndicacion01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="20dp"
         android:text="@string/ferTWIndicacion01"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="@color/third_text"
+        style="@style/NormalTextView"
         ></TextView>
 
     <EditText
         android:id="@+id/ferETNombreRecordatorio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textSize="20dp"
-        android:textColor="@color/primary_text"
+        android:layout_width="350dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        style="@style/NormalTextView"
+        android:background="@color/primary_light"
+        android:hint="@string/ferETIndicacion01h"
         ></EditText>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="20dp">
         <ImageView
             android:id="@+id/ferIVDescripcion"
             android:layout_width="wrap_content"
@@ -44,19 +75,19 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:text="@string/ferTWIndicacion02"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@color/third_text"
+            style="@style/NormalTextView"
             ></TextView>
     </LinearLayout>
 
     <EditText
         android:id="@+id/ferETDescripcionRecordatorio"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_marginTop="20dp"
-        android:textSize="20dp"
-        android:textColor="@color/primary_text"
+        android:layout_width="350dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        style="@style/NormalTextView"
+        android:background="@color/primary_light"
+        android:hint="@string/ferETIndicacion02h"
         ></EditText>
 
     <LinearLayout
@@ -88,16 +119,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="20dp">
         <TextView
             android:id="@+id/ferTWIndicacion04"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="30dp"
             android:text="@string/ferTWIndicacion04"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@color/primary_text"
+            style="@style/NormalTextView"
             ></TextView>
 
         <TextView
@@ -106,9 +135,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="127dp"
             android:text="@string/ferTWIndicacion05"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@color/primary_text"
+            style="@style/NormalTextView"
             ></TextView>
     </LinearLayout>
 
@@ -130,6 +157,7 @@
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:inputType="date"
+            android:hint="@string/ferETFechah"
             ></EditText>
         <ImageButton
             android:id="@+id/ferIBHorario"
@@ -143,6 +171,7 @@
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:inputType="time"
+            android:hint="@string/ferETHorah"
             ></EditText>
     </LinearLayout>
 
@@ -150,17 +179,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="20dp">
         <Button
             android:id="@+id/ferBTNCancelar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="60dp"
             android:text="@string/ferBTNCancelar"
-            android:textStyle="bold"
-            android:textColor="@color/primary_text"
-            android:background="@color/accent"
-            android:textSize="20dp"
+            style="@style/NormalButton"
             ></Button>
         <Button
             android:id="@+id/ferBTNActualizar"
@@ -168,10 +194,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="70dp"
             android:text="@string/ferBTNActualizar"
-            android:textStyle="bold"
-            android:textColor="@color/primary_text"
-            android:background="@color/accent"
-            android:textSize="20dp"
+            style="@style/NormalButton"
             ></Button>
     </LinearLayout>
 

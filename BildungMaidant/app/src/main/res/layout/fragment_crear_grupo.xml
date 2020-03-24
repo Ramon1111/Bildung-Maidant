@@ -17,6 +17,7 @@
             android:src="@drawable/ic_keyboard_arrow_left"
             ></ImageView>
         <TextView
+            android:id="@+id/fcgTVRegresar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
@@ -29,7 +30,7 @@
         android:id="@+id/fcgTWEncabezado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="110dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
         android:text="@string/fcgTWEncabezado"
         style="@style/TitleTextView"

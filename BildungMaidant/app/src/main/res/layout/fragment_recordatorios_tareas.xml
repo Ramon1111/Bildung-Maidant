@@ -7,6 +7,27 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/frtIVBackArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="13dp"
+            android:src="@drawable/ic_keyboard_arrow_left"
+            ></ImageView>
+        <TextView
+            android:id="@+id/frtTVRegresar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="@string/tvRegresar"
+            style="@style/NormalTextView"
+            ></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="60dp">
@@ -16,9 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:text="@string/frtTWCalendario"
-            android:textStyle="bold"
-            android:textColor="@color/primary"
-            android:textSize="30sp"
+            style="@style/TitleTextView"
             ></TextView>
         <ImageView
             android:id="@+id/frtIVCalendario"
@@ -30,9 +49,10 @@
     </LinearLayout>
     <SearchView
         android:id="@+id/frtSWBusqueda"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="37dp"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
         android:queryHint="@string/frtSWBusqueda"
         ></SearchView>
     <CalendarView
@@ -54,12 +74,10 @@
             android:id="@+id/frtTWNuevoRecordatorio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="140dp"
+            android:layout_marginLeft="170dp"
             android:layout_marginTop="15dp"
             android:text="@string/frtTWNuevoR"
-            android:textColor="@color/third_text"
-            android:textSize="20dp"
-            android:textStyle="bold"
+            style="@style/NormalTextView"
             ></TextView>
         <ImageButton
             android:id="@+id/frtIBNuevoRecordatorio"
