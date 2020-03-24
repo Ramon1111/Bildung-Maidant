@@ -77,4 +77,10 @@
     <string name="fnrETIndicacion01h">Add reminder\'s name</string>
     <string name="fnrETIndicacion04h">Add description</string>
     <string name="fugETIndicacion01h">Add code\'s group</string>
+    <string name="fnmTWEncabezado">New Message</string>
+    <string name="fnmSWBusquedah">User search</string>
+    <string name="fnmTWNuevoMensaje">New message</string>
+    <string name="fnmBTNEnviarMensaje">Send message</string>
+    <string name="fnmETMensajeNuevoh">Write a new message</string>
+    <string name="fnmTWEnviarA">Send to:</string>
 </resources>

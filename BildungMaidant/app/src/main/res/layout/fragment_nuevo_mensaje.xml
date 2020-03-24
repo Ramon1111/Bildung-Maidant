@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/fnmIVBackArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="13dp"
+            android:src="@drawable/ic_keyboard_arrow_left"
+            ></ImageView>
+        <TextView
+            android:id="@+id/fnmTVRegresar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="@string/tvRegresar"
+            style="@style/NormalTextView"
+            ></TextView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/fnmTWEncabezado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        style="@style/TitleTextView"
+        android:text="@string/fnmTWEncabezado"
+        ></TextView>
+
+    <TextView
+        android:id="@+id/fnmTWEnviarA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        style="@style/NormalTextView"
+        android:text="@string/fnmTWEnviarA"
+        ></TextView>
+
+    <SearchView
+        android:id="@+id/fnmSWBusqueda"
+        android:layout_width="350dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:queryHint="@string/fnmSWBusquedah"
+        ></SearchView>
+
+    <TextView
+        android:id="@+id/fnmTWNuevoMensaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="60dp"
+        style="@style/NormalTextView"
+        android:text="@string/fnmTWNuevoMensaje"
+        ></TextView>
+
+    <EditText
+        android:id="@+id/fnmETMensajeNuevo"
+        android:layout_width="350dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        style="@style/NormalTextView"
+        android:background="@color/primary_light"
+        android:hint="@string/fnmETMensajeNuevoh"
+        ></EditText>
+
+    <Button
+        android:id="@+id/fnmBTNEnviarMensaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="231dp"
+        android:text="@string/fnmBTNEnviarMensaje"
+        style="@style/NormalButton"
+        ></Button>
+
+</LinearLayout>

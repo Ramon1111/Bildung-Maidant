@@ -82,6 +82,12 @@
     <string name="firBTNEliminar">Eliminar</string>
     <string name="firBTNEditar">Editar</string>
     <string name="firBTNCompletar">Completar</string>
+    <string name="fnmTWEncabezado">Nuevo Mensaje</string>
+    <string name="fnmTWEnviarA">Enviar a:</string>
+    <string name="fnmSWBusquedah">Buscar usuario</string>
+    <string name="fnmTWNuevoMensaje">Mensaje nuevo</string>
+    <string name="fnmETMensajeNuevoh">Escribir mensaje nuevo</string>
+    <string name="fnmBTNEnviarMensaje">Enviar mensaje</string>
 
     <string name="tvRegresar">Regresar</string>
 </resources>
