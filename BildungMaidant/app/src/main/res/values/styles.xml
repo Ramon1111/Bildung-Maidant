@@ -18,4 +18,25 @@
         <item name="android:textColor">@color/primary_text</item>
     </style>
 
+    <style name="NormalTextView">
+        <item name="android:textSize">20dp</item>
+        <item name="fontFamily">sans-serif-condensed-light</item>
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+
+    <style name="TitleTextView">
+        <item name="android:textSize">30dp</item>
+        <item name="fontFamily">sans-serif-condensed-light</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="NormalButton">
+        <item name="android:textSize">20dp</item>
+        <item name="fontFamily">sans-serif-condensed-light</item>
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@color/accent</item>
+    </style>
+
 </resources>

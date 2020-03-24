@@ -42,8 +42,11 @@
     <string name="fugBTNCancelar">Cancelar</string>
     <string name="fcgTWEncabezado">Crear un grupo</string>
     <string name="fcgTWIndicacion01">Nombre del grupo</string>
+    <string name="fcgETIndicacion01h">Ingrese el nombre del grupo</string>
     <string name="fcgTWIndicacion02">Descripción del grupo</string>
+    <string name="fcgETIndicacion02h">Ingrese descripción del grupo</string>
     <string name="fcgTWIndicacion03">Escuela o institución a la que pertenece</string>
+    <string name="fcgETIndicacion03h">Ingrese escuela o institución a la que pertenece</string>
     <string name="fcgBTNCrear">Crear</string>
     <string name="fcgBTNCancelar">Cancelar</string>
     <string name="ferTWIndicacion01">Editar nombre del recordatorio</string>
@@ -67,4 +70,6 @@
     <string name="firBTNEliminar">Eliminar</string>
     <string name="firBTNEditar">Editar</string>
     <string name="firBTNCompletar">Completar</string>
+
+    <string name="tvRegresar">Regresar</string>
 </resources>
