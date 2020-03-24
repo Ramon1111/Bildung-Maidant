@@ -9,7 +9,7 @@
     </style>
 
     <style name="TextViewLittle">
-        <item name="android:textSize">15dp</item>
+        <item name="android:textSize">20dp</item>
     </style>
     <style name="TextView_little_gray" parent="TextViewLittle">
         <item name="android:textColor">@color/secondary_text</item>
