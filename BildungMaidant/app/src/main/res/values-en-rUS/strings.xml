@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 6b41061696c9698b94502de5b3fa014b7524981b
     <string name="Ajustes">Settings</string>
     <string name="Regresar">Back</string>
     <string name="Miembros">Members</string>
@@ -30,6 +33,7 @@
     <string name="login">Login</string>
     <string name="newUserString">Are you new in Bildung Maidant?</string>
     <string name="CreateAccount">Sign Up</string>
+<<<<<<< HEAD
     <string name="Notificaciones">" Notifications"</string>
     <string name="app_name">BildungMaidant</string>
     <string name="Recordatorio">Reminder</string>
@@ -38,4 +42,60 @@
     <string name="Restablecer">Restore</string>
     <string name="Restablecer_configuración_de_notificaciones">Reset notification settings</string>
     >>>>>>> c0d8c64574204244b1518d846fd5c4b8a992b11c
+=======
+    <string name="str_home">H O M E</string>
+    <string name="Escuela_o_institución_a_la_que_pertenece_el_grupo">School</string>
+    >>>>>>> c0d8c64574204244b1518d846fd5c4b8a992b11c
+
+    <string name="app_name">BildungMaidant</string>
+    <string name="ferBTNActualizar">Update</string>
+    <string name="ferTWIndicacion03">Add a field</string>
+    <string name="frtSWBusqueda">Search</string>
+    <string name="fugBTNCancelar">Cancel</string>
+    <string name="fcgBTNCancelar">Cancel</string>
+    <string name="ferBTNCancelar">Cancel</string>
+    <string name="fnrBTNCancelar">Cancel</string>
+    <string name="firBTNCompletar">Complete</string>
+    <string name="fcgBTNCrear">Create</string>
+    <string name="fnrBTNCrear">Create</string>
+    <string name="fcgTWEncabezado">Create a group</string>
+    <string name="ferTWIndicacion02">Description</string>
+    <string name="fnrTWIndicacion04">Description</string>
+    <string name="firTWDescripcion">Description</string>
+    <string name="fcgTWIndicacion02">Group description</string>
+    <string name="firBTNEditar">Edite</string>
+    <string name="ferTWIndicacion01">Edit reminder\'s name</string>
+    <string name="firBTNEliminar">Eliminate</string>
+    <string name="fcgTWIndicacion03">School or institution you belong</string>
+    <string name="ferTWIndicacion04">Date</string>
+    <string name="fnrTWIndicacion02">Date</string>
+    <string name="firTWFecha">Date</string>
+    <string name="firTWHora">Time</string>
+    <string name="fnrTWIndicacion03">Time</string>
+    <string name="fugTWIndicacion01">Add group\'s code</string>
+    <string name="fcgTWIndicacion01">Name group</string>
+    <string name="fnrTWIndicacion01">Reminder name</string>
+    <string name="frtTWNuevoR">New reminder</string>
+    <string name="fnrTWEncabezado">New reminder</string>
+    <string name="frtTWCalendario">Reminders and more to do</string>
+    <string name="ferTWIndicacion05">Select a time</string>
+    <string name="fugBTNUnirse">Join</string>
+    <string name="fugTWEncabezado">Join a work group</string>
+    <string name="fcgETIndicacion01h">Add name\'s group</string>
+    <string name="tvRegresar">Return</string>
+    <string name="fcgETIndicacion02h">Add description\'s group</string>
+    <string name="fcgETIndicacion03h">Add school or institution you belong</string>
+    <string name="ferTWEncabezado">Reminder Editer</string>
+    <string name="ferETIndicacion01h">Edit reminder\'s name</string>
+    <string name="ferETIndicacion02h">Edit description</string>
+    <string name="fnrETIndicacion01h">Add reminder\'s name</string>
+    <string name="fnrETIndicacion04h">Add description</string>
+    <string name="fugETIndicacion01h">Add code\'s group</string>
+    <string name="fnmTWEncabezado">New Message</string>
+    <string name="fnmSWBusquedah">User search</string>
+    <string name="fnmTWNuevoMensaje">New message</string>
+    <string name="fnmBTNEnviarMensaje">Send message</string>
+    <string name="fnmETMensajeNuevoh">Write a new message</string>
+    <string name="fnmTWEnviarA">Send to:</string>
+>>>>>>> 6b41061696c9698b94502de5b3fa014b7524981b
 </resources>

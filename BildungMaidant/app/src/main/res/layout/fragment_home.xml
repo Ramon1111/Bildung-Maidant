@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="I N I C I O"
+        android:textColor="@color/primary"
+        android:textSize="23dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/fhTVNombreTexto"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.836" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="80dp"
+        android:maxWidth="160dp"
+        android:maxHeight="160dp"
+        android:src="@drawable/user_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fhTVNombreTexto"
+        style="@style/TextView_little_gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="72dp"
+        android:text="Nombre:"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fhTVNombreInfo"
+        style="@style/TextView_little_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:maxWidth="200dp"
+        android:text="Juanito Perez"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/fhTVNombreTexto"/>
+
+    <TextView
+        android:id="@+id/fhTVIntitucionTexto"
+        style="@style/TextView_little_gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="8dp"
+        android:text="Institución:"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/fhTVNombreInfo" />
+
+    <TextView
+        android:id="@+id/fhTVIntitucionInfo"
+        style="@style/TextView_little_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Escuelita de Fulanitos"
+        android:maxWidth="200dp"
+        app:layout_constraintStart_toStartOf="@+id/fhTVIntitucionTexto"
+        app:layout_constraintTop_toBottomOf="@+id/fhTVIntitucionTexto"/>
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/TextView_little_gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:text="Sobre mí:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/textView3"
+        style="@style/TextView_little_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:maxWidth="350dp"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum bibendum facilisis nisl ac interdum. Maecenas mi dui, vestibulum et ante."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <RelativeLayout
+        android:layout_width="345dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:maxHeight="350dp"
+        android:minHeight="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_dark"
+            android:gravity="center"
+            android:paddingVertical="5dp"
+            android:text="Recientes"
+            android:textColor="@android:color/white"
+            android:textSize="15dp" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </ListView>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

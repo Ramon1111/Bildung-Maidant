@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/fcgIVBackArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="13dp"
+            android:src="@drawable/ic_keyboard_arrow_left"
+            ></ImageView>
+        <TextView
+            android:id="@+id/fcgTVRegresar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="@string/tvRegresar"
+            style="@style/NormalTextView"
+            ></TextView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/fcgTWEncabezado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/fcgTWEncabezado"
+        style="@style/TitleTextView"
+        ></TextView>
+
+    <TextView
+        android:id="@+id/fcgTWIndicacion01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/fcgTWIndicacion01"
+        style="@style/NormalTextView"
+        ></TextView>
+
+    <EditText
+        android:id="@+id/fcgETNombreGrupo"
+        android:layout_width="350dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        style="@style/NormalTextView"
+        android:background="@color/primary_light"
+        android:hint="@string/fcgETIndicacion01h"
+        ></EditText>
+
+    <TextView
+        android:id="@+id/fcgTWIndicacion02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/fcgTWIndicacion02"
+        style="@style/NormalTextView"
+        ></TextView>
+
+    <EditText
+        android:id="@+id/fcgETDescripcionGrupo"
+        android:layout_width="350dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        style="@style/NormalTextView"
+        android:background="@color/primary_light"
+        android:hint="@string/fcgETIndicacion02h"
+        ></EditText>
+
+    <TextView
+        android:id="@+id/fcgTWIndicacion03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/fcgTWIndicacion03"
+        style="@style/NormalTextView"
+        ></TextView>
+
+    <EditText
+        android:id="@+id/fcgETNEscuelaInstitucion"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        style="@style/NormalTextView"
+        android:background="@color/primary_light"
+        android:hint="@string/fcgETIndicacion03h"
+        ></EditText>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        >
+        <Button
+            android:id="@+id/fcgBTNCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:text="@string/fugBTNCancelar"
+            style="@style/NormalButton"
+            ></Button>
+        <Button
+            android:id="@+id/fcgBTNCrear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:text="@string/fcgBTNCrear"
+            style="@style/NormalButton"
+            ></Button>
+    </LinearLayout>
+
+</LinearLayout>

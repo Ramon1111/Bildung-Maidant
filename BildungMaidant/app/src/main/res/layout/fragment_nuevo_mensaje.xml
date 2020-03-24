@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:id="@+id/fugIVBackArrow"
+            android:id="@+id/fnmIVBackArrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="6dp"
@@ -17,7 +17,7 @@
             android:src="@drawable/ic_keyboard_arrow_left"
             ></ImageView>
         <TextView
-            android:id="@+id/fugTVRegresar"
+            android:id="@+id/fnmTVRegresar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
@@ -26,61 +26,64 @@
             ></TextView>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="140dp">
-        <TextView
-            android:id="@+id/fugTWEncabezado"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:text="@string/fugTWEncabezado"
-            style="@style/TitleTextView"
-            ></TextView>
-        <ImageView
-            android:id="@+id/fugIVEncabezado"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_edit_yellow_40dp"
-            ></ImageView>
-    </LinearLayout>
     <TextView
-        android:id="@+id/fugTWIndicacion01"
+        android:id="@+id/fnmTWEncabezado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="70dp"
-        android:text="@string/fugTWIndicacion01"
-        style="@style/NormalTextView"
+        android:layout_marginTop="20dp"
+        style="@style/TitleTextView"
+        android:text="@string/fnmTWEncabezado"
         ></TextView>
-    <EditText
-        android:id="@+id/fugETCodigoNumero"
+
+    <TextView
+        android:id="@+id/fnmTWEnviarA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        style="@style/NormalTextView"
+        android:text="@string/fnmTWEnviarA"
+        ></TextView>
+
+    <SearchView
+        android:id="@+id/fnmSWBusqueda"
         android:layout_width="350dp"
         android:layout_height="37dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"
+        android:queryHint="@string/fnmSWBusquedah"
+        ></SearchView>
+
+    <TextView
+        android:id="@+id/fnmTWNuevoMensaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="60dp"
+        style="@style/NormalTextView"
+        android:text="@string/fnmTWNuevoMensaje"
+        ></TextView>
+
+    <EditText
+        android:id="@+id/fnmETMensajeNuevo"
+        android:layout_width="350dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
         style="@style/NormalTextView"
         android:background="@color/primary_light"
-        android:hint="@string/fugETIndicacion01h"
+        android:hint="@string/fnmETMensajeNuevoh"
         ></EditText>
+
     <Button
-        android:id="@+id/fugBTNUnirse"
+        android:id="@+id/fnmBTNEnviarMensaje"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="160dp"
-        android:text="@string/fugBTNUnirse"
+        android:layout_marginLeft="231dp"
+        android:text="@string/fnmBTNEnviarMensaje"
         style="@style/NormalButton"
         ></Button>
-    <Button
-        android:id="@+id/fugBTNCancelar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="160dp"
-        android:text="@string/fugBTNCancelar"
-        style="@style/NormalButton"
-        ></Button>
+
 </LinearLayout>
