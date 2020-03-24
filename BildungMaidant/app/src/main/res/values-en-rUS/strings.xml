@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 <<<<<<< HEAD
-    <string name="app_name">BildungMaidant</string>
     <string name="Ajustes">Settings</string>
     <string name="Regresar">Back</string>
     <string name="Miembros">Members</string>
@@ -31,5 +30,12 @@
     <string name="login">Login</string>
     <string name="newUserString">Are you new in Bildung Maidant?</string>
     <string name="CreateAccount">Sign Up</string>
->>>>>>> c0d8c64574204244b1518d846fd5c4b8a992b11c
+    <string name="Notificaciones">" Notifications"</string>
+    <string name="app_name">BildungMaidant</string>
+    <string name="Recordatorio">Reminder</string>
+    <string name="Chat_de_grupo">" Group Chat"</string>
+    <string name="Mensaje_Privado">Private Message</string>
+    <string name="Restablecer">Restore</string>
+    <string name="Restablecer_configuración_de_notificaciones">Reset notification settings</string>
+    >>>>>>> c0d8c64574204244b1518d846fd5c4b8a992b11c
 </resources>

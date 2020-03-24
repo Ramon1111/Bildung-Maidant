@@ -19,18 +19,24 @@
     <string name="Descripción_del_grupo">Descripción del grupo</string>
     <string name="Ingrese_Nombre">Ingrese Nombre</string>
     <string name="Ingrese_Descripción">Ingrese Descripción</string>
-    <string name="Escuela_o_institución_a_la_que_pertenece_el_grupo">Escuela o institución a la que pertenece el grupo</string>
+    <string name="Escuela_o_institución_a_la_que_pertenece_el_grupo" translatable="false">Escuela o institución a la que pertenece el grupo</string>
     <string name="Ingrese_institución">Ingrese Institución</string>
     <string name="Crear">Crear</string>
     <string name="Aviso1">Aviso1</string>
     <string name="Aviso2">Aviso2</string>
     <string name="Aviso3">Aviso3</string>
 =======
-    <string name="app_name" translatable="false">BildungMaidant</string>
+    <string name="app_name">BildungMaidant</string>
     <string name="email">Correo Electrónico</string>
     <string name="password">Contraseña</string>
     <string name="login">Ingresar</string>
     <string name="newUserString">¿Eres nuevo en Bildung Maidant?</string>
     <string name="CreateAccount">Crear una Cuenta</string>
->>>>>>> c0d8c64574204244b1518d846fd5c4b8a992b11c
+    <string name="Notificaciones">Notificaciones</string>
+    <string name="Recordatorio">Recordatorio</string>
+    <string name="Chat_de_grupo">Chat de grupo</string>
+    <string name="Mensaje_Privado">Mensaje Privado</string>
+    <string name="Restablecer">Restablecer</string>
+    <string name="Restablecer_configuración_de_notificaciones">Restablecer configuración de notificaciones</string>
+    >>>>>>> c0d8c64574204244b1518d846fd5c4b8a992b11c
 </resources>

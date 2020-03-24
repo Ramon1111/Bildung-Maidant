@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <Button
+        android:id="@+id/fnBTNrestablecer"
+        android:layout_width="152dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/faTLBajustes"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="445dp"
+        android:layout_marginEnd="209dp"
+        android:layout_marginRight="209dp"
+        android:background="@color/accent"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="@string/Restablecer"
+        android:textSize="16dp" />
+
+    <TextView
+        android:id="@+id/fnTWChat"
+        android:layout_width="200dp"
+        android:layout_height="52dp"
+        android:layout_below="@+id/faTLBajustes"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="49dp"
+        android:layout_marginLeft="49dp"
+        android:layout_marginTop="249dp"
+        android:layout_marginEnd="163dp"
+        android:layout_marginRight="163dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:gravity="left"
+        android:text="@string/Chat_de_grupo"
+        android:textColor="@color/primary"
+        android:textSize="35dp" />
+
+    <TextView
+        android:id="@+id/fnTWRecordatorio"
+        android:layout_width="200dp"
+        android:layout_height="52dp"
+        android:layout_below="@+id/faTLBajustes"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="49dp"
+        android:layout_marginLeft="49dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginRight="162dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:gravity="left"
+        android:text="@string/Recordatorio"
+        android:textColor="@color/primary"
+        android:textSize="35dp" />
+
+    <Switch
+        android:id="@+id/fnSWavisos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/faTLBajustes"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="317dp"
+        android:layout_marginLeft="317dp"
+        android:layout_marginTop="349dp"
+        android:layout_marginEnd="54dp"
+
+        android:layout_marginRight="54dp" />
+
+    <Switch
+        android:id="@+id/fnSWmensaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/faTLBajustes"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="317dp"
+        android:layout_marginLeft="317dp"
+        android:layout_marginTop="306dp"
+        android:layout_marginEnd="54dp"
+
+        android:layout_marginRight="54dp" />
+
+    <ImageView
+        android:id="@+id/fnICNbell"
+        android:layout_width="115dp"
+        android:layout_height="65dp"
+        android:layout_below="@+id/faTLBajustes"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="66dp"
+        android:layout_marginLeft="66dp"
+        android:layout_marginTop="77dp"
+        android:layout_marginEnd="230dp"
+        android:layout_marginRight="230dp"
+        app:srcCompat="@drawable/ic_action_bell" />
+
+    <Switch
+        android:id="@+id/fnSWrecordatorios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/faTLBajustes"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="317dp"
+        android:layout_marginLeft="317dp"
+        android:layout_marginTop="212dp"
+        android:layout_marginEnd="54dp"
+
+        android:layout_marginRight="54dp" />
+
+    <Switch
+        android:id="@+id/fnSWchat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/faTLBajustes"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="317dp"
+        android:layout_marginLeft="317dp"
+        android:layout_marginTop="261dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginRight="54dp"
+
+        />
+
+    <android.widget.Toolbar
+        android:id="@+id/faTLBajustes"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/divider" />
+
+    <TextView
+        android:id="@+id/fnTWbackajustes"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_below="@+id/faviTLBRavisos"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="279dp"
+        android:layout_marginRight="279dp"
+        android:layout_marginBottom="553dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="@string/Regresar"
+        android:textColor="@color/primary_text"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/faIWarrowajustes"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/faTLBajustes"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="379dp"
+        android:layout_marginRight="379dp"
+        app:srcCompat="@drawable/ic_keyboard_arrow_left" />
+
+
+
+    <TextView
+        android:id="@+id/fnTWnotificaciones"
+        android:layout_width="200dp"
+        android:layout_height="52dp"
+        android:layout_below="@+id/faTLBajustes"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="141dp"
+        android:layout_marginLeft="141dp"
+        android:layout_marginTop="83dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="@string/Notificaciones"
+        android:textColor="@color/primary"
+        android:textSize="35dp" />
+
+    <TextView
+        android:id="@+id/fnTWmensaje"
+        android:layout_width="235dp"
+        android:layout_height="55dp"
+        android:layout_below="@+id/faTLBajustes"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="49dp"
+        android:layout_marginLeft="49dp"
+        android:layout_marginTop="293dp"
+        android:layout_marginEnd="127dp"
+        android:layout_marginRight="127dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:gravity="left"
+        android:text="@string/Mensaje_Privado"
+        android:textColor="@color/primary"
+        android:textSize="35dp" />
+
+    <TextView
+        android:id="@+id/fnTWAvisos"
+        android:layout_width="200dp"
+        android:layout_height="52dp"
+        android:layout_below="@+id/faTLBajustes"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="49dp"
+        android:layout_marginLeft="49dp"
+        android:layout_marginTop="335dp"
+        android:layout_marginEnd="158dp"
+        android:layout_marginRight="158dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:gravity="left"
+        android:text="@string/Avisos"
+        android:textColor="@color/primary"
+        android:textSize="35dp" />
+
+    <TextView
+        android:id="@+id/fnTWrestablecer"
+        android:layout_width="362dp"
+        android:layout_height="61dp"
+        android:layout_below="@+id/faTLBajustes"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="49dp"
+        android:layout_marginLeft="49dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:gravity="left"
+        android:text="@string/Restablecer_configuración_de_notificaciones"
+        android:textColor="@color/primary_text"
+        android:textSize="20dp" />
+
+</RelativeLayout>
