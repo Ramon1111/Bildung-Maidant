@@ -78,7 +78,9 @@
         android:fontFamily="sans-serif-condensed-light"
         android:text="@string/Miembros"
         android:textColor="@color/primary"
-        android:textSize="35dp" />
+        android:textSize="35dp"
+        android:textStyle="bold"
+        />
 
     <ImageView
         android:id="@+id/fmiemICNusers"
