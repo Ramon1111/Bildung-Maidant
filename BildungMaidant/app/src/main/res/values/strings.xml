@@ -24,10 +24,6 @@
     <string name="Aviso1">Aviso1</string>
     <string name="Aviso2">Aviso2</string>
     <string name="Aviso3">Aviso3</string>
-<<<<<<< HEAD
-=======
-    <string name="app_name">BildungMaidant</string>
-=======
 
 >>>>>>> 6b41061696c9698b94502de5b3fa014b7524981b
     <string name="email">Correo Electrónico</string>
@@ -35,7 +31,7 @@
     <string name="login">Ingresar</string>
     <string name="newUserString">¿Eres nuevo en Bildung Maidant?</string>
     <string name="CreateAccount">Crear una Cuenta</string>
-<<<<<<< HEAD
+
     <string name="Notificaciones">Notificaciones</string>
     <string name="Recordatorio">Recordatorio</string>
     <string name="Chat_de_grupo">Chat de grupo</string>
@@ -43,10 +39,7 @@
     <string name="Restablecer">Restablecer</string>
     <string name="Restablecer_configuración_de_notificaciones">Restablecer configuración de notificaciones</string>
     >>>>>>> c0d8c64574204244b1518d846fd5c4b8a992b11c
-</resources>
-=======
     <string name="str_home">I N I C I O</string>
-
     <string name="frtTWCalendario">Recordatorios y tareas</string>
     <string name="frtSWBusqueda">Búsqueda</string>
     <string name="frtTWNuevoR">Nuevo recordatorio</string>
@@ -103,7 +96,6 @@
     <string name="fnmTWNuevoMensaje">Mensaje nuevo</string>
     <string name="fnmETMensajeNuevoh">Escribir mensaje nuevo</string>
     <string name="fnmBTNEnviarMensaje">Enviar mensaje</string>
-
     <string name="tvRegresar">Regresar</string>
 </resources>
->>>>>>> 6b41061696c9698b94502de5b3fa014b7524981b
+
