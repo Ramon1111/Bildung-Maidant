@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<<<<<<< HEAD
-<<<<<<< HEAD
 =======
->>>>>>> 6b41061696c9698b94502de5b3fa014b7524981b
     <string name="Ajustes">Settings</string>
     <string name="Regresar">Back</string>
     <string name="Miembros">Members</string>
@@ -33,7 +30,8 @@
     <string name="login">Login</string>
     <string name="newUserString">Are you new in Bildung Maidant?</string>
     <string name="CreateAccount">Sign Up</string>
-<<<<<<< HEAD
+
+
     <string name="Notificaciones">" Notifications"</string>
     <string name="app_name">BildungMaidant</string>
     <string name="Recordatorio">Reminder</string>
@@ -41,13 +39,12 @@
     <string name="Mensaje_Privado">Private Message</string>
     <string name="Restablecer">Restore</string>
     <string name="Restablecer_configuración_de_notificaciones">Reset notification settings</string>
-    >>>>>>> c0d8c64574204244b1518d846fd5c4b8a992b11c
+
 =======
     <string name="str_home">H O M E</string>
     <string name="Escuela_o_institución_a_la_que_pertenece_el_grupo">School</string>
-    >>>>>>> c0d8c64574204244b1518d846fd5c4b8a992b11c
 
-    <string name="app_name">BildungMaidant</string>
+
     <string name="ferBTNActualizar">Update</string>
     <string name="ferTWIndicacion03">Add a field</string>
     <string name="frtSWBusqueda">Search</string>
@@ -97,5 +94,16 @@
     <string name="fnmBTNEnviarMensaje">Send message</string>
     <string name="fnmETMensajeNuevoh">Write a new message</string>
     <string name="fnmTWEnviarA">Send to:</string>
->>>>>>> 6b41061696c9698b94502de5b3fa014b7524981b
+    <string name="fmmTVRegresar">Return</string>
+    <string name="fmmTVNuevoMensaje">New Message</string>
+    <string name="fmmTVMensajes">Messages</string>
+    <string name="faiTVRegresar">Return</string>
+    <string name="faiTVActualizar">Update Information</string>
+    <string name="faiTVNombres">Name</string>
+    <string name="faiTVApellidos">Last Name</string>
+    <string name="faiTVCorreo">e-Mail</string>
+    <string name="faiTVInstitucion">School or Institute</string>
+    <string name="faiTVFecha">Birth Date</string>
+    <string name="fciHMensaje">Write message</string>
+
 </resources>

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/faiLinearLayout"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/faiRLBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/faiTVFlecha"
+                style="@style/TextView_little_gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:padding="10dp"
+                android:text="<" />
+
+            <TextView
+                android:id="@+id/faiTVRegresar"
+                style="@style/TextView_little_gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/faiTVFlecha"
+                android:padding="10dp"
+                android:text="@string/faiTVRegresar" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/faiTVActualizar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/faiTVActualizar"
+        android:textColor="@color/third_text"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/faiLinearLayout"
+        android:gravity="center_horizontal"></TextView>
+
+    <TextView
+        android:id="@+id/faiTVNombres"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/primary_text"
+        android:text="@string/faiTVNombres"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/faiTVActualizar"
+         />
+
+
+    <EditText
+        android:id="@+id/faiETNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/primary_text"
+        android:textSize="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/faiTVNombres"
+        tools:layout_editor_absoluteX="0dp"></EditText>
+
+    <TextView
+        android:id="@+id/faiTVApellidos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/primary_text"
+        android:text="@string/faiTVApellidos"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/faiTVActualizar"
+        />
+
+
+    <EditText
+        android:id="@+id/faiETApellido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/primary_text"
+        android:textSize="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/faiTVApellidos"
+        tools:layout_editor_absoluteX="0dp"></EditText>
+
+
+    <TextView
+        android:id="@+id/faiTVCorreo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/primary_text"
+        android:text="@string/faiTVCorreo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/faiTVActualizar"
+        />
+
+
+    <EditText
+        android:id="@+id/faiETCorreo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/primary_text"
+        android:textSize="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/faiTVCorreo"
+        tools:layout_editor_absoluteX="0dp"></EditText>
+
+    <TextView
+        android:id="@+id/faiTVInstitucion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="320dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/primary_text"
+        android:text="@string/faiTVInstitucion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/faiTVActualizar"
+        />
+
+    <EditText
+        android:id="@+id/faiETInstitucion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/primary_text"
+        android:textSize="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/faiTVInstitucion"
+        tools:layout_editor_absoluteX="0dp"></EditText>
+
+    <TextView
+        android:id="@+id/faiTVFechanacimiento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="420dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/primary_text"
+        android:text="@string/faiTVFecha"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/faiTVActualizar"
+        />
+
+    <EditText
+        android:id="@+id/faiETDia"
+        android:layout_width="20pt"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/primary_text"
+        android:textSize="14dp"
+        android:inputType="number"
+        android:maxLength="2"
+        app:layout_constraintStart_toEndOf="@+id/faiTVFechanacimiento"
+        app:layout_constraintTop_toBottomOf="@+id/faiETInstitucion"></EditText>
+
+    <EditText
+        android:id="@+id/faiETMes"
+        android:layout_width="20pt"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/primary_text"
+        android:textSize="14dp"
+        android:inputType="number"
+        android:maxLength="2"
+        app:layout_constraintStart_toEndOf="@+id/faiTVFechanacimiento"
+        app:layout_constraintTop_toBottomOf="@+id/faiETInstitucion"></EditText>
+
+    <EditText
+        android:id="@+id/faiETAnio"
+        android:layout_width="30pt"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="125dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/primary_text"
+        android:textSize="14dp"
+        android:inputType="number"
+        android:maxLength="4"
+        app:layout_constraintStart_toEndOf="@+id/faiTVFechanacimiento"
+        app:layout_constraintTop_toBottomOf="@+id/faiETInstitucion"></EditText>
+
+    <Button
+        android:id="@+id/faiBTNActualizar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="144dp"
+        android:layout_marginLeft="144dp"
+        android:layout_marginTop="480dp"
+        android:background="@color/accent"
+        android:text="@string/ferBTNActualizar"
+        android:textColor="@color/primary_text"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/faiTVActualizar"></Button>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

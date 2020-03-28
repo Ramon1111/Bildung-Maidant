@@ -97,5 +97,20 @@
     <string name="fnmETMensajeNuevoh">Escribir mensaje nuevo</string>
     <string name="fnmBTNEnviarMensaje">Enviar mensaje</string>
     <string name="tvRegresar">Regresar</string>
+
+    <string name="fmmTVRegresar">Regresar</string>
+    <string name="fmmTVNuevoMensaje">Nuevo Mensaje</string>
+    <string name="fmmTVMensajes">Mensajes</string>
+
+    <string name="faiTVRegresar">Regresar</string>
+    <string name="faiTVActualizar">Actualizar información</string>
+    <string name="faiTVNombres">Nombres</string>
+    <string name="faiTVApellidos">Apellidos</string>
+    <string name="faiTVCorreo">Correo</string>
+    <string name="faiTVInstitucion">Escuela o Institución</string>
+    <string name="faiTVFecha">Fecha de nacimiento</string>
+
+    <string name="fciHMensaje">Escribir un mensaje</string>
+
 </resources>
 
