@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/Inicio"
+            android:icon="@drawable/ic_home"
+            android:title="Inicio"
+            />
+        <item android:id="@+id/TusGrupos"
+            android:icon="@drawable/ic_group_black_24dp"
+            android:title="Tus Grupos"
+            />
+        <item android:id="@+id/Recordatorios"
+            android:icon="@drawable/ic_notifications_black_24dp"
+            android:title="Recordatorios"
+            />
+        <item android:id="@+id/Mensajes"
+            android:icon="@drawable/ic_email"
+            android:title="Mensajes"
+            />
+
+    </group>
+
+    <item android:title="Opciones">
+        <menu>
+            <item android:id="@+id/Ajustes"
+                android:icon="@drawable/ic_settings"
+                android:title="Ajustes"
+                />
+            <item android:id="@+id/CerrarSesion"
+                android:icon="@drawable/ic_exit"
+                android:title="Cerrar Sesión"
+                />
+        </menu>
+    </item>
+</menu>
