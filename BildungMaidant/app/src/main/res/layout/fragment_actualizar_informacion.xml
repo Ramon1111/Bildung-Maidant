@@ -17,7 +17,8 @@
         <RelativeLayout
             android:id="@+id/faiRLBack"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:ignore="UselessParent">
 
             <TextView
                 android:id="@+id/faiTVFlecha"
@@ -26,7 +27,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:padding="10dp"
-                android:text="<" />
+                android:text="&lt;"
+                android:layout_alignParentStart="true" />
 
             <TextView
                 android:id="@+id/faiTVRegresar"
@@ -35,7 +37,8 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/faiTVFlecha"
                 android:padding="10dp"
-                android:text="@string/faiTVRegresar" />
+                android:text="@string/faiTVRegresar"
+                android:layout_toEndOf="@+id/faiTVFlecha" />
 
         </RelativeLayout>
 
@@ -52,11 +55,11 @@
         android:text="@string/faiTVActualizar"
         android:textColor="@color/third_text"
         android:textAlignment="center"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/faiLinearLayout"
-        android:gravity="center_horizontal"></TextView>
+        android:gravity="center_horizontal"/>
 
     <TextView
         android:id="@+id/faiTVNombres"
@@ -64,13 +67,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/primary_text"
         android:text="@string/faiTVNombres"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/faiTVActualizar"
-         />
+        android:layout_marginStart="20dp" />
 
 
     <EditText
@@ -79,9 +82,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textColor="@color/primary_text"
-        android:textSize="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/faiTVNombres"
-        tools:layout_editor_absoluteX="0dp"></EditText>
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:hint="@string/Ingrese_Nombre"
+        app:layout_constraintTop_toBottomOf="@+id/faiTVNombres" />
 
     <TextView
         android:id="@+id/faiTVApellidos"
@@ -89,13 +94,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
         android:layout_marginLeft="20dp"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/primary_text"
         android:text="@string/faiTVApellidos"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/faiTVActualizar"
-        />
+        android:layout_marginStart="20dp" />
 
 
     <EditText
@@ -105,8 +110,9 @@
         android:layout_marginTop="10dp"
         android:textColor="@color/primary_text"
         android:textSize="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/faiTVApellidos"
-        tools:layout_editor_absoluteX="0dp"></EditText>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/faiTVApellidos" />
 
 
     <TextView
@@ -121,7 +127,7 @@
         android:text="@string/faiTVCorreo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/faiTVActualizar"
-        />
+        android:layout_marginStart="20dp" />
 
 
     <EditText
@@ -130,9 +136,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textColor="@color/primary_text"
-        android:textSize="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/faiTVCorreo"
-        tools:layout_editor_absoluteX="0dp"></EditText>
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/faiTVCorreo" />
 
     <TextView
         android:id="@+id/faiTVInstitucion"
@@ -146,7 +152,7 @@
         android:text="@string/faiTVInstitucion"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/faiTVActualizar"
-        />
+        android:layout_marginStart="20dp" />
 
     <EditText
         android:id="@+id/faiETInstitucion"
@@ -155,8 +161,8 @@
         android:layout_marginTop="10dp"
         android:textColor="@color/primary_text"
         android:textSize="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/faiTVInstitucion"
-        tools:layout_editor_absoluteX="0dp"></EditText>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/faiTVInstitucion" />
 
     <TextView
         android:id="@+id/faiTVFechanacimiento"
@@ -184,7 +190,7 @@
         android:inputType="number"
         android:maxLength="2"
         app:layout_constraintStart_toEndOf="@+id/faiTVFechanacimiento"
-        app:layout_constraintTop_toBottomOf="@+id/faiETInstitucion"></EditText>
+        app:layout_constraintTop_toBottomOf="@+id/faiETInstitucion"/>
 
     <EditText
         android:id="@+id/faiETMes"
@@ -198,7 +204,7 @@
         android:inputType="number"
         android:maxLength="2"
         app:layout_constraintStart_toEndOf="@+id/faiTVFechanacimiento"
-        app:layout_constraintTop_toBottomOf="@+id/faiETInstitucion"></EditText>
+        app:layout_constraintTop_toBottomOf="@+id/faiETInstitucion"/>
 
     <EditText
         android:id="@+id/faiETAnio"
@@ -212,7 +218,7 @@
         android:inputType="number"
         android:maxLength="4"
         app:layout_constraintStart_toEndOf="@+id/faiTVFechanacimiento"
-        app:layout_constraintTop_toBottomOf="@+id/faiETInstitucion"></EditText>
+        app:layout_constraintTop_toBottomOf="@+id/faiETInstitucion"/>
 
     <Button
         android:id="@+id/faiBTNActualizar"
@@ -227,6 +233,6 @@
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/faiTVActualizar"></Button>
+        app:layout_constraintTop_toBottomOf="@+id/faiTVActualizar"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

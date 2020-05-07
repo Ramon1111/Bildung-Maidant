@@ -1,8 +1,7 @@
 package com.example.bildungmaidant;
 
 import android.os.Bundle;
-import android.view.View;
-import android.view.Menu;
+
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -60,12 +59,15 @@ public class Menu extends AppCompatActivity {
         */
     }
 
-    @Override
+
+
+    ///////Checar las opciones del menú
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, (android.view.Menu) menu);
         return true;
-    }
+    }*/
 
     @Override
     public void onBackPressed(){

@@ -13,6 +13,8 @@
             android:name=".Menu"
             android:label="@string/title_activity_menu"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".CrearCuentaActivity"></activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

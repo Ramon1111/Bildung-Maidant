@@ -105,5 +105,6 @@
     <string name="faiTVInstitucion">School or Institute</string>
     <string name="faiTVFecha">Birth Date</string>
     <string name="fciHMensaje">Write message</string>
+    <string name="title_activity_menu">Menu</string>
 
 </resources>
