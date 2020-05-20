@@ -20,7 +20,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -91,7 +90,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
         CrearUsuario(edtNombres.getText().toString(),edtApellido.getText().toString(),edtUsuario.getText().toString(),edtCorreo.getText().toString(),edtPass.getText().toString());
     }
 
-    private void CrearUsuario (final String nombres, final String apellido, final String nUsuario, final String correo, String contrasena){
+    private void CrearUsuario (final String nombres, final String apellido, final String nUsuario, final String correo, final String contrasena){
         mAuth.createUserWithEmailAndPassword(correo, contrasena)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -104,6 +103,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
 
                             //Parte para subir los datos del usuario
                             SubirDatos(nombres,apellido,nUsuario,user);
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -115,6 +115,22 @@ public class CrearCuentaActivity extends AppCompatActivity {
                 });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        try {
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+            HayUsuario(currentUser);
+        }catch(Exception e){
+
+            e.printStackTrace();
+        }
+    }
+
+    private void HayUsuario(FirebaseUser currentUser) {
+        Log.i(TAG,currentUser.getUid());
+    }
 
     /*Información a cambiar si es que cambiamos los campos en firebase*/
     private void SubirDatos(String nombres, String apellidos, String nusuario, final FirebaseUser user) {
@@ -123,17 +139,27 @@ public class CrearCuentaActivity extends AppCompatActivity {
         usuario.put("apellidos", apellidos);
         usuario.put("usuario", nusuario);
 
+        String id=user.getUid();
+
         db.collection("users")
-                .document(user.getUid())
+                .document(id)
                 .set(usuario)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot added with ID: " + user.getUid());
 
+
                         Intent cambiar = new Intent(CrearCuentaActivity.this,LoginActivity.class);
+                        //cambiar.putExtra("uidUser1",user.getIdToken(false).toString());
+                        //cambiar.putExtra("uidUser2",user.getIdToken(true).toString());
+                        //cambiar.putExtra("uidUser3",user.getIdToken(false).toString());
+                        cambiar.putExtra("uidUser",user.getUid());
                         startActivity(cambiar);
                         finish();
+
+                        //IniciaSesion(correo,contrasena);
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
