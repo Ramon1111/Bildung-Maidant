@@ -23,11 +23,11 @@
         android:textColor="@color/primary_text"
         android:textSize="25dp" />
 
-    <android.widget.Toolbar
+    <!--<android.widget.Toolbar
         android:id="@+id/faviTLBRavisos"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@color/divider" />
+        android:background="@color/divider" />-->
 
     <ImageView
         android:id="@+id/faviICNexclamacion"
@@ -85,7 +85,7 @@
         android:textColor="@color/primary_text"
         android:textSize="22dp" />
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/faviIWflecha"
         android:layout_width="20dp"
         android:layout_height="20dp"
@@ -118,7 +118,7 @@
         android:fontFamily="sans-serif-condensed-light"
         android:text="@string/Regresar"
         android:textColor="@color/primary_text"
-        android:textSize="20sp" />
+        android:textSize="20sp" />-->
 
     <TextView
         android:id="@+id/faviTWaviso1"

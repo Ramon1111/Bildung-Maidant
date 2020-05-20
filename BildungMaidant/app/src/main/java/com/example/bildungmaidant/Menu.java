@@ -14,7 +14,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.bildungmaidant.fragments.ContenedorGrupoFragment;
+import com.example.bildungmaidant.fragments.grupo.ContenedorGrupoFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class Menu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {

@@ -7,7 +7,6 @@
         android:id="@+id/frecuTWnombregrupo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/frecuTLBRrecursos"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
@@ -23,17 +22,16 @@
         android:textColor="@color/primary_text"
         android:textSize="30dp" />
 
-    <android.widget.Toolbar
+    <!--<android.widget.Toolbar
         android:id="@+id/frecuTLBRrecursos"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@color/divider" />
+        android:background="@color/divider" />-->
 
     <android.widget.ListView
         android:id="@+id/frecuLTVWlistacontenidos"
         android:layout_width="wrap_content"
         android:layout_height="322dp"
-        android:layout_below="@+id/frecuTLBRrecursos"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
@@ -47,7 +45,7 @@
     </android.widget.ListView>
 
 
-    <TextView
+    <!--<TextView
         android:id="@+id/frecuTWregresar"
         android:layout_width="wrap_content"
         android:layout_height="26dp"
@@ -82,13 +80,12 @@
         android:layout_marginTop="14dp"
         android:layout_marginEnd="381dp"
         android:layout_marginRight="381dp"
-        app:srcCompat="@drawable/ic_keyboard_arrow_left" />
+        app:srcCompat="@drawable/ic_keyboard_arrow_left" />-->
 
     <TextView
         android:id="@+id/frecuTWaquihay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/frecuTLBRrecursos"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
 

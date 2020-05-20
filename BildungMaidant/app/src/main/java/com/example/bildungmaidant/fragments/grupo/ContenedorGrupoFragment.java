@@ -1,10 +1,9 @@
-package com.example.bildungmaidant.fragments;
+package com.example.bildungmaidant.fragments.grupo;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,7 +12,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.bildungmaidant.R;
 import com.example.bildungmaidant.adapter.PageAdapter;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -36,7 +34,7 @@ public class ContenedorGrupoFragment extends Fragment {
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new GrupoFragment());
         fragments.add(new RecordatoriosTareasFragment());
-        fragments.add(new MensajeNuevoFragment());
+        fragments.add(new MensajeMenuFragment());
         fragments.add(new RecursosDidacticosFragment());
         fragments.add(new MiembrosFragment());
         fragments.add(new AvisosFragment());

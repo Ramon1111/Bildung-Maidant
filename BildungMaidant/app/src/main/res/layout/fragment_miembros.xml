@@ -4,7 +4,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.widget.Toolbar
+    <!--<android.widget.Toolbar
         android:id="@+id/fmiemTLBRmiembros"
         android:layout_height="70dp"
         android:layout_width="match_parent"
@@ -44,7 +44,7 @@
         android:fontFamily="sans-serif-condensed-light"
         android:text="@string/Regresar"
         android:textColor="@color/primary_text"
-        android:textSize="20sp" />
+        android:textSize="20sp" />-->
 
     <ImageView
         android:id="@+id/fmiemICNuser"

@@ -106,5 +106,11 @@
     <string name="faiTVFecha">Birth Date</string>
     <string name="fciHMensaje">Write message</string>
     <string name="title_activity_menu">Menu</string>
+    <string name="mngt_recordatorios_tareas">Reminders and homework</string>
+    <string name="mngt_recursos_didacticos">Learning resources</string>
+    <string name="mngt_mensajes">Chats</string>
+    <string name="mngt_avisos">Notices</string>
+    <string name="mngt_miembros">Members</string>
+    <string name="mngt_grupo_principal">Groups</string>
 
 </resources>

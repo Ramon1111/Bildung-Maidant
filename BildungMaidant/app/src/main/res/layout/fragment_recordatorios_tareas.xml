@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -24,7 +24,7 @@
             android:text="@string/tvRegresar"
             style="@style/NormalTextView"
             ></TextView>
-    </LinearLayout>
+    </LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,23 +47,6 @@
             android:src="@drawable/ic_access_time_black_24dp"
             ></ImageView>
     </LinearLayout>
-    <SearchView
-        android:id="@+id/frtSWBusqueda"
-        android:layout_width="350dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="30dp"
-        android:queryHint="@string/frtSWBusqueda"
-        ></SearchView>
-    <CalendarView
-        android:id="@+id/frtCWCalendario"
-        android:layout_width="wrap_content"
-        android:layout_height="320dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="30dp"
-        android:dateTextAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
-        android:weekDayTextAppearance="@style/TextAppearance.AppCompat"
-        ></CalendarView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -87,4 +70,31 @@
             android:background="@color/default_background"
             ></ImageButton>
     </LinearLayout>
+
+    <!--<SearchView
+        android:id="@+id/frtSWBusqueda"
+        android:layout_width="350dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:queryHint="@string/frtSWBusqueda"
+        ></SearchView>
+    <CalendarView
+        android:id="@+id/frtCWCalendario"
+        android:layout_width="wrap_content"
+        android:layout_height="320dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:dateTextAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"
+        android:weekDayTextAppearance="@style/TextAppearance.AppCompat"
+        ></CalendarView>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/frtRVRecordatorios"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        ></androidx.recyclerview.widget.RecyclerView>
+
+
 </LinearLayout>
