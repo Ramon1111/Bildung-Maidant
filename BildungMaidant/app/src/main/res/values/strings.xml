@@ -127,5 +127,14 @@
 
     <string name="home_second" translatable="false">Home Second</string>
 
+
+    <string name="mngt_recordatorios_tareas">Recordatorios y tareas</string>
+    <string name="mngt_recursos_didacticos">Recursos didácticos</string>
+    <string name="mngt_mensajes">Mensajes</string>
+    <string name="mngt_avisos">Avisos</string>
+    <string name="mngt_miembros">Miembros</string>
+    <string name="mngt_grupo_principal">Grupo</string>
+
+
 </resources>
 
