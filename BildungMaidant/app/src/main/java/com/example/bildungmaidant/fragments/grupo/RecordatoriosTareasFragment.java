@@ -30,7 +30,7 @@ public class RecordatoriosTareasFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_recordatorios_tareas,container,false);
 
         listaRecordatorios=v.findViewById(R.id.frtRVRecordatorios);
@@ -45,13 +45,30 @@ public class RecordatoriosTareasFragment extends Fragment {
         ibNuevoRecordatorio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
+                /* NO FUNCIONO
+                //NuevoRecordatorioFragment fragment = new NuevoRecordatorioFragment();
                 Fragment fragmentNuevoRecordatorio = new NuevoRecordatorioFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.fnrNuevoRecordatorioContent,fragmentNuevoRecordatorio);
                 transaction.addToBackStack(null);
                 transaction.commit();
                  */
+
+                /* NO FUNCIONO TAMPOCO SO SAD BRUH
+                Fragment fragmentNuevoRecordatorio = new NuevoRecordatorioFragment();
+                LinearLayout mainLayout = v.findViewById(R.id.frtLLRecordatoriosTareas);
+                LayoutInflater layoutInflater =getLayoutInflater();
+                View myLayout = inflater.inflate(R.layout.fragment_nuevo_recordatorio,mainLayout,false);
+                mainLayout.addView(myLayout);
+                 */
+
+                NuevoRecordatorioFragment fragment = new NuevoRecordatorioFragment();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container, fragment);
+                ft.addToBackStack(null);
+                ft.commit();
+
+                //cargarFragment(new NuevoRecordatorioFragment());
             }
         });
 
@@ -69,5 +86,10 @@ public class RecordatoriosTareasFragment extends Fragment {
         recordatorios.add(new Recordatorio("Terminar el proyecto de TSP I","Hace falta hacer que la inicialización de la lista Recordatorio obtenga datos desde una base de datos.","07/05/2020","10:02 AM"));
         recordatorios.add(new Recordatorio("Terminar el proyecto de TSP I","Hace falta hacer que la inicialización de la lista Recordatorio obtenga datos desde una base de datos.","07/05/2020","10:02 AM"));
         recordatorios.add(new Recordatorio("Terminar el proyecto de TSP I","Hace falta hacer que la inicialización de la lista Recordatorio obtenga datos desde una base de datos.","07/05/2020","10:02 AM"));
+    }
+
+    private void cargarFragment(Fragment fragment){
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
     }
 }

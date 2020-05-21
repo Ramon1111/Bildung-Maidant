@@ -43,6 +43,7 @@ public class NuevoRecordatorioFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_nuevo_recordatorio,container,false);
 
+
         etFecha=v.findViewById(R.id.fnrETFecha);
         ibtFecha=v.findViewById(R.id.fnrIBFecha);
 
