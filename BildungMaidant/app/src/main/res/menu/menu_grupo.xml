@@ -5,36 +5,36 @@
         android:id="@+id/menu_nav_grupo_grupo_principal"
         android:title="@string/mngt_grupo_principal"
         android:icon="@drawable/ic_menu_grupo_grupo_24"
-        ></item>
+        />
 
     <item
         android:id="@+id/menu_nav_grupo_recordatorios_tareas"
         android:title="@string/mngt_recordatorios_tareas"
         android:icon="@drawable/ic_menu_grupo_recordatorios_tareas_24"
-        ></item>
+        />
 
     <item
         android:id="@+id/menu_nav_grupo_recursos_didacticos"
         android:title="@string/mngt_recursos_didacticos"
         android:icon="@drawable/ic_menu_grupo_recursos_didacticos_24"
-        ></item>
+        />
 
     <item
         android:id="@+id/menu_nav_grupo_mensajes"
         android:title="@string/mngt_mensajes"
         android:icon="@drawable/ic_menu_grupo_mensaje_24"
-        ></item>
+        />
 
     <item
         android:id="@+id/menu_nav_grupo_avisos"
         android:title="@string/mngt_avisos"
         android:icon="@drawable/ic_menu_grupo_avisos_24"
-        ></item>
+        />
 
     <item
         android:id="@+id/menu_nav_grupo_miembros"
         android:title="@string/mngt_miembros"
         android:icon="@drawable/ic_menu_grupo_miembros_24"
-        ></item>
+        />
 
 </menu>

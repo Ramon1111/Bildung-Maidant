@@ -107,7 +107,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(CrearCuentaActivity.this, "Authentication failed.",
+                            Toast.makeText(CrearCuentaActivity.this, "No se pudo crear la cuenta",
                                     Toast.LENGTH_SHORT).show();
                             UsuarioCreado(null);
                         }
@@ -151,9 +151,6 @@ public class CrearCuentaActivity extends AppCompatActivity {
 
 
                         Intent cambiar = new Intent(CrearCuentaActivity.this,LoginActivity.class);
-                        //cambiar.putExtra("uidUser1",user.getIdToken(false).toString());
-                        //cambiar.putExtra("uidUser2",user.getIdToken(true).toString());
-                        //cambiar.putExtra("uidUser3",user.getIdToken(false).toString());
                         cambiar.putExtra("uidUser",user.getUid());
                         startActivity(cambiar);
                         finish();

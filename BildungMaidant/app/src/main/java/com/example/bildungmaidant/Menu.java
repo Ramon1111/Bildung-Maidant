@@ -14,7 +14,11 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.bildungmaidant.fragments.grupo.ContenedorGrupoFragment;
+import com.example.bildungmaidant.fragments.AjustesFragment;
+import com.example.bildungmaidant.fragments.HomeFragment;
+import com.example.bildungmaidant.fragments.MensajeMenuFragment;
+import com.example.bildungmaidant.fragments.RecordatoriosTareasFragment;
+import com.example.bildungmaidant.fragments.TusGruposFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class Menu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,7 +44,11 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ContenedorGrupoFragment()).commit();
+        if(savedInstanceState==null) {
+            //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ContenedorGrupoFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+            navigationView.setCheckedItem(R.id.Inicio);
+        }
 
 /*
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -67,9 +75,28 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        /*switch (menuItem.getItemId()){
-            case R.id.
-        }*/
+        switch (menuItem.getItemId()){
+            case R.id.Inicio:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
+                break;
+            case R.id.TusGrupos:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new TusGruposFragment()).commit();
+                break;
+            case R.id.Recordatorios:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new RecordatoriosTareasFragment()).commit();
+                break;
+            case R.id.Mensajes:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new MensajeMenuFragment()).commit();
+                break;
+            case R.id.Ajustes:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new AjustesFragment()).commit();
+                break;
+            case R.id.CerrarSesion:
+                //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new LoginActivity()).commit();
+                break;
+        }
+
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
