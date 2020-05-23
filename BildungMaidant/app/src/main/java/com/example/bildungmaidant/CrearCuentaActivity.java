@@ -140,6 +140,11 @@ public class CrearCuentaActivity extends AppCompatActivity {
         usuario.put("usuario", nusuario);
         usuario.put("sobreMi", "");
         usuario.put("institucion", "");
+        usuario.put("recordatorioasAbiertos", "");
+        usuario.put("recordatorioasCerados", "");
+        usuario.put("gruposFormaParte", "");
+        usuario.put("gruposLider", "");
+        usuario.put("fotoPerfil", "");
 
         String id=user.getUid();
 

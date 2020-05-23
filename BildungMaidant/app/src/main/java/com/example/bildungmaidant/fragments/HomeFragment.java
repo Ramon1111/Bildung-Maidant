@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ public class HomeFragment extends Fragment {
     View v;
 
     TextView nombreUsuario,institucion,sobreMi;
+    ImageView fotoPerfil;
 
     @Nullable
     @Override
@@ -44,6 +46,7 @@ public class HomeFragment extends Fragment {
         nombreUsuario=v.findViewById(R.id.fhTVNombreInfo);
         institucion=v.findViewById(R.id.fhTVIntitucionInfo);
         sobreMi=v.findViewById(R.id.textView3);
+        fotoPerfil=v.findViewById(R.id.imageView);
 
         if(currentUser!=null) {
             final DocumentReference docRef = db.collection("users").document(currentUser.getUid());
@@ -66,6 +69,13 @@ public class HomeFragment extends Fragment {
                                 institucion.setText(document.get("institucion").toString());
                             else
                                 institucion.setText("Sin institucion");
+
+
+                            //Descomentar para cuando se realice la consulta de la foto de perfil
+                            //Se debe de hacer una consulta al storage con la cadena que se tiene
+                            /*if(document.get("fotoPerfil").toString()!="")
+                                fotoPerfil.set
+                                */
 
                         } else {
                             Log.d(TAG, "No such document");
