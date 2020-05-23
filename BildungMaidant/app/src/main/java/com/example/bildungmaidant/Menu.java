@@ -1,7 +1,10 @@
 package com.example.bildungmaidant;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -19,21 +22,46 @@ import com.example.bildungmaidant.fragments.HomeFragment;
 import com.example.bildungmaidant.fragments.MensajeMenuFragment;
 import com.example.bildungmaidant.fragments.RecordatoriosTareasFragment;
 import com.example.bildungmaidant.fragments.TusGruposFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Map;
 
 public class Menu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
     private AppBarConfiguration mAppBarConfiguration;
+    private String TAG = "Mensaje Menu", uidUsuario,emailUsuario,passUsuario;
+    private FirebaseAuth mAuth;
+    TextView toolbarText;
+    private FirebaseUser user;
+
+    private FirebaseFirestore db;
+
+    private String nomUsuario="Usuario";
+
+
+
+    Map<String,Object> UsuarioActivo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
 
         drawer=findViewById(R.id.drawer_layout);
 
@@ -48,35 +76,44 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
             //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ContenedorGrupoFragment()).commit();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
             navigationView.setCheckedItem(R.id.Inicio);
-        }
 
-/*
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
-                .setDrawerLayout(drawer)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
-        */
+        }
+    }
+
+    private void IniciarInfoUsuario(String emailUsuario, String passUsuario) {
+        mAuth.signInWithEmailAndPassword(emailUsuario, passUsuario)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+
+                            toolbarText.setText(user.getEmail());
+
+                            Toast.makeText(Menu.this,"EmailUsuario: "+user.getEmail(),Toast.LENGTH_SHORT).show();
+
+                            //updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(Menu.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            //updateUI(null);
+                        }
+
+
+                        // ...
+                    }
+                });
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.Inicio:
+                //Cada vez  que inicie sesión
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
                 break;
             case R.id.TusGrupos:
@@ -100,14 +137,6 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
         return true;
     }
 
-    ///////Checar las opciones del menú
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu, (android.view.Menu) menu);
-        return true;
-    }*/
-
     @Override
     public void onBackPressed(){
         if(drawer.isDrawerOpen(GravityCompat.START)){
@@ -122,5 +151,37 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser!=null) {
+            Toast.makeText(getApplicationContext(), "usuario: " + currentUser.getEmail(), Toast.LENGTH_SHORT).show();
+            final DocumentReference docRef = db.collection("users").document(currentUser.getUid());
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                            Log.d(TAG, "DocumentSnapshot data: " + document.get("usuario"));
+                            //toolbarText.setText(document.get("usuario").toString());
+                            nomUsuario=document.get("usuario").toString();
+
+                            getSupportActionBar().setTitle(nomUsuario);
+
+                        } else {
+                            Log.d(TAG, "No such document");
+                        }
+                    } else {
+                        Log.d(TAG, "get failed with ", task.getException());
+                    }
+                }
+            });
+        }
     }
 }

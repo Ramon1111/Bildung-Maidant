@@ -80,7 +80,8 @@ public class LoginActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
 
                             Intent cambiar = new Intent(LoginActivity.this, Menu.class);
-                            cambiar.putExtra("uidUser",user.getUid());
+                            cambiar.putExtra("emailUser",user.getEmail());
+                            cambiar.putExtra("passUser",edtPass.getText().toString());
                             startActivity(cambiar);
                             finish();
                             
@@ -88,10 +89,6 @@ public class LoginActivity extends AppCompatActivity {
                             //updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
-                            /*Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);*/
                             Log.d(TAG, "NO existe el usuario");
                         }
 

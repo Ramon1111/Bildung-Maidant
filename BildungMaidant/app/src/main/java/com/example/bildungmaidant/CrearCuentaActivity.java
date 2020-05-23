@@ -138,6 +138,8 @@ public class CrearCuentaActivity extends AppCompatActivity {
         usuario.put("nombres", nombres);
         usuario.put("apellidos", apellidos);
         usuario.put("usuario", nusuario);
+        usuario.put("sobreMi", "");
+        usuario.put("institucion", "");
 
         String id=user.getUid();
 
