@@ -44,7 +44,7 @@ public class TusGruposFragment extends Fragment {
         fgrubtnañadir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //me lleva a Unirse a un nuevo grupo o dar de alta uno
+                //me lleva a Unirse a dar de alta uno
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
                 fr.replace(R.id.fragment_container, new AddgrupoFragment());
                 fr.commit();
@@ -54,7 +54,7 @@ public class TusGruposFragment extends Fragment {
         fgrubtnunirse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //me lleva a Unirse a un nuevo grupo o dar de alta uno
+                //me lleva a Unirse a un nuevo grupo
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
                 fr.replace(R.id.fragment_container, new UnirseFragment());
                 fr.commit();

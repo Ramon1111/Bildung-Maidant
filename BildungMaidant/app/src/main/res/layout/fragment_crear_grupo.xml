@@ -48,14 +48,13 @@
 
     <EditText
         android:id="@+id/fcgETNombreGrupo"
-        android:layout_width="350dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="30dp"
         style="@style/NormalTextView"
+        android:layout_width="338dp"
+        android:layout_height="37dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
         android:background="@color/primary_light"
-        android:hint="@string/fcgETIndicacion01h"
-        ></EditText>
+        android:hint="@string/fcgETIndicacion01h"></EditText>
 
     <TextView
         android:id="@+id/fcgTWIndicacion02"
@@ -69,14 +68,13 @@
 
     <EditText
         android:id="@+id/fcgETDescripcionGrupo"
-        android:layout_width="350dp"
-        android:layout_height="170dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="30dp"
         style="@style/NormalTextView"
+        android:layout_width="336dp"
+        android:layout_height="170dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
         android:background="@color/primary_light"
-        android:hint="@string/fcgETIndicacion02h"
-        ></EditText>
+        android:hint="@string/fcgETIndicacion02h"></EditText>
 
     <TextView
         android:id="@+id/fcgTWIndicacion03"
@@ -90,14 +88,13 @@
 
     <EditText
         android:id="@+id/fcgETNEscuelaInstitucion"
-        android:layout_width="350dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="30dp"
         style="@style/NormalTextView"
+        android:layout_width="338dp"
+        android:layout_height="55dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
         android:background="@color/primary_light"
-        android:hint="@string/fcgETIndicacion03h"
-        ></EditText>
+        android:hint="@string/fcgETIndicacion03h"></EditText>
 
     <LinearLayout
         android:layout_width="match_parent"
