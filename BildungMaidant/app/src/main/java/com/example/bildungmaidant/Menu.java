@@ -17,11 +17,11 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.bildungmaidant.fragments.AjustesFragment;
-import com.example.bildungmaidant.fragments.HomeFragment;
+import com.example.bildungmaidant.fragments.menu.AjustesFragment;
+import com.example.bildungmaidant.fragments.menu.HomeFragment;
 import com.example.bildungmaidant.fragments.MensajeMenuFragment;
 import com.example.bildungmaidant.fragments.RecordatoriosTareasFragment;
-import com.example.bildungmaidant.fragments.TusGruposFragment;
+import com.example.bildungmaidant.fragments.menu.TusGruposFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;

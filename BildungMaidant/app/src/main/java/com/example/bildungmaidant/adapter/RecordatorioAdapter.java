@@ -7,9 +7,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bildungmaidant.R;
+import com.example.bildungmaidant.fragments.grupo.recordatorios.InfoRecordatorioFragment;
 import com.example.bildungmaidant.pojos.Recordatorio;
 
 import java.util.ArrayList;
@@ -38,6 +42,13 @@ public class RecordatorioAdapter extends RecyclerView.Adapter<RecordatorioAdapte
         holder.descripcion.setText(recordatorio.getDescripcion());
         holder.fecha.setText(recordatorio.getFecha());
         holder.hora.setText(recordatorio.getHora());
+
+        holder.titulo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cargarFragment(new InfoRecordatorioFragment(),v);
+            }
+        });
     }
 
     @Override
@@ -51,12 +62,18 @@ public class RecordatorioAdapter extends RecyclerView.Adapter<RecordatorioAdapte
         private TextView fecha;
         private TextView hora;
 
-        public RecordatorioViewHolder(View itemViem){
-            super(itemViem);
-            titulo=itemViem.findViewById(R.id.crtTVTitulo);
-            descripcion=itemViem.findViewById(R.id.crtTVDescripcion);
-            fecha=itemViem.findViewById(R.id.crtTVFecha);
-            hora=itemViem.findViewById(R.id.crtTVHora);
+        public RecordatorioViewHolder(View itemView){
+            super(itemView);
+            titulo=itemView.findViewById(R.id.crtTVTitulo);
+            descripcion=itemView.findViewById(R.id.crtTVDescripcion);
+            fecha=itemView.findViewById(R.id.crtTVFecha);
+            hora=itemView.findViewById(R.id.crtTVHora);
         }
+    }
+
+    private void cargarFragment(Fragment fragment,View v){
+        AppCompatActivity activity = (AppCompatActivity) v.getContext();
+        FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
     }
 }

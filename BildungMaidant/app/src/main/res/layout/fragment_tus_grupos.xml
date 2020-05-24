@@ -13,30 +13,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <RelativeLayout
-            android:id="@+id/ftgRLBack"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/ftgTVFlecha"
-                style="@style/TextView_little_gray"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:padding="10dp"
-                android:text="&lt;" />
-
-            <TextView
-                android:id="@+id/ftgTVRegresar"
-                style="@style/TextView_little_gray"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/ftgTVFlecha"
-                android:padding="10dp"
-                android:text="Regresar" />
-        </RelativeLayout>
     </LinearLayout>
 
     <ImageView
@@ -82,9 +58,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ftgRVGrupos"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            ></androidx.recyclerview.widget.RecyclerView>
     </RelativeLayout>
 
     <TextView
