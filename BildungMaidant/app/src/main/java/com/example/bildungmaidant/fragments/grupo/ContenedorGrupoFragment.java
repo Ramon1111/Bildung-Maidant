@@ -12,6 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.bildungmaidant.R;
 import com.example.bildungmaidant.adapter.PageAdapter;
+import com.example.bildungmaidant.fragments.grupo.recordatorios.RecordatoriosTareasFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;

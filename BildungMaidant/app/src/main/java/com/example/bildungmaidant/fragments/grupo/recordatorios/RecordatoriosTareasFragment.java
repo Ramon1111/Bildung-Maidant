@@ -1,11 +1,10 @@
-package com.example.bildungmaidant.fragments.grupo;
+package com.example.bildungmaidant.fragments.grupo.recordatorios;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bildungmaidant.R;
 import com.example.bildungmaidant.adapter.RecordatorioAdapter;
-import com.example.bildungmaidant.fragments.NuevoRecordatorioFragment;
 import com.example.bildungmaidant.pojos.Recordatorio;
 
 import java.util.ArrayList;
@@ -62,13 +60,14 @@ public class RecordatoriosTareasFragment extends Fragment {
                 mainLayout.addView(myLayout);
                  */
 
+                /* //SI FUNCIONA PERO ESTA MAS COOL EN METODO
                 NuevoRecordatorioFragment fragment = new NuevoRecordatorioFragment();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.fragment_container, fragment);
                 ft.addToBackStack(null);
                 ft.commit();
-
-                //cargarFragment(new NuevoRecordatorioFragment());
+                 */
+                cargarFragment(new NuevoRecordatorioFragment());
             }
         });
 

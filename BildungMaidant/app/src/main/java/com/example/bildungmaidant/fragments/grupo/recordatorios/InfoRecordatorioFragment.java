@@ -1,4 +1,4 @@
-package com.example.bildungmaidant.fragments;
+package com.example.bildungmaidant.fragments.grupo.recordatorios;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,11 +11,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.bildungmaidant.R;
 
-public class TusGruposFragment extends Fragment {
+public class InfoRecordatorioFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_tus_grupos,container,false);
+        View v = inflater.inflate(R.layout.fragment_info_recordatorio,container,false);
+
         return v;
     }
 }

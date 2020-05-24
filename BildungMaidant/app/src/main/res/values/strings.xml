@@ -139,6 +139,9 @@
     <string name="cvrtTVDescripcion">Aquí va la descripción del recordatorio o tarea.</string>
     <string name="cvrtTVFechah">DD/MM/AAAA</string>
     <string name="cvrtTVHorah">HH:MM</string>
+    <string name="cgTVTitulo">Temas Selectos de Programación I</string>
+    <string name="cgTVAdministrador">Ing. Faraday58</string>
+    <string name="cgTVNombreProfesor">Profesor:</string>
 
 
 </resources>

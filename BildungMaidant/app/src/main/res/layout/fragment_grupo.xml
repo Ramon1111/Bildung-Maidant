@@ -244,6 +244,6 @@
         android:padding="10dp"
         android:text="Darse de baja"
         android:layout_gravity="center"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="100dp"
         />
 </LinearLayout>

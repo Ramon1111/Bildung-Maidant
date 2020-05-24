@@ -1,4 +1,4 @@
-package com.example.bildungmaidant.fragments;
+package com.example.bildungmaidant.fragments.menu;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
