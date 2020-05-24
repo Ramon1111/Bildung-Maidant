@@ -75,6 +75,7 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
         if(savedInstanceState==null) {
             //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ContenedorGrupoFragment()).commit();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+
             navigationView.setCheckedItem(R.id.Inicio);
 
         }

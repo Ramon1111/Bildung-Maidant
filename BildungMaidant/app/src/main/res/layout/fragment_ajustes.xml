@@ -8,18 +8,18 @@
 
     <ImageView
         android:id="@+id/fnICNbell"
-        android:layout_width="115dp"
-        android:layout_height="65dp"
+        android:layout_width="wrap_content"
+        android:layout_height="87dp"
         android:layout_below="@+id/faTLBajustes"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="66dp"
-        android:layout_marginLeft="66dp"
-        android:layout_marginTop="77dp"
-        android:layout_marginEnd="230dp"
-        android:layout_marginRight="230dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginLeft="62dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="234dp"
+        android:layout_marginRight="234dp"
         app:srcCompat="@drawable/ic_action_gear" />
 
     <android.widget.ListView
@@ -41,49 +41,6 @@
         android:background="@color/accent"
         android:fontFamily="sans-serif-condensed-light"
         />
-
-    <android.widget.Toolbar
-        android:id="@+id/faTLBajustes"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@color/divider" />
-
-    <TextView
-        android:id="@+id/fnTWbackajustes"
-        android:layout_width="wrap_content"
-        android:layout_height="26dp"
-        android:layout_below="@+id/faviTLBRavisos"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="279dp"
-        android:layout_marginRight="279dp"
-        android:layout_marginBottom="553dp"
-        android:fontFamily="sans-serif-condensed-light"
-        android:text="@string/Regresar"
-        android:textColor="@color/primary_text"
-        android:textSize="20sp" />
-
-    <ImageView
-        android:id="@+id/faIWarrowajustes"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_below="@+id/faTLBajustes"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="379dp"
-        android:layout_marginRight="379dp"
-        app:srcCompat="@drawable/ic_keyboard_arrow_left" />
 
     <TextView
         android:id="@+id/faTWajustes"
