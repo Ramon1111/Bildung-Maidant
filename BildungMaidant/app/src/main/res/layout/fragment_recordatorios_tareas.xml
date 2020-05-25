@@ -39,14 +39,14 @@
             android:layout_marginLeft="30dp"
             android:text="@string/frtTWCalendario"
             style="@style/TitleTextView"
-            ></TextView>
+            />
         <ImageView
             android:id="@+id/frtIVCalendario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:src="@drawable/ic_access_time_black_24dp"
-            ></ImageView>
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -62,14 +62,14 @@
             android:layout_marginTop="15dp"
             android:text="@string/frtTWNuevoR"
             style="@style/NormalTextView"
-            ></TextView>
+            />
         <ImageButton
             android:id="@+id/frtIBNuevoRecordatorio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_add_circle_black_24dp"
             android:background="@color/default_background"
-            ></ImageButton>
+            />
     </LinearLayout>
 
     <!--<SearchView
@@ -95,7 +95,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
-        ></androidx.recyclerview.widget.RecyclerView>
+        />
 
 
 </LinearLayout>

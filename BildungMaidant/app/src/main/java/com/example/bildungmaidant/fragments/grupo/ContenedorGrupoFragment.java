@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -52,5 +53,11 @@ public class ContenedorGrupoFragment extends Fragment {
         tabLayout.getTabAt(3).setIcon(R.drawable.ic_menu_grupo_recursos_didacticos_24);
         tabLayout.getTabAt(4).setIcon(R.drawable.ic_menu_grupo_miembros_24);
         tabLayout.getTabAt(5).setIcon(R.drawable.ic_menu_grupo_avisos_24);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Toast.makeText(getContext(),"fragment destruido: Cont. Grupos", Toast.LENGTH_SHORT).show();
     }
 }

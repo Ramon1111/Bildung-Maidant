@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -78,5 +79,11 @@ public class TusGruposFragment extends Fragment {
         grupos.add(new Grupo("Mecanismos", "Mtro. Buen Cuenqui"));
         grupos.add(new Grupo("Ingenieria de Manufactura", "Mtro. El Robin"));
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Toast.makeText(getContext(),"fragment destruido: TusGrupos Fragment", Toast.LENGTH_SHORT).show();
     }
 }

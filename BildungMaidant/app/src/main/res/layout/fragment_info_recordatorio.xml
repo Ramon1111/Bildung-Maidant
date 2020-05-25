@@ -16,7 +16,7 @@
             android:layout_marginLeft="6dp"
             android:layout_marginTop="13dp"
             android:src="@drawable/ic_keyboard_arrow_left"
-            ></ImageView>
+            />
         <TextView
             android:id="@+id/firTVRegresar"
             android:layout_width="wrap_content"
@@ -24,7 +24,7 @@
             android:layout_marginTop="7dp"
             android:text="@string/tvRegresar"
             style="@style/NormalTextView"
-            ></TextView>
+            />
     </LinearLayout>
 
     <TextView
@@ -35,7 +35,7 @@
         android:layout_marginLeft="30dp"
         android:text="@string/firTWEncabezado"
         style="@style/TitleTextView"
-        ></TextView>
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:src="@drawable/ic_edit_black_24dp"
-            ></ImageView>
+            />
         <TextView
             android:id="@+id/firTWDescripcion"
             android:layout_width="wrap_content"
@@ -57,7 +57,7 @@
             android:layout_marginTop="7dp"
             android:text="@string/firTWDescripcion"
             style="@style/NormalTextView"
-            ></TextView>
+            />
     </LinearLayout>
 
     <EditText
@@ -69,7 +69,7 @@
         style="@style/NormalTextView"
         android:background="@color/primary_light"
         android:hint="@string/firETDescripcionh"
-        ></EditText>
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -83,7 +83,7 @@
             android:layout_marginLeft="30dp"
             android:text="@string/firTWFecha"
             style="@style/NormalTextView"
-            ></TextView>
+            />
 
         <TextView
             android:id="@+id/firTWHorario"
@@ -92,7 +92,7 @@
             android:layout_marginLeft="127dp"
             android:text="@string/firTWHora"
             style="@style/NormalTextView"
-            ></TextView>
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -106,7 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:src="@drawable/ic_today_black_40dp"
-            ></ImageView>
+            />
         <EditText
             android:id="@+id/firETFecha"
             android:layout_width="140dp"
@@ -114,13 +114,13 @@
             android:inputType="date"
             android:focusable="false"
             android:hint="@string/firETFechah"
-            ></EditText>
+            />
         <ImageView
             android:id="@+id/firIBHorario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_access_time_black_24dp"
-            ></ImageView>
+            />
         <EditText
             android:id="@+id/firETHorario"
             android:layout_width="140dp"
@@ -128,7 +128,7 @@
             android:inputType="time"
             android:focusable="false"
             android:hint="@string/firETHorah"
-            ></EditText>
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -143,7 +143,7 @@
             android:layout_marginLeft="30dp"
             android:text="@string/firBTNEliminar"
             style="@style/NormalButton"
-            ></Button>
+            />
         <Button
         android:id="@+id/firBTNEditar"
         android:layout_width="wrap_content"
@@ -151,7 +151,7 @@
         android:layout_marginLeft="30dp"
         android:text="@string/firBTNEditar"
             style="@style/NormalButton"
-        ></Button>
+        />
         <Button
             android:id="@+id/firBTNCompletar"
             android:layout_width="wrap_content"
@@ -159,6 +159,6 @@
             android:layout_marginLeft="30dp"
             android:text="@string/firBTNCompletar"
             style="@style/NormalButton"
-            ></Button>
+            />
     </LinearLayout>
 </LinearLayout>

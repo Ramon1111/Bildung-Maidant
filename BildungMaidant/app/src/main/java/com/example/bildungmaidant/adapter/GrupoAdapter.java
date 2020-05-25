@@ -69,6 +69,7 @@ public class GrupoAdapter extends RecyclerView.Adapter<GrupoAdapter.GrupoViewHol
     private void cargarFragment(Fragment fragment, View v){
         AppCompatActivity activity = (AppCompatActivity) v.getContext();
         FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
+        //ft.replace(R.id.fragment_container,fragment).addToBackStack("GruposFragment").commit();
         ft.replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
     }
 }

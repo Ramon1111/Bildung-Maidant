@@ -74,6 +74,8 @@ public class RecordatorioAdapter extends RecyclerView.Adapter<RecordatorioAdapte
     private void cargarFragment(Fragment fragment,View v){
         AppCompatActivity activity = (AppCompatActivity) v.getContext();
         FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
+        //ft.replace(R.id.fragment_container,fragment).addToBackStack("RecordatoriosGrupoFragment").commit();
         ft.replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
     }
+
 }

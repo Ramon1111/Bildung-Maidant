@@ -130,7 +130,6 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new AjustesFragment()).commit();
                 break;
             case R.id.CerrarSesion:
-                //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new LoginActivity()).commit();
                 break;
         }
 
