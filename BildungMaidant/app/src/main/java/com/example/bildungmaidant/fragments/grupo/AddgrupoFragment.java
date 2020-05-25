@@ -24,8 +24,8 @@ import java.util.Map;
 public class AddgrupoFragment extends Fragment {
     Button fcgBTNCancelar,fcgBTNCrear;
     EditText fcgETNombreGrupo, fcgETDescripcionGrupo,fcgETNEscuelaInstitucion;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private FirebaseAuth mAuth;
+    //FirebaseFirestore db = FirebaseFirestore.getInstance();
+    //private FirebaseAuth mAuth;
 
     @Nullable
     @Override
@@ -37,23 +37,24 @@ public class AddgrupoFragment extends Fragment {
         fcgETDescripcionGrupo=v.findViewById(R.id.fcgETDescripcionGrupo);
         fcgETNEscuelaInstitucion=v.findViewById(R.id.fcgETNEscuelaInstitucion);
         fcgBTNCancelar.setOnClickListener(onclickCancel);
-        mAuth = FirebaseAuth.getInstance();
+        //mAuth = FirebaseAuth.getInstance();
        // subirgrupo();
         return v;
     }
 
-    private void subirgrupo(String nombre, String descrip, String escuela, final FirebaseUser user) {
+   /* private void subirgrupo(String nombre, String descrip, String escuela, final FirebaseUser user) {
         Map<String, Object> Gruposdelusuario = new HashMap<>();
-        
 
 
-    }
+
+    }*/
 
     View.OnClickListener onclickCancel= (new View.OnClickListener() {
        @Override
        public void onClick(View v) {
            FragmentTransaction fr= getFragmentManager().beginTransaction();
            fr.replace(R.id.fragment_container, new TusGruposFragment());
+           fr.addToBackStack(null);
            fr.commit();
        }
    });

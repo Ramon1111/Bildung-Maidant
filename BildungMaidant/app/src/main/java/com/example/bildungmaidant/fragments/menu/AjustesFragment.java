@@ -37,6 +37,7 @@ public class AjustesFragment extends Fragment {
                 {
                    FragmentTransaction fr = getFragmentManager().beginTransaction();
                     fr.replace(R.id.fragment_container, new NotificacionesFragment());
+                    fr.addToBackStack(null);
                     fr.commit();
                 }
 
@@ -44,6 +45,7 @@ public class AjustesFragment extends Fragment {
                 {
                     FragmentTransaction fr = getFragmentManager().beginTransaction();
                     fr.replace(R.id.fragment_container, new ActualDatosFragment());
+                    fr.addToBackStack(null);
                     fr.commit();
                 }
 

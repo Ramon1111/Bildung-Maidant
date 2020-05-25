@@ -30,6 +30,7 @@ public class UnirseFragment extends Fragment {
         public void onClick(View v) {
             FragmentTransaction fr= getFragmentManager().beginTransaction();
             fr.replace(R.id.fragment_container, new TusGruposFragment());
+            fr.addToBackStack(null);
             fr.commit();
 
         }

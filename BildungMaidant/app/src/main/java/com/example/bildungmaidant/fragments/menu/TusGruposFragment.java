@@ -47,6 +47,7 @@ public class TusGruposFragment extends Fragment {
                 //me lleva a Unirse a dar de alta uno
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
                 fr.replace(R.id.fragment_container, new AddgrupoFragment());
+                fr.addToBackStack(null);
                 fr.commit();
 
             }
@@ -57,6 +58,7 @@ public class TusGruposFragment extends Fragment {
                 //me lleva a Unirse a un nuevo grupo
                 FragmentTransaction fr= getFragmentManager().beginTransaction();
                 fr.replace(R.id.fragment_container, new UnirseFragment());
+                fr.addToBackStack(null);
                 fr.commit();
 
             }
