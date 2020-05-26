@@ -20,15 +20,15 @@
             android:icon="@drawable/ic_email"
             android:title="Mensajes"
             />
+        <item android:id="@+id/Ajustes"
+            android:icon="@drawable/ic_settings"
+            android:title="Ajustes"
+            />
 
     </group>
 
     <item android:title="Opciones">
         <menu>
-            <item android:id="@+id/Ajustes"
-                android:icon="@drawable/ic_settings"
-                android:title="Ajustes"
-                />
             <item android:id="@+id/CerrarSesion"
                 android:icon="@drawable/ic_exit"
                 android:title="Cerrar Sesión"

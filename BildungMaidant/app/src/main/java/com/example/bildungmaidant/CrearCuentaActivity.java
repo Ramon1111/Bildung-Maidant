@@ -158,7 +158,6 @@ public class CrearCuentaActivity extends AppCompatActivity {
 
 
                         Intent cambiar = new Intent(CrearCuentaActivity.this,LoginActivity.class);
-                        cambiar.putExtra("uidUser",user.getUid());
                         startActivity(cambiar);
                         finish();
 

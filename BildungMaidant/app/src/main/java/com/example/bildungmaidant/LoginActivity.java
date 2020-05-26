@@ -23,7 +23,6 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     Button btnCrear, btnIngresar;
     EditText edtEMail, edtPass;
-    private String uidUsuario1,uidUsuario2,uidUsuario3;
     String TAG = "Mensaje Aplicación";
 
     @Override
@@ -48,15 +47,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        try{
-            Bundle bundleExtras=getIntent().getExtras();
-            uidUsuario1=bundleExtras.getString("uidUser");
-            Log.d(TAG,"Se registro usuario con id: "+uidUsuario1);
-
-        }catch(Exception e){
-            Log.i(TAG,e.getMessage());
-        }
-
         btnCrear=findViewById(R.id.alBCrear);
         btnCrear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,8 +70,6 @@ public class LoginActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
 
                             Intent cambiar = new Intent(LoginActivity.this, Menu.class);
-                            cambiar.putExtra("emailUser",user.getEmail());
-                            cambiar.putExtra("passUser",edtPass.getText().toString());
                             startActivity(cambiar);
                             finish();
                             
@@ -103,8 +91,6 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "usuario: " + currentUser.getEmail(), Toast.LENGTH_SHORT).show();
 
             Intent cambiar = new Intent(LoginActivity.this, Menu.class);
-            cambiar.putExtra("emailUser",currentUser.getEmail());
-            cambiar.putExtra("passUser",edtPass.getText().toString());
             startActivity(cambiar);
             finish();
         }
