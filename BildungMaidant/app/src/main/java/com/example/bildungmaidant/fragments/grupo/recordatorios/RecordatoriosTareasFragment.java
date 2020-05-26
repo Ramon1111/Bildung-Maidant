@@ -8,7 +8,9 @@ import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -67,7 +69,7 @@ public class RecordatoriosTareasFragment extends Fragment {
                 ft.addToBackStack(null);
                 ft.commit();
                  */
-                cargarFragment(new NuevoRecordatorioFragment());
+                cargarFragment(new NuevoRecordatorioFragment(),v);
             }
         });
 
@@ -87,8 +89,9 @@ public class RecordatoriosTareasFragment extends Fragment {
         recordatorios.add(new Recordatorio("Terminar el proyecto de TSP I","Hace falta hacer que la inicialización de la lista Recordatorio obtenga datos desde una base de datos.","07/05/2020","10:02 AM"));
     }
 
-    private void cargarFragment(Fragment fragment){
-        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
+    private void cargarFragment(Fragment fragment, View v){
+        AppCompatActivity activity = (AppCompatActivity) v.getContext();
+        FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container,fragment).addToBackStack("").commit();
     }
 }

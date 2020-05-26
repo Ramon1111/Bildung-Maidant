@@ -10,16 +10,22 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.bildungmaidant.R;
 import com.example.bildungmaidant.fragments.grupo.ContenedorGrupoFragment;
+import com.example.bildungmaidant.fragments.menu.TusGruposFragment;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class NuevoRecordatorioFragment extends Fragment {
@@ -44,6 +50,9 @@ public class NuevoRecordatorioFragment extends Fragment {
     private Button btCrear;
     private Button btCancelar;
 
+    private TextView tvRegresar;
+    private ImageView ivRegresar;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,20 +67,41 @@ public class NuevoRecordatorioFragment extends Fragment {
         etHora=v.findViewById(R.id.fnrETHorario);
         ibtHora=v.findViewById(R.id.fnrIBHorario);
 
+        tvRegresar=v.findViewById(R.id.fnrTVRegresar);
+        ivRegresar=v.findViewById(R.id.fnrIVBackArrow);
+
+        tvRegresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cargarFragment(new ContenedorGrupoFragment(),v);
+            }
+        });
+
+        ivRegresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cargarFragment(new ContenedorGrupoFragment(),v);
+            }
+        });
+
         btCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cargarFragment(new ContenedorGrupoFragment(),v);
+            }
+        });
 
+        btCrear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cargarFragment(new ContenedorGrupoFragment(),v);
             }
         });
 
         btCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //no aplica aun porque solo me limpia el layout, y superpone el siguiente, lo ando checando aún
-
-                //removerFragment();
-                //cargarFragment(new ContenedorGrupoFragment());
+                cargarFragment(new ContenedorGrupoFragment(),v);
             }
         });
 
@@ -133,12 +163,14 @@ public class NuevoRecordatorioFragment extends Fragment {
         tomarFecha.show();
     }
 
-    private void removerFragment(){
-        getFragmentManager().beginTransaction().remove(this).commit();
-    }
+    private void cargarFragment(Fragment fragment,View v){
+        //FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        //ft.replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
+        AppCompatActivity activity = (AppCompatActivity) v.getContext();
+        getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        getActivity().getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container,fragment).commit();
 
-    private void cargarFragment(Fragment fragment){
-        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
     }
 }

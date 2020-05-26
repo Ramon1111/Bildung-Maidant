@@ -26,6 +26,7 @@ public class TusGruposFragment extends Fragment {
     private GrupoAdapter adapter;
     ArrayList<Grupo> grupos;
     Button fgrubtnañadir, fgrubtnunirse;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

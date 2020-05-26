@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -74,8 +75,7 @@ public class RecordatorioAdapter extends RecyclerView.Adapter<RecordatorioAdapte
     private void cargarFragment(Fragment fragment,View v){
         AppCompatActivity activity = (AppCompatActivity) v.getContext();
         FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
-        //ft.replace(R.id.fragment_container,fragment).addToBackStack("RecordatoriosGrupoFragment").commit();
-        ft.replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
+        ft.replace(R.id.fragment_container,fragment).addToBackStack("").commit();
     }
 
 }

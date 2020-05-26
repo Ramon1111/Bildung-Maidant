@@ -32,7 +32,7 @@ public class ContenedorGrupoFragment extends Fragment {
         return v;
     }
 
-    private ArrayList<Fragment> agregarFragments(){
+    public ArrayList<Fragment> agregarFragments(){
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new GrupoFragment());
         fragments.add(new RecordatoriosTareasFragment());
