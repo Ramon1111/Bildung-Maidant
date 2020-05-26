@@ -18,7 +18,7 @@ public class RecordatoriosTareasFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_recordatorios_tareas,container,false);
         return v;
     }
-    
+
     /*
     @Override
     public void onDestroy() {

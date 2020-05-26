@@ -82,16 +82,4 @@ public class HomeFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
-    /*@Override
-    public void onDestroy() {
-        super.onDestroy();
-        Toast.makeText(getContext(),"fragment destruido", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        Toast.makeText(getContext(),"fragment quitado", Toast.LENGTH_SHORT).show();
-    }*/
 }

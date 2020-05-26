@@ -10,7 +10,7 @@ public class Grupo {
     private ArrayList<Integer> numRecordatorios;
     private ArrayList<Integer> numRecursosDidacticos;
     private ArrayList<Integer> numAvisos;
-    private ArrayList<Integer> miembrosGrupo;
+    private ArrayList<String> miembrosGrupo;
     private Boolean estadoAltaBaja;
 
     public Grupo(){
@@ -24,7 +24,7 @@ public class Grupo {
     }
 
     //puse los array para seguir la idea de relacionar la BD de Firebase con numeros enteros que se castean a cadenas
-    public Grupo(String nombreGrupo, String administrador, String claveGrupo, ArrayList<Integer> numRecordatorios, ArrayList<Integer> numRecursosDidacticos, ArrayList<Integer> numAvisos, ArrayList<Integer> miembrosGrupo, Boolean estadoAltaBaja) {
+    public Grupo(String nombreGrupo, String administrador, String claveGrupo, ArrayList<Integer> numRecordatorios, ArrayList<Integer> numRecursosDidacticos, ArrayList<Integer> numAvisos, ArrayList<String> miembrosGrupo, Boolean estadoAltaBaja) {
         this.nombreGrupo = nombreGrupo;
         this.administrador = administrador;
         this.claveGrupo = claveGrupo;
@@ -83,11 +83,11 @@ public class Grupo {
         this.numAvisos = numAvisos;
     }
 
-    public ArrayList<Integer> getMiembrosGrupo() {
+    public ArrayList<String> getMiembrosGrupo() {
         return miembrosGrupo;
     }
 
-    public void setMiembrosGrupo(ArrayList<Integer> miembrosGrupo) {
+    public void setMiembrosGrupo(ArrayList<String> miembrosGrupo) {
         this.miembrosGrupo = miembrosGrupo;
     }
 

@@ -1,6 +1,7 @@
 package com.example.bildungmaidant.fragments.menu;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,20 +19,47 @@ import com.example.bildungmaidant.adapter.GrupoAdapter;
 import com.example.bildungmaidant.fragments.grupo.AddgrupoFragment;
 import com.example.bildungmaidant.fragments.grupo.UnirseFragment;
 import com.example.bildungmaidant.pojos.Grupo;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
+import static androidx.constraintlayout.widget.Constraints.TAG;
+
 public class TusGruposFragment extends Fragment {
+
+    private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+
     private RecyclerView listaGrupos;
     private GrupoAdapter adapter;
     ArrayList<Grupo> grupos;
     Button fgrubtnañadir, fgrubtnunirse;
 
+    private ArrayList<String> gruposUsuario;
+
+    /*private String nombreGrupo,administradorClave,administradorNombre, claveGrupo,listG;
+    private ArrayList<Integer> numRecordatorios,numRecursosDidacticos,numAvisos;
+    private ArrayList<String> miembrosGrupo;
+    private Boolean estadoAltaBaja;*/
+
+    private int nG;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
         View v = inflater.inflate(R.layout.fragment_tus_grupos,container,false);
+
+        db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
 
         listaGrupos=v.findViewById(R.id.ftgRVGrupos);
         fgrubtnañadir=v.findViewById(R.id.fgrubtnañadir);
@@ -41,7 +69,7 @@ public class TusGruposFragment extends Fragment {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         listaGrupos.setLayoutManager(llm);
         inicializarListaGrupo();
-        inicializarAdaptadorGrupos();
+        //inicializarAdaptadorGrupos();
 
         fgrubtnañadir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,12 +90,10 @@ public class TusGruposFragment extends Fragment {
                 fr.replace(R.id.fragment_container, new UnirseFragment());
                 fr.addToBackStack(null);
                 fr.commit();
-
             }
         });
         return v;
     }
-
 
     private void inicializarAdaptadorGrupos() {
         adapter = new GrupoAdapter(grupos,getActivity());
@@ -76,15 +102,172 @@ public class TusGruposFragment extends Fragment {
 
     private void inicializarListaGrupo() {
         grupos=new ArrayList<Grupo>();
-        grupos.add(new Grupo("Temas Selectos de Programacion I", "Ing. Faraday58"));
-        grupos.add(new Grupo("Mecanismos", "Mtro. Buen Cuenqui"));
-        grupos.add(new Grupo("Ingenieria de Manufactura", "Mtro. El Robin"));
+        gruposUsuario=new ArrayList<String>();
+
+        //grupos.add(new Grupo("Temas Selectos de Programacion I", "Ing. Faraday58"));
+        //grupos.add(new Grupo("Mecanismos", "Mtro. Buen Cuenqui"));
+        //grupos.add(new Grupo("Ingenieria de Manufactura", "Mtro. El Robin"));
+
+        ObtenerGrupos();
 
     }
 
-    /*@Override
-    public void onDestroy() {
-        super.onDestroy();
-        Toast.makeText(getContext(),"fragment destruido: TusGrupos Fragment", Toast.LENGTH_SHORT).show();
-    }*/
+    private void ObtenerGrupos() {
+
+        final DocumentReference docRef = db.collection("users").document(currentUser.getUid());
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        if(document.get("gruposFormaParte").toString()!="") {
+
+                            for (String grupo : document.get("gruposFormaParte").toString().split(","))
+                                gruposUsuario.add(grupo);
+
+                            nG=gruposUsuario.size();
+
+                            CrearGrupos();
+                        }else{
+
+                            //Poner mensaje de que aún no ha creado grupos
+                        }
+
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+
+        });
+    }
+
+    private void CrearGrupos() {
+        for(int i=0;i<gruposUsuario.size();i++) {
+            final DocumentReference refGrupos = db.collection("grupos").document(gruposUsuario.get(i));
+            refGrupos.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                String adClave;
+
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+
+                            String administradorClave, listG;
+                            //ArrayList<Integer> numRecordatorios,numRecursosDidacticos,numAvisos;
+                            //ArrayList<String> miembrosGrupo;
+                            //Boolean estadoAltaBaja;
+
+                            ArrayList<Integer> numRecordatorios = new ArrayList<Integer>();
+                            ArrayList<Integer> numRecursosDidacticos = new ArrayList<Integer>();
+                            ArrayList<Integer> numAvisos = new ArrayList<Integer>();
+                            ArrayList<String> miembrosGrupo = new ArrayList<String>();
+
+                            String nombreGrupo = document.get("nombreGrupo").toString();
+                            adClave = document.get("administrador").toString();
+                            String claveGrupo = document.get("claveGrupo").toString();
+                            Boolean estadoAltaBaja = document.getBoolean("estadoAltaBaja");
+
+                            if (document.get("numRecordatorios").toString() != "")
+                                for (String recordatorio : document.get("numRecordatorios").toString().split(","))
+                                    numRecordatorios.add(Integer.getInteger(recordatorio));
+
+                            if (document.get("numAvisos").toString() != "")
+                                for (String aviso : document.get("numAvisos").toString().split(","))
+                                    numAvisos.add(Integer.getInteger(aviso));
+
+                            if (document.get("miembrosGrupo").toString() != "")
+                                for (String miembro : document.get("miembrosGrupo").toString().split(","))
+                                    miembrosGrupo.add(miembro);
+
+                            if(document.get("numRecursosDidacticos").toString()!="")
+                                for(String recurso:document.get("numRecursosDidacticos").toString().split(","))
+                                    numRecordatorios.add(Integer.getInteger(recurso));
+
+
+                            //administradorNombre=ObtenerUsuario(administradorClave);
+                            ObtenerUsuario(nombreGrupo,adClave,claveGrupo,estadoAltaBaja,numRecordatorios,numAvisos,miembrosGrupo, numRecursosDidacticos);
+
+                        } else {
+                            Log.d(TAG, "No such document");
+                        }
+                    } else {
+                        Log.d(TAG, "get failed with ", task.getException());
+                    }
+                }
+            });
+        }
+    }
+
+    private void activarF(){
+        Log.d(TAG,String.valueOf(grupos.size()));
+        if(nG==grupos.size()){
+            inicializarAdaptadorGrupos();
+        }
+    }
+
+    private void ObtenerMiembrosGrupo(String nGrupo,String adNom,String clavGrupo,Boolean estAB, ArrayList<Integer> nRec,ArrayList<Integer> nAv,ArrayList<String> miemG, ArrayList<Integer> nRD) {
+        final ArrayList<String> miembros = new ArrayList<String>();
+        final String[] otroMiembro = {""};
+
+        for (String miem : miemG){
+            //final DocumentReference refGrupos = db.collection("users").document(miem);
+            final DocumentReference refGrupos = db.collection("users").document(miem);
+            refGrupos.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            miembros.add(document.get("nombres").toString()+" "+document.get("apellidos").toString());
+                        } else {
+                            Log.d(TAG, "No such document");
+                        }
+                    } else {
+                        Log.d(TAG, "get failed with ", task.getException());
+                    }
+                }
+            });
+        }
+
+
+        grupos.add(new Grupo(nGrupo,adNom,clavGrupo,nRec,nRD,nAv,miembros,estAB));
+
+        //grupos.add(new Grupo(nombreGrupo, administradorNombre));
+        //grupos.add(new Grupo(nGrupo, adNom));
+
+        activarF();
+
+        Log.d("TamañoF",String.valueOf(grupos.size()));
+            //miembros.add(ObtenerUsuario(miembro));
+    }
+
+    private void ObtenerUsuario(final String nGrupo, String adClave, final String clavGrupo,final Boolean estAB,final  ArrayList<Integer> nRec,final ArrayList<Integer> nAv,final ArrayList<String> miemG,final ArrayList<Integer> nRD) {
+        final DocumentReference refGrupos = db.collection("users").document(adClave);
+        refGrupos.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            String adNom;
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+
+                        //administradorNombre=document.get("nombres").toString()+" "+document.get("apellidos").toString();
+                        adNom=document.get("nombres").toString()+" "+document.get("apellidos").toString();
+
+                        ObtenerMiembrosGrupo(nGrupo,adNom,clavGrupo,estAB,nRec,nAv,miemG,nRD);
+
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+    }
 }
