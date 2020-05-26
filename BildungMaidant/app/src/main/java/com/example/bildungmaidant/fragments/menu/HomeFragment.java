@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,7 +38,7 @@ public class HomeFragment extends Fragment {
         v = inflater.inflate(R.layout.fragment_home,container,false);
 
         db = FirebaseFirestore.getInstance();
-        Toast.makeText(getContext(), "Se creó la vista", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), "Se creó la vista", Toast.LENGTH_SHORT).show();
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
@@ -56,9 +55,6 @@ public class HomeFragment extends Fragment {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
-                            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                            Log.d(TAG, "DocumentSnapshot data: " + document.get("usuario"));
-
                             nombreUsuario.setText(document.get("nombres").toString()+" "+document.get("apellidos").toString());
                             if(document.get("sobreMi").toString()!="")
                                 sobreMi.setText(document.get("sobreMi").toString());
@@ -70,13 +66,6 @@ public class HomeFragment extends Fragment {
                             else
                                 institucion.setText("Sin institucion");
 
-
-                            //Descomentar para cuando se realice la consulta de la foto de perfil
-                            //Se debe de hacer una consulta al storage con la cadena que se tiene
-                            /*if(document.get("fotoPerfil").toString()!="")
-                                fotoPerfil.set
-                                */
-
                         } else {
                             Log.d(TAG, "No such document");
                         }
@@ -86,17 +75,15 @@ public class HomeFragment extends Fragment {
                 }
             });
         }
-
         return v;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
-    @Override
+    /*@Override
     public void onDestroy() {
         super.onDestroy();
         Toast.makeText(getContext(),"fragment destruido", Toast.LENGTH_SHORT).show();
@@ -106,5 +93,5 @@ public class HomeFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         Toast.makeText(getContext(),"fragment quitado", Toast.LENGTH_SHORT).show();
-    }
+    }*/
 }

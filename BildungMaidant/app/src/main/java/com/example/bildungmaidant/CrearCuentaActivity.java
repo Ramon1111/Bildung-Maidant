@@ -154,14 +154,10 @@ public class CrearCuentaActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: " + user.getUid());
-
 
                         Intent cambiar = new Intent(CrearCuentaActivity.this,LoginActivity.class);
                         startActivity(cambiar);
                         finish();
-
-                        //IniciaSesion(correo,contrasena);
 
                     }
                 })

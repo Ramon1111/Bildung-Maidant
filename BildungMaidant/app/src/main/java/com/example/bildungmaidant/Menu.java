@@ -126,22 +126,17 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
                 break;
             case R.id.TusGrupos:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new TusGruposFragment()).commit();
-                //getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 break;
             case R.id.Recordatorios:
-                //getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new RecordatoriosTareasFragment()).commit();
                 break;
             case R.id.Mensajes:
-                //getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new MensajeMenuFragment()).commit();
                 break;
             case R.id.Ajustes:
-                //getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new AjustesFragment()).commit();
                 break;
             case R.id.CerrarSesion:
-                //getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 Intent cambiar = new Intent(Menu.this, LoginActivity.class);
                 FirebaseAuth.getInstance().signOut();
                 startActivity(cambiar);
