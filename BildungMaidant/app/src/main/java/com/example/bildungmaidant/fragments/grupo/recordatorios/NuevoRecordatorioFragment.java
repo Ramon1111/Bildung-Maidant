@@ -3,6 +3,8 @@ package com.example.bildungmaidant.fragments.grupo.recordatorios;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,10 +26,21 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.bildungmaidant.R;
 import com.example.bildungmaidant.fragments.grupo.ContenedorGrupoFragment;
-import com.example.bildungmaidant.fragments.menu.TusGruposFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class NuevoRecordatorioFragment extends Fragment {
     private static final String CERO ="0";
@@ -53,22 +67,33 @@ public class NuevoRecordatorioFragment extends Fragment {
     private TextView tvRegresar;
     private ImageView ivRegresar;
 
+    private EditText etNombre, etDescripcion;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseUser currentUser;
+    ArrayList<String> listaRecordatorios;
+    private FirebaseAuth mAuth;
+
+    private String TAG = "MensajeCrearRecordatorio";
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_nuevo_recordatorio,container,false);
 
+        db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+
         btCrear=v.findViewById(R.id.fnrBTNCrear);
         btCancelar=v.findViewById(R.id.fnrBTNCancelar);
-
         etFecha=v.findViewById(R.id.fnrETFecha);
         ibtFecha=v.findViewById(R.id.fnrIBFecha);
-
         etHora=v.findViewById(R.id.fnrETHorario);
         ibtHora=v.findViewById(R.id.fnrIBHorario);
-
         tvRegresar=v.findViewById(R.id.fnrTVRegresar);
         ivRegresar=v.findViewById(R.id.fnrIVBackArrow);
+        etNombre=v.findViewById(R.id.fnrETNombreRecordatorio);
+        etDescripcion=v.findViewById(R.id.fnrETDescripcion);
 
         tvRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,14 +112,19 @@ public class NuevoRecordatorioFragment extends Fragment {
         btCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cargarFragment(new ContenedorGrupoFragment(),v);
-            }
-        });
+                if(TextUtils.isEmpty(etNombre.getText())){
+                    Toast.makeText(getActivity(), "Agregar nombre de recordatorio", Toast.LENGTH_SHORT).show();
+                }else if(TextUtils.isEmpty(etFecha.getText())){
+                    Toast.makeText(getActivity(), "No se agrego fecha", Toast.LENGTH_SHORT).show();
+                }else if(TextUtils.isEmpty(etHora.getText())){
+                    Toast.makeText(getActivity(), "No se agrego hora", Toast.LENGTH_SHORT).show();
+                }else if(TextUtils.isEmpty(etDescripcion.getText())){
+                    Toast.makeText(getActivity(), "No se agrego fecha", Toast.LENGTH_SHORT).show();
+                }
 
-        btCrear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cargarFragment(new ContenedorGrupoFragment(),v);
+                if(!TextUtils.isEmpty(etNombre.getText()) && !TextUtils.isEmpty(etFecha.getText()) && !TextUtils.isEmpty(etHora.getText()) && !TextUtils.isEmpty(etDescripcion.getText())){
+                    CrearRecordatorio();
+                }
             }
         });
 
@@ -128,6 +158,99 @@ public class NuevoRecordatorioFragment extends Fragment {
         });
 
         return v;
+    }
+
+    private void CrearRecordatorio() {
+        String claveUsuarioBase1 = currentUser.getUid().substring(5,7);
+        String claveUsuarioBase2 = currentUser.getUid().substring(7,9);
+        SimpleDateFormat date1 = new SimpleDateFormat("D");
+        SimpleDateFormat date2 = new SimpleDateFormat("y");
+        SimpleDateFormat date3 = new SimpleDateFormat("kms");
+        Date calendario = Calendar.getInstance().getTime();
+
+        final String claveRecordatorio=date1.format(calendario)+claveUsuarioBase1+date2.format(calendario)+claveUsuarioBase2+date3.format(calendario);
+        Log.d(TAG,"ClaveRecordatorio: "+claveRecordatorio);
+
+        db.collection("users").document(currentUser.getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+
+                                listaRecordatorios= new ArrayList<>();
+
+                                if(document.get("recordatorioasAbiertos").toString()!="")
+                                    for (String recordatorio : document.get("recordatorioasAbiertos").toString().split(","))
+                                        listaRecordatorios.add(recordatorio);
+
+                                listaRecordatorios.add(claveRecordatorio);
+                                SubirRecordatorioCreado(claveRecordatorio);
+                            } else {
+                                Log.d(TAG, "No such document");
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+    }
+
+    private void SubirRecordatorioCreado(final String claveRecordatorio) {
+        Map<String, Object> newReminder = new HashMap<>();
+        newReminder.put("nombreRecordatorio",etNombre.getText().toString());
+        newReminder.put("administrador",currentUser.getUid());
+        newReminder.put("claveRecordatorio", claveRecordatorio);
+        newReminder.put("fecha",etFecha.getText().toString());
+        newReminder.put("hora",etHora.getText().toString());
+        newReminder.put("descripcion",etDescripcion.getText().toString());
+        newReminder.put("estadoEnProceso",true);
+
+        db.collection("recordatorios")
+                .document(claveRecordatorio)
+                .set(newReminder)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        CambiarRecordatorios(claveRecordatorio);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                    }
+                });
+    }
+
+    private void CambiarRecordatorios(String clave) {
+        String newList="";
+
+        for(int i=0;i<listaRecordatorios.size();i++)
+            newList=newList+","+listaRecordatorios.get(i);
+
+        newList=newList.substring(1);
+
+        db.collection("users").document(currentUser.getUid())
+                .update("recordatoriosAbiertos",newList)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        FragmentManager fm = getActivity().getSupportFragmentManager();
+                        for(int i = 0; i < fm.getBackStackEntryCount(); ++i)
+                            fm.popBackStack();
+                        Toast.makeText(getContext(), "Se creó el recordatorio correctamente.", Toast.LENGTH_SHORT).show();
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ContenedorGrupoFragment()).commit();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error updating document", e);
+                    }
+                });
     }
 
     private void obtenerHora() {
@@ -164,8 +287,6 @@ public class NuevoRecordatorioFragment extends Fragment {
     }
 
     private void cargarFragment(Fragment fragment,View v){
-        //FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        //ft.replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
         AppCompatActivity activity = (AppCompatActivity) v.getContext();
         getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         getActivity().getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
@@ -173,4 +294,5 @@ public class NuevoRecordatorioFragment extends Fragment {
         ft.replace(R.id.fragment_container,fragment).commit();
 
     }
+
 }
