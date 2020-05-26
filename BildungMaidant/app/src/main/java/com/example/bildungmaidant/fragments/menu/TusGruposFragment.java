@@ -30,6 +30,7 @@ public class TusGruposFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         View v = inflater.inflate(R.layout.fragment_tus_grupos,container,false);
 
         listaGrupos=v.findViewById(R.id.ftgRVGrupos);

@@ -1,5 +1,6 @@
 package com.example.bildungmaidant;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -12,15 +13,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.bildungmaidant.fragments.menu.AjustesFragment;
-import com.example.bildungmaidant.fragments.menu.HomeFragment;
 import com.example.bildungmaidant.fragments.MensajeMenuFragment;
 import com.example.bildungmaidant.fragments.RecordatoriosTareasFragment;
+import com.example.bildungmaidant.fragments.menu.AjustesFragment;
+import com.example.bildungmaidant.fragments.menu.HomeFragment;
 import com.example.bildungmaidant.fragments.menu.TusGruposFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -112,6 +114,11 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+        FragmentManager fm = getSupportFragmentManager();
+        for(int i = 0; i < fm.getBackStackEntryCount(); ++i)
+            fm.popBackStack();
+
         switch (menuItem.getItemId()){
             case R.id.Inicio:
                 //Cada vez  que inicie sesión
@@ -119,17 +126,26 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
                 break;
             case R.id.TusGrupos:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new TusGruposFragment()).commit();
+                //getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 break;
             case R.id.Recordatorios:
+                //getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new RecordatoriosTareasFragment()).commit();
                 break;
             case R.id.Mensajes:
+                //getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new MensajeMenuFragment()).commit();
                 break;
             case R.id.Ajustes:
+                //getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new AjustesFragment()).commit();
                 break;
             case R.id.CerrarSesion:
+                //getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                Intent cambiar = new Intent(Menu.this, LoginActivity.class);
+                FirebaseAuth.getInstance().signOut();
+                startActivity(cambiar);
+                finish();
                 break;
         }
 

@@ -32,12 +32,16 @@ public class InfoRecordatorioFragment extends Fragment {
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
 
+<<<<<<< HEAD
                 //activity.getSupportFragmentManager().beginTransaction().remove(new ContenedorGrupoFragment).commit();
 
                 //getFragmentManager().popBackStack("RecordatoriosGrupoFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 //getFragmentManager().popBackStack("GruposFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
                 getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+=======
+                getActivity().getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+>>>>>>> afbe7b2d9da4f523aff4d4a24d5799064b0eafa2
 
                 FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.fragment_container,new TusGruposFragment()).commit();
