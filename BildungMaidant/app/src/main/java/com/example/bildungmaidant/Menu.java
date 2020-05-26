@@ -1,5 +1,6 @@
 package com.example.bildungmaidant;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -117,7 +118,7 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
         FragmentManager fm = getSupportFragmentManager();
         for(int i = 0; i < fm.getBackStackEntryCount(); ++i)
             fm.popBackStack();
-        
+
         switch (menuItem.getItemId()){
             case R.id.Inicio:
                 //Cada vez  que inicie sesión
@@ -141,6 +142,10 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
                 break;
             case R.id.CerrarSesion:
                 //getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                Intent cambiar = new Intent(Menu.this, LoginActivity.class);
+                FirebaseAuth.getInstance().signOut();
+                startActivity(cambiar);
+                finish();
                 break;
         }
 
