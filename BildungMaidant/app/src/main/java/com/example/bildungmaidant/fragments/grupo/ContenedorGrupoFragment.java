@@ -14,8 +14,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.bildungmaidant.R;
 import com.example.bildungmaidant.adapter.PageAdapter;
+import com.example.bildungmaidant.fragments.grupo.recordatorios.NuevoRecordatorioFragment;
 import com.example.bildungmaidant.fragments.grupo.recordatorios.RecordatoriosTareasFragment;
 import com.example.bildungmaidant.pojos.Grupo;
+import com.example.bildungmaidant.pojos.Recordatorio;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
@@ -38,9 +40,9 @@ public class ContenedorGrupoFragment extends Fragment {
     private String nombreGrupo;
     private String administrador;
     private String claveGrupo;
-    private ArrayList<Integer> numRecordatorios;
-    private ArrayList<Integer> numRecursosDidacticos;
-    private ArrayList<Integer> numAvisos;
+    private ArrayList<String> numRecordatorios;
+    private ArrayList<String> numRecursosDidacticos;
+    private ArrayList<String> numAvisos;
     private ArrayList<String> miembrosGrupo;
     private Boolean estadoAltaBaja;
 
@@ -68,18 +70,18 @@ public class ContenedorGrupoFragment extends Fragment {
                         administrador=document.get("administrador").toString();
 
                         claveGrupo=clave;
-                        numRecordatorios=new ArrayList<Integer>();
+                        numRecordatorios=new ArrayList<String>();
                         if(document.get("numRecordatorios").toString()!="")
                             for(String rec : document.get("numRecordatorios").toString().split(","))
-                                numRecordatorios.add(Integer.parseInt(rec));
-                        numRecursosDidacticos=new ArrayList<Integer>();
+                                numRecordatorios.add(rec);
+                        numRecursosDidacticos=new ArrayList<>();
                         if(document.get("numRecursosDidacticos").toString()!="")
                             for(String rd : document.get("numRecursosDidacticos").toString().split(","))
-                                numRecordatorios.add(Integer.parseInt(rd));
-                        numAvisos=new ArrayList<Integer>();
+                                numRecordatorios.add(rd);
+                        numAvisos=new ArrayList<>();
                         if(document.get("numAvisos").toString()!="")
                             for(String aviso : document.get("numAvisos").toString().split(","))
-                                numRecordatorios.add(Integer.parseInt(aviso));
+                                numRecordatorios.add(aviso);
                         miembrosGrupo=new ArrayList<String>();
                         if(document.get("miembrosGrupo").toString()!="")
                             for(String miembro : document.get("miembrosGrupo").toString().split(","))
@@ -112,7 +114,7 @@ public class ContenedorGrupoFragment extends Fragment {
 
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new GrupoFragment(currentGroup.getClaveGrupo(),currentGroup.getNombreGrupo(),currentGroup.getAdministrador()));
-        fragments.add(new RecordatoriosTareasFragment());
+        fragments.add(new RecordatoriosTareasFragment(currentGroup.getClaveGrupo()));
         fragments.add(new MensajeMenuFragment());
         fragments.add(new RecursosDidacticosFragment());
         fragments.add(new MiembrosFragment(currentGroup.getAdministrador(),currentGroup.getMiembrosGrupo()));

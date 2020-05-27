@@ -26,6 +26,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.bildungmaidant.R;
 import com.example.bildungmaidant.fragments.grupo.ContenedorGrupoFragment;
+import com.example.bildungmaidant.fragments.menu.TusGruposFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -70,10 +71,16 @@ public class NuevoRecordatorioFragment extends Fragment {
     private EditText etNombre, etDescripcion;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseUser currentUser;
-    ArrayList<String> listaRecordatorios;
+    ArrayList<String> listaRecordatoriosAUsuario;
+    ArrayList<String> listaRecordatoriosAGrupo;
     private FirebaseAuth mAuth;
 
     private String TAG = "MensajeCrearRecordatorio";
+    private String claveGrupoActual;
+
+    public NuevoRecordatorioFragment(String claveGrupoActual){
+        this.claveGrupoActual=claveGrupoActual;
+    }
 
     @Nullable
     @Override
@@ -171,6 +178,30 @@ public class NuevoRecordatorioFragment extends Fragment {
         final String claveRecordatorio=date1.format(calendario)+claveUsuarioBase1+date2.format(calendario)+claveUsuarioBase2+date3.format(calendario);
         Log.d(TAG,"ClaveRecordatorio: "+claveRecordatorio);
 
+        db.collection("grupos").document(claveGrupoActual)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+
+                                listaRecordatoriosAGrupo= new ArrayList<>();
+
+                                if(document.get("numRecordatorios").toString()!="")
+                                    for (String recordatorio : document.get("numRecordatorios").toString().split(","))
+                                        listaRecordatoriosAGrupo.add(recordatorio);
+                                listaRecordatoriosAGrupo.add(claveRecordatorio);
+                            } else {
+                                Log.d(TAG, "No such document");
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
         db.collection("users").document(currentUser.getUid())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -180,13 +211,13 @@ public class NuevoRecordatorioFragment extends Fragment {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
 
-                                listaRecordatorios= new ArrayList<>();
+                                listaRecordatoriosAUsuario= new ArrayList<>();
 
-                                if(document.get("recordatorioasAbiertos").toString()!="")
-                                    for (String recordatorio : document.get("recordatorioasAbiertos").toString().split(","))
-                                        listaRecordatorios.add(recordatorio);
+                                if(document.get("recordatoriosAbiertos").toString()!="")
+                                    for (String recordatorio : document.get("recordatoriosAbiertos").toString().split(","))
+                                        listaRecordatoriosAUsuario.add(recordatorio);
 
-                                listaRecordatorios.add(claveRecordatorio);
+                                listaRecordatoriosAUsuario.add(claveRecordatorio);
                                 SubirRecordatorioCreado(claveRecordatorio);
                             } else {
                                 Log.d(TAG, "No such document");
@@ -206,6 +237,7 @@ public class NuevoRecordatorioFragment extends Fragment {
         newReminder.put("fecha",etFecha.getText().toString());
         newReminder.put("hora",etHora.getText().toString());
         newReminder.put("descripcion",etDescripcion.getText().toString());
+        newReminder.put("grupoPertenece",claveGrupoActual);
         newReminder.put("estadoEnProceso",true);
 
         db.collection("recordatorios")
@@ -226,15 +258,23 @@ public class NuevoRecordatorioFragment extends Fragment {
     }
 
     private void CambiarRecordatorios(String clave) {
-        String newList="";
+        String newList1="";
+        String newList2="";
 
-        for(int i=0;i<listaRecordatorios.size();i++)
-            newList=newList+","+listaRecordatorios.get(i);
+        for(int i=0;i<listaRecordatoriosAUsuario.size();i++)
+            newList1=newList1+","+listaRecordatoriosAUsuario.get(i);
 
-        newList=newList.substring(1);
+        for(int i=0;i<listaRecordatoriosAGrupo.size();i++)
+            newList2=newList2+","+listaRecordatoriosAGrupo.get(i);
+
+        newList1=newList1.substring(1);
+        newList2=newList2.substring(1);
+
+        db.collection("grupos").document(claveGrupoActual)
+                .update("numRecordatorios",newList2);
 
         db.collection("users").document(currentUser.getUid())
-                .update("recordatoriosAbiertos",newList)
+                .update("recordatoriosAbiertos",newList1)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -242,13 +282,13 @@ public class NuevoRecordatorioFragment extends Fragment {
                         for(int i = 0; i < fm.getBackStackEntryCount(); ++i)
                             fm.popBackStack();
                         Toast.makeText(getContext(), "Se creó el recordatorio correctamente.", Toast.LENGTH_SHORT).show();
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ContenedorGrupoFragment()).commit();
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new TusGruposFragment()).commit();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error updating document", e);
+                        Log.w(TAG, "Error actualizando recordatorio en usuario.", e);
                     }
                 });
     }

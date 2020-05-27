@@ -162,9 +162,9 @@ public class TusGruposFragment extends Fragment {
                             //ArrayList<String> miembrosGrupo;
                             //Boolean estadoAltaBaja;
 
-                            ArrayList<Integer> numRecordatorios = new ArrayList<Integer>();
-                            ArrayList<Integer> numRecursosDidacticos = new ArrayList<Integer>();
-                            ArrayList<Integer> numAvisos = new ArrayList<Integer>();
+                            ArrayList<String> numRecordatorios = new ArrayList<>();
+                            ArrayList<String> numRecursosDidacticos = new ArrayList<>();
+                            ArrayList<String> numAvisos = new ArrayList<>();
                             ArrayList<String> miembrosGrupo = new ArrayList<String>();
 
                             String nombreGrupo = document.get("nombreGrupo").toString();
@@ -174,11 +174,11 @@ public class TusGruposFragment extends Fragment {
 
                             if (document.get("numRecordatorios").toString() != "")
                                 for (String recordatorio : document.get("numRecordatorios").toString().split(","))
-                                    numRecordatorios.add(Integer.getInteger(recordatorio));
+                                    numRecordatorios.add(recordatorio);
 
                             if (document.get("numAvisos").toString() != "")
                                 for (String aviso : document.get("numAvisos").toString().split(","))
-                                    numAvisos.add(Integer.getInteger(aviso));
+                                    numAvisos.add(aviso);
 
                             if (document.get("miembrosGrupo").toString() != "")
                                 for (String miembro : document.get("miembrosGrupo").toString().split(","))
@@ -186,7 +186,7 @@ public class TusGruposFragment extends Fragment {
 
                             if(document.get("numRecursosDidacticos").toString()!="")
                                 for(String recurso:document.get("numRecursosDidacticos").toString().split(","))
-                                    numRecordatorios.add(Integer.getInteger(recurso));
+                                    numRecordatorios.add(recurso);
 
 
                             //administradorNombre=ObtenerUsuario(administradorClave);
@@ -210,7 +210,7 @@ public class TusGruposFragment extends Fragment {
         }
     }
 
-    private void ObtenerMiembrosGrupo(String nGrupo,String adNom,String clavGrupo,Boolean estAB, ArrayList<Integer> nRec,ArrayList<Integer> nAv,ArrayList<String> miemG, ArrayList<Integer> nRD) {
+    private void ObtenerMiembrosGrupo(String nGrupo,String adNom,String clavGrupo,Boolean estAB, ArrayList<String> nRec,ArrayList<String> nAv,ArrayList<String> miemG, ArrayList<String> nRD) {
         final ArrayList<String> miembros = new ArrayList<String>();
         final String[] otroMiembro = {""};
 
@@ -246,7 +246,7 @@ public class TusGruposFragment extends Fragment {
             //miembros.add(ObtenerUsuario(miembro));
     }
 
-    private void ObtenerUsuario(final String nGrupo, String adClave, final String clavGrupo,final Boolean estAB,final  ArrayList<Integer> nRec,final ArrayList<Integer> nAv,final ArrayList<String> miemG,final ArrayList<Integer> nRD) {
+    private void ObtenerUsuario(final String nGrupo, String adClave, final String clavGrupo,final Boolean estAB,final  ArrayList<String> nRec,final ArrayList<String> nAv,final ArrayList<String> miemG,final ArrayList<String> nRD) {
         final DocumentReference refGrupos = db.collection("users").document(adClave);
         refGrupos.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             String adNom;

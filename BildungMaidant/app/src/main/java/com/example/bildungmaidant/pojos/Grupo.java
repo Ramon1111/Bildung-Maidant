@@ -7,9 +7,9 @@ public class Grupo {
     private String nombreGrupo;
     private String administrador;
     private String claveGrupo;
-    private ArrayList<Integer> numRecordatorios;
-    private ArrayList<Integer> numRecursosDidacticos;
-    private ArrayList<Integer> numAvisos;
+    private ArrayList<String> listaRecordatorios;
+    private ArrayList<String> listaRecursosDidacticos;
+    private ArrayList<String> listaAvisos;
     private ArrayList<String> miembrosGrupo;
     private Boolean estadoAltaBaja;
 
@@ -24,13 +24,13 @@ public class Grupo {
     }
 
     //puse los array para seguir la idea de relacionar la BD de Firebase con numeros enteros que se castean a cadenas
-    public Grupo(String nombreGrupo, String administrador, String claveGrupo, ArrayList<Integer> numRecordatorios, ArrayList<Integer> numRecursosDidacticos, ArrayList<Integer> numAvisos, ArrayList<String> miembrosGrupo, Boolean estadoAltaBaja) {
+    public Grupo(String nombreGrupo, String administrador, String claveGrupo, ArrayList<String> listaRecordatorios, ArrayList<String> listaRecursosDidacticos, ArrayList<String> listaAvisos, ArrayList<String> miembrosGrupo, Boolean estadoAltaBaja) {
         this.nombreGrupo = nombreGrupo;
         this.administrador = administrador;
         this.claveGrupo = claveGrupo;
-        this.numRecordatorios = numRecordatorios;
-        this.numRecursosDidacticos = numRecursosDidacticos;
-        this.numAvisos = numAvisos;
+        this.listaRecordatorios = listaRecordatorios;
+        this.listaRecursosDidacticos = listaRecursosDidacticos;
+        this.listaAvisos = listaAvisos;
         this.miembrosGrupo = miembrosGrupo;
         this.estadoAltaBaja = estadoAltaBaja;
     }
@@ -59,28 +59,28 @@ public class Grupo {
         this.claveGrupo = claveGrupo;
     }
 
-    public ArrayList<Integer> getNumRecordatorios() {
-        return numRecordatorios;
+    public ArrayList<String > getListaRecordatorios() {
+        return listaRecordatorios;
     }
 
-    public void setNumRecordatorios(ArrayList<Integer> numRecordatorios) {
-        this.numRecordatorios = numRecordatorios;
+    public void setListaRecordatorios(ArrayList<String> ListaRecordatorios) {
+        this.listaRecordatorios = listaRecordatorios;
     }
 
-    public ArrayList<Integer> getNumRecursosDidacticos() {
-        return numRecursosDidacticos;
+    public ArrayList<String> getListaRecursosDidacticos() {
+        return listaRecursosDidacticos;
     }
 
-    public void setNumRecursosDidacticos(ArrayList<Integer> numRecursosDidacticos) {
-        this.numRecursosDidacticos = numRecursosDidacticos;
+    public void setListaRecursosDidacticos(ArrayList<String> listaRecursosDidacticos) {
+        this.listaRecursosDidacticos = listaRecursosDidacticos;
     }
 
-    public ArrayList<Integer> getNumAvisos() {
-        return numAvisos;
+    public ArrayList<String> getListaAvisos() {
+        return listaAvisos;
     }
 
-    public void setNumAvisos(ArrayList<Integer> numAvisos) {
-        this.numAvisos = numAvisos;
+    public void setListaAvisos(ArrayList<String> listaAvisos) {
+        this.listaAvisos = listaAvisos;
     }
 
     public ArrayList<String> getMiembrosGrupo() {

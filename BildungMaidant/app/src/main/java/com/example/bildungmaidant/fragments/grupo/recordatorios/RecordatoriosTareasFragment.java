@@ -18,6 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bildungmaidant.R;
 import com.example.bildungmaidant.adapter.RecordatorioAdapter;
 import com.example.bildungmaidant.pojos.Recordatorio;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -28,10 +31,25 @@ public class RecordatoriosTareasFragment extends Fragment {
 
     private ImageButton ibNuevoRecordatorio;
 
+    private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+    private ArrayList<String> recordatoriosUsuario;
+
+    private String claveGrupoActual;
+
+    public RecordatoriosTareasFragment(String claveGrupoActual){
+        this.claveGrupoActual=claveGrupoActual;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_recordatorios_tareas,container,false);
+
+        db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
 
         listaRecordatorios=v.findViewById(R.id.frtRVRecordatorios);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
@@ -45,31 +63,7 @@ public class RecordatoriosTareasFragment extends Fragment {
         ibNuevoRecordatorio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /* NO FUNCIONO
-                //NuevoRecordatorioFragment fragment = new NuevoRecordatorioFragment();
-                Fragment fragmentNuevoRecordatorio = new NuevoRecordatorioFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fnrNuevoRecordatorioContent,fragmentNuevoRecordatorio);
-                transaction.addToBackStack(null);
-                transaction.commit();
-                 */
-
-                /* NO FUNCIONO TAMPOCO SO SAD BRUH
-                Fragment fragmentNuevoRecordatorio = new NuevoRecordatorioFragment();
-                LinearLayout mainLayout = v.findViewById(R.id.frtLLRecordatoriosTareas);
-                LayoutInflater layoutInflater =getLayoutInflater();
-                View myLayout = inflater.inflate(R.layout.fragment_nuevo_recordatorio,mainLayout,false);
-                mainLayout.addView(myLayout);
-                 */
-
-                /* //SI FUNCIONA PERO ESTA MAS COOL EN METODO
-                NuevoRecordatorioFragment fragment = new NuevoRecordatorioFragment();
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_container, fragment);
-                ft.addToBackStack(null);
-                ft.commit();
-                 */
-                cargarFragment(new NuevoRecordatorioFragment(),v);
+                cargarFragment(new NuevoRecordatorioFragment(claveGrupoActual),v);
             }
         });
 
