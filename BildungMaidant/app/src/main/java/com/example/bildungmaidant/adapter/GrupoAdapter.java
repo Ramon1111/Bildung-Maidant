@@ -1,6 +1,7 @@
 package com.example.bildungmaidant.adapter;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +45,11 @@ public class GrupoAdapter extends RecyclerView.Adapter<GrupoAdapter.GrupoViewHol
         holder.titulo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cargarFragment(new ContenedorGrupoFragment(),v);
+                Bundle bundle=new Bundle();
+                bundle.putString("claveGrupo",grupo.getClaveGrupo());
+                ContenedorGrupoFragment contenedor = new ContenedorGrupoFragment();
+                contenedor.setArguments(bundle);
+                cargarFragment(contenedor,v);
             }
         });
 

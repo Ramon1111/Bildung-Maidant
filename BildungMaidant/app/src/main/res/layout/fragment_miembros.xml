@@ -129,7 +129,7 @@
         android:layout_marginEnd="81dp"
         android:layout_marginRight="81dp"
         android:fontFamily="sans-serif-condensed-light"
-        android:text="Alejandro"
+
         android:textColor="@color/primary_text"
         android:textSize="25dp" />
 
@@ -186,7 +186,7 @@
         android:layout_marginEnd="82dp"
         android:layout_marginRight="82dp"
         android:fontFamily="sans-serif-condensed-light"
-        android:text="Ramón"
+
         android:textColor="@color/primary_text"
 
         android:textSize="25dp" />
