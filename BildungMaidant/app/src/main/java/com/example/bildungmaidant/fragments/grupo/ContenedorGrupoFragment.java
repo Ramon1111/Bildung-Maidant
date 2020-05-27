@@ -14,10 +14,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.bildungmaidant.R;
 import com.example.bildungmaidant.adapter.PageAdapter;
-import com.example.bildungmaidant.fragments.grupo.recordatorios.NuevoRecordatorioFragment;
 import com.example.bildungmaidant.fragments.grupo.recordatorios.RecordatoriosTareasFragment;
 import com.example.bildungmaidant.pojos.Grupo;
-import com.example.bildungmaidant.pojos.Recordatorio;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
@@ -57,7 +55,6 @@ public class ContenedorGrupoFragment extends Fragment {
 
         Bundle bundle=this.getArguments();
         clave=bundle.getString("claveGrupo");
-        Toast.makeText(getContext(), clave, Toast.LENGTH_SHORT).show();
 
         final DocumentReference docRef = db.collection("grupos").document(clave);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -113,7 +110,7 @@ public class ContenedorGrupoFragment extends Fragment {
     public ArrayList<Fragment> agregarFragments(){
 
         ArrayList<Fragment> fragments = new ArrayList<>();
-        fragments.add(new GrupoFragment(currentGroup.getClaveGrupo(),currentGroup.getNombreGrupo(),currentGroup.getAdministrador()));
+        fragments.add(new GrupoFragment(currentGroup.getClaveGrupo(),currentGroup.getNombreGrupo(),currentGroup.getAdministrador(),currentGroup.getMiembrosGrupo()));
         fragments.add(new RecordatoriosTareasFragment(currentGroup.getClaveGrupo()));
         fragments.add(new MensajeMenuFragment());
         fragments.add(new RecursosDidacticosFragment());
@@ -132,11 +129,5 @@ public class ContenedorGrupoFragment extends Fragment {
         tabLayout.getTabAt(3).setIcon(R.drawable.ic_menu_grupo_recursos_didacticos_24);
         tabLayout.getTabAt(4).setIcon(R.drawable.ic_menu_grupo_miembros_24);
         tabLayout.getTabAt(5).setIcon(R.drawable.ic_menu_grupo_avisos_24);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Toast.makeText(getContext(),"fragment destruido: Cont. Grupos", Toast.LENGTH_SHORT).show();
     }
 }

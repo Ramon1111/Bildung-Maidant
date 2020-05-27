@@ -237,6 +237,7 @@
     </LinearLayout>-->
 
     <Button
+        android:id="@+id/fgBTNDarseBaja"
         style="@style/TextView_little_black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

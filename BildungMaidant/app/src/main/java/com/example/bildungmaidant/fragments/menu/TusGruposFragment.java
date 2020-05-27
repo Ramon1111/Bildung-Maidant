@@ -165,7 +165,7 @@ public class TusGruposFragment extends Fragment {
                             ArrayList<String> numRecordatorios = new ArrayList<>();
                             ArrayList<String> numRecursosDidacticos = new ArrayList<>();
                             ArrayList<String> numAvisos = new ArrayList<>();
-                            ArrayList<String> miembrosGrupo = new ArrayList<String>();
+                            ArrayList<String> miembrosGrupo = new ArrayList<>();
 
                             String nombreGrupo = document.get("nombreGrupo").toString();
                             adClave = document.get("administrador").toString();
