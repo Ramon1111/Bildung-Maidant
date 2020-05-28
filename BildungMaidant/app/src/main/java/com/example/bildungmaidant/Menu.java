@@ -20,9 +20,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.bildungmaidant.fragments.MensajeMenuFragment;
-import com.example.bildungmaidant.fragments.RecordatoriosTareasFragment;
 import com.example.bildungmaidant.fragments.menu.AjustesFragment;
 import com.example.bildungmaidant.fragments.menu.HomeFragment;
+import com.example.bildungmaidant.fragments.menu.RecordatorioGeneralFragment;
 import com.example.bildungmaidant.fragments.menu.TusGruposFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -128,7 +128,7 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new TusGruposFragment()).commit();
                 break;
             case R.id.Recordatorios:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new RecordatoriosTareasFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new RecordatorioGeneralFragment()).commit();
                 break;
             case R.id.Mensajes:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new MensajeMenuFragment()).commit();

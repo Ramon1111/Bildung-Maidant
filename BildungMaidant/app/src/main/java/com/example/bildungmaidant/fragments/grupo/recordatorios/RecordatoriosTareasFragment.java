@@ -42,7 +42,6 @@ public class RecordatoriosTareasFragment extends Fragment {
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
-    private ArrayList<String> recordatoriosUsuario;
 
     private ArrayList<String> listaGrupoRecordatorio;
 
@@ -93,6 +92,8 @@ public class RecordatoriosTareasFragment extends Fragment {
         recordatorios.add(new Recordatorio("Terminar el proyecto de TSP I","Hace falta hacer que la inicialización de la lista Recordatorio obtenga datos desde una base de datos.","07/05/2020","10:02 AM"));
         recordatorios.add(new Recordatorio("Terminar el proyecto de TSP I","Hace falta hacer que la inicialización de la lista Recordatorio obtenga datos desde una base de datos.","07/05/2020","10:02 AM"));
          */
+
+
         ObtenerRecordatoriosUsuario();
     }
 
