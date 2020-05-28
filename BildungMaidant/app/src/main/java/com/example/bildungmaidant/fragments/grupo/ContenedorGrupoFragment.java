@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -114,7 +113,7 @@ public class ContenedorGrupoFragment extends Fragment {
         fragments.add(new RecordatoriosTareasFragment(currentGroup.getClaveGrupo(),currentGroup.getListaRecordatorios()));
         fragments.add(new MensajeMenuFragment());
         fragments.add(new RecursosDidacticosFragment());
-        fragments.add(new MiembrosFragment(currentGroup.getAdministrador(),currentGroup.getMiembrosGrupo()));
+        fragments.add(new MiembrosFragment(currentGroup.getAdministrador(),currentGroup.getMiembrosGrupo(),currentGroup.getClaveGrupo(),currentGroup.getNombreGrupo()));
         fragments.add(new AvisosFragment());
         return fragments;
     }

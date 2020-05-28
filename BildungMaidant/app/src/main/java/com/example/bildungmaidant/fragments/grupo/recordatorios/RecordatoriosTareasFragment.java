@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -114,10 +113,11 @@ public class RecordatoriosTareasFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            if (task.getResult().size() == 0) {
-                                Toast.makeText(getContext(), "No se encontró ningun recordatorio.", Toast.LENGTH_SHORT).show();
-                            }
-                            else{
+                            /*if (task.getResult().size() == 0) {
+                                //Toast.makeText(getContext(), "No se encontró ningun recordatorio.", Toast.LENGTH_SHORT).show();
+                            }*/
+                            if(task.getResult().size()>0){
+                            //else{
                                 for (QueryDocumentSnapshot document : task.getResult()) {
                                     Toast.makeText(getContext(),"Hola",Toast.LENGTH_SHORT).show();
                                     recordatorios.add(new Recordatorio(

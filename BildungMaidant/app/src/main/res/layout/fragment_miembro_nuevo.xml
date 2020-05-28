@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="140dp">
+
+        <TextView
+            android:id="@+id/fmnTVEncabezado"
+            style="@style/TitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="Añadir miembro al grupo "/>
+
+        <ImageView
+            android:id="@+id/fugIVEncabezado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit_yellow_40dp"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/fugTWIndicacion01"
+        style="@style/NormalTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="70dp"
+        android:text="Correo del Miembro Nuevo"/>
+
+    <EditText
+        android:id="@+id/fmnETClaveMiembro"
+        style="@style/NormalTextView"
+        android:layout_width="327dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/primary_light"
+        android:hint="Ingrese el correo del miembro"/>
+
+    <Button
+        android:id="@+id/fmnBTNAgregar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="160dp"
+        android:text="Agregar"
+        style="@style/NormalButton"
+        />
+    <Button
+        android:id="@+id/fmnBTNCancelar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="160dp"
+        android:text="@string/fugBTNCancelar"
+        style="@style/NormalButton"
+        />
+</LinearLayout>
