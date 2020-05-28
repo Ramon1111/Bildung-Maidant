@@ -111,7 +111,7 @@ public class ContenedorGrupoFragment extends Fragment {
 
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new GrupoFragment(currentGroup.getClaveGrupo(),currentGroup.getNombreGrupo(),currentGroup.getAdministrador(),currentGroup.getMiembrosGrupo()));
-        fragments.add(new RecordatoriosTareasFragment(currentGroup.getClaveGrupo()));
+        fragments.add(new RecordatoriosTareasFragment(currentGroup.getClaveGrupo(),currentGroup.getListaRecordatorios()));
         fragments.add(new MensajeMenuFragment());
         fragments.add(new RecursosDidacticosFragment());
         fragments.add(new MiembrosFragment(currentGroup.getAdministrador(),currentGroup.getMiembrosGrupo()));
