@@ -13,6 +13,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -78,6 +79,8 @@ public class NuevoRecordatorioFragment extends Fragment {
     private String TAG = "MensajeCrearRecordatorio";
     private String claveGrupoActual;
 
+    private RelativeLayout regresar;
+
     public NuevoRecordatorioFragment(String claveGrupoActual){
         this.claveGrupoActual=claveGrupoActual;
     }
@@ -101,18 +104,16 @@ public class NuevoRecordatorioFragment extends Fragment {
         ivRegresar=v.findViewById(R.id.fnrIVBackArrow);
         etNombre=v.findViewById(R.id.fnrETNombreRecordatorio);
         etDescripcion=v.findViewById(R.id.fnrETDescripcion);
+        regresar=v.findViewById(R.id.fnrRLRegresar);
 
-        tvRegresar.setOnClickListener(new View.OnClickListener() {
+        regresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cargarFragment(new ContenedorGrupoFragment(),v);
-            }
-        });
-
-        ivRegresar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cargarFragment(new ContenedorGrupoFragment(),v);
+                Bundle bundle=new Bundle();
+                bundle.putString("claveGrupo",claveGrupoActual);
+                ContenedorGrupoFragment contenedor = new ContenedorGrupoFragment();
+                contenedor.setArguments(bundle);
+                cargarFragment(contenedor,v);
             }
         });
 
@@ -130,7 +131,7 @@ public class NuevoRecordatorioFragment extends Fragment {
                 }
 
                 if(!TextUtils.isEmpty(etNombre.getText()) && !TextUtils.isEmpty(etFecha.getText()) && !TextUtils.isEmpty(etHora.getText()) && !TextUtils.isEmpty(etDescripcion.getText())){
-                    CrearRecordatorio();
+                    CrearRecordatorio(v);
                 }
             }
         });
@@ -138,7 +139,11 @@ public class NuevoRecordatorioFragment extends Fragment {
         btCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cargarFragment(new ContenedorGrupoFragment(),v);
+                Bundle bundle=new Bundle();
+                bundle.putString("claveGrupo",claveGrupoActual);
+                ContenedorGrupoFragment contenedor = new ContenedorGrupoFragment();
+                contenedor.setArguments(bundle);
+                cargarFragment(contenedor,v);
             }
         });
 
@@ -167,7 +172,7 @@ public class NuevoRecordatorioFragment extends Fragment {
         return v;
     }
 
-    private void CrearRecordatorio() {
+    private void CrearRecordatorio(final View v) {
         String claveUsuarioBase1 = currentUser.getUid().substring(5,7);
         String claveUsuarioBase2 = currentUser.getUid().substring(7,9);
         SimpleDateFormat date1 = new SimpleDateFormat("D");
@@ -218,7 +223,7 @@ public class NuevoRecordatorioFragment extends Fragment {
                                         listaRecordatoriosAUsuario.add(recordatorio);
 
                                 listaRecordatoriosAUsuario.add(claveRecordatorio);
-                                SubirRecordatorioCreado(claveRecordatorio);
+                                SubirRecordatorioCreado(claveRecordatorio,v);
                             } else {
                                 Log.d(TAG, "No such document");
                             }
@@ -229,7 +234,7 @@ public class NuevoRecordatorioFragment extends Fragment {
                 });
     }
 
-    private void SubirRecordatorioCreado(final String claveRecordatorio) {
+    private void SubirRecordatorioCreado(final String claveRecordatorio, final View v) {
         Map<String, Object> newReminder = new HashMap<>();
         newReminder.put("nombreRecordatorio",etNombre.getText().toString());
         newReminder.put("administrador",currentUser.getUid());
@@ -246,7 +251,7 @@ public class NuevoRecordatorioFragment extends Fragment {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        CambiarRecordatorios(claveRecordatorio);
+                        CambiarRecordatorios(claveRecordatorio,v);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -257,7 +262,7 @@ public class NuevoRecordatorioFragment extends Fragment {
                 });
     }
 
-    private void CambiarRecordatorios(String clave) {
+    private void CambiarRecordatorios(String clave, final View v) {
         String newList1="";
         String newList2="";
 
@@ -282,7 +287,12 @@ public class NuevoRecordatorioFragment extends Fragment {
                         for(int i = 0; i < fm.getBackStackEntryCount(); ++i)
                             fm.popBackStack();
                         Toast.makeText(getContext(), "Se creó el recordatorio correctamente.", Toast.LENGTH_SHORT).show();
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new TusGruposFragment()).commit();
+                        Bundle bundle=new Bundle();
+                        bundle.putString("claveGrupo",claveGrupoActual);
+                        ContenedorGrupoFragment contenedor = new ContenedorGrupoFragment();
+                        contenedor.setArguments(bundle);
+                        cargarFragment(contenedor,v);
+                        //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new TusGruposFragment()).commit();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

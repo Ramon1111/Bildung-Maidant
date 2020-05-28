@@ -14,22 +14,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/fnrIVBackArrow"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="6dp"
-            android:layout_marginTop="13dp"
-            android:src="@drawable/ic_keyboard_arrow_left"
-            ></ImageView>
-        <TextView
-            android:id="@+id/fnrTVRegresar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:text="@string/tvRegresar"
-            style="@style/NormalTextView"
-            ></TextView>
+            android:id="@+id/fnrRLRegresar">
+            <ImageView
+                android:id="@+id/fnrIVBackArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="13dp"
+                android:src="@drawable/ic_keyboard_arrow_left"/>
+            <TextView
+                android:layout_marginLeft="30dp"
+                android:id="@+id/fnrTVRegresar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:text="@string/tvRegresar"
+                style="@style/NormalTextView" />
+        </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
