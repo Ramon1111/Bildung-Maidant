@@ -45,7 +45,7 @@ public class RecordatorioGeneralFragment extends Fragment {
     private ArrayList<String> nombresGrupo;
     private ArrayList<String> gruposUsuario;
 
-    int nR,nG;
+    int nR,nG,nnG;
 
     @Nullable
     @Override
@@ -83,9 +83,11 @@ public class RecordatorioGeneralFragment extends Fragment {
                             }
                             nR=recordatoriosUsuario.size();
                             if(document.get("gruposFormaParte").toString() != ""){
-                                for (String grupo : document.get("gruposFormaParte").toString().split(","))
+                                for (String grupo : document.get("gruposFormaParte").toString().split(",")){
                                     gruposUsuario.add(grupo);
-                                nG=gruposUsuario.size();
+                                    Log.d("nnGn",grupo);
+                                }
+                                Log.d("nG",""+gruposUsuario.size());
                                 ObtenerNombreGrupo();
                             }
                         }
@@ -107,9 +109,12 @@ public class RecordatorioGeneralFragment extends Fragment {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
+
                         if(task.getResult().size()>0){
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 nombresGrupo.add(document.get("nombreGrupo").toString());
+                                Log.d("nnGn",document.get("nombreGrupo").toString());
+                                Log.d("nnG",""+nombresGrupo.size());
                             }
                         }
                     } else {
@@ -158,6 +163,9 @@ public class RecordatorioGeneralFragment extends Fragment {
  */
 
     private void ObtenerRecordatoriosGeneralUsuario() {
+        Log.d("nnG",""+nombresGrupo.size());
+        Log.d("nnG",""+gruposUsuario.size());
+
         recordatorios = new ArrayList<>();
         int bandera=0;
 
@@ -177,13 +185,18 @@ public class RecordatorioGeneralFragment extends Fragment {
                                         String nombreG = "";
                                         String grupoP=document.get("grupoPertenece").toString();
 
-                                        for(int i=0;i<gruposUsuario.size();i++){
-                                            if(grupoP.equals(gruposUsuario.get(i))){
-                                                nombreG = nombresGrupo.get(i);
-                                                Log.d("NOMBRE",nombreG);
-                                            }else{
-                                                Log.d("NOMBRE","No se encontró el nombre del grupo.");
+                                        if(gruposUsuario.size() == nombresGrupo.size()){
+                                            for(int i=0;i<gruposUsuario.size();i++){
+                                                if(grupoP.equals(gruposUsuario.get(i))){
+                                                    nombreG = nombresGrupo.get(i);
+                                                    Log.d("NOMBRE",nombreG);
+                                                }else{
+                                                    Log.d("NOMBRE","No se encontró el nombre del grupo.");
+                                                }
                                             }
+                                        }else{
+                                            nombreG=grupoP;
+                                            Log.d("COINCIDENCIA","Arreglos de tamanios distintos");
                                         }
 
                                         recordatorios.add(new Recordatorio(
@@ -215,5 +228,7 @@ public class RecordatorioGeneralFragment extends Fragment {
     private void inicializarAdaptadorRecordatoriosGeneral() {
         adapter = new RecordatorioGeneralAdapter(recordatorios,getActivity());
         listaRecordatorios.setAdapter(adapter);
+        nombresGrupo.clear();
+        gruposUsuario.clear();
     }
 }
