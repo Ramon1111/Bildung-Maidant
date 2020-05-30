@@ -92,8 +92,6 @@ public class RecordatoriosTareasFragment extends Fragment {
         recordatorios.add(new Recordatorio("Terminar el proyecto de TSP I","Hace falta hacer que la inicialización de la lista Recordatorio obtenga datos desde una base de datos.","07/05/2020","10:02 AM"));
         recordatorios.add(new Recordatorio("Terminar el proyecto de TSP I","Hace falta hacer que la inicialización de la lista Recordatorio obtenga datos desde una base de datos.","07/05/2020","10:02 AM"));
          */
-
-
         ObtenerRecordatoriosUsuario();
     }
 
@@ -108,6 +106,7 @@ public class RecordatoriosTareasFragment extends Fragment {
 
                 .whereEqualTo("claveRecordatorio",recordatorio)
                 .whereEqualTo("administrador",currentUser.getUid())
+                .whereEqualTo("grupoPertenece",claveGrupoActual)
 
                 .get() //esto obtiene el arreglo del documento
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

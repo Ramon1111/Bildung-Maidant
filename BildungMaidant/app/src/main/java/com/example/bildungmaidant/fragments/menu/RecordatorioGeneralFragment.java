@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +28,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
@@ -40,7 +42,7 @@ public class RecordatorioGeneralFragment extends Fragment {
     private FirebaseUser currentUser;
 
     private ArrayList<String> recordatoriosUsuario;
-    private ArrayList<String> recordatoriosGrupo;
+    private ArrayList<String> nombresGrupo;
     private ArrayList<String> gruposUsuario;
 
     int nR,nG;
@@ -65,8 +67,10 @@ public class RecordatorioGeneralFragment extends Fragment {
 
     private void inicializarListaRecordatoriosGeneral() {
         recordatoriosUsuario = new ArrayList<>();
+        gruposUsuario=new ArrayList<>();
 
         final DocumentReference docRefUsuario = db.collection("users").document(currentUser.getUid());
+
         docRefUsuario.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -74,16 +78,17 @@ public class RecordatorioGeneralFragment extends Fragment {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         if(document.get("recordatoriosAbiertos").toString()!="") {
-
-                            for (String recordatorio : document.get("recordatoriosAbiertos").toString().split(","))
+                            for (String recordatorio : document.get("recordatoriosAbiertos").toString().split(",")) {
                                 recordatoriosUsuario.add(recordatorio);
+                            }
                             nR=recordatoriosUsuario.size();
-                            ObtenerRecordatoriosGeneralUsuario();
-                        }else{
-
-                            //Poner mensaje de que aún no ha creado grupos
+                            if(document.get("gruposFormaParte").toString() != ""){
+                                for (String grupo : document.get("gruposFormaParte").toString().split(","))
+                                    gruposUsuario.add(grupo);
+                                nG=gruposUsuario.size();
+                                ObtenerNombreGrupo();
+                            }
                         }
-
                     } else {
                         Log.d(TAG, "No such document");
                     }
@@ -91,47 +96,32 @@ public class RecordatorioGeneralFragment extends Fragment {
                     Log.d(TAG, "get failed with ", task.getException());
                 }
             }
-
         });
-/*
-        final DocumentReference docRefGrupo = db.collection("users").document(currentUser.getUid());
-        docRefGrupo.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        if(document.get("gruposFormaParte").toString()!="") {
-
-                            for (String grupos : document.get("gruposFormaParte").toString().split(","))
-                                gruposUsuario.add(grupos);
-                            nG=gruposUsuario.size();
-                        }else{
-
-                            //Poner mensaje de que aún no ha creado grupos
-                        }
-
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-
-        });
- */
-
-/*
-        try{
-            ObtenerGruposUsuarioRecordatorio();
-        }catch (Exception e){
-            Log.d(TAG, "No se pudieron obtener recordatorios");
-        }
- */
-
     }
 
+    private void ObtenerNombreGrupo() {
+        nombresGrupo = new ArrayList<>();
+        for(String clave : gruposUsuario){
+            db.collection("grupos")
+                    .whereEqualTo("claveGrupo",clave).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        if(task.getResult().size()>0){
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                nombresGrupo.add(document.get("nombreGrupo").toString());
+                            }
+                        }
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                    }
+                }
+            });
+        }
+        ObtenerRecordatoriosGeneralUsuario();
+    }
+
+/*
     private void ObtenerGruposUsuarioRecordatorio() {
         recordatoriosGrupo=new ArrayList<>();
 
@@ -150,6 +140,11 @@ public class RecordatorioGeneralFragment extends Fragment {
                             }else{
 
                             }
+
+                            if(document.get("gruposFormaParte").toString() != ""){
+                                for (String grupo : document.get("gruposFormaParte").toString().split(","))
+
+                            }
                         }else{
                             Log.d(TAG, "No such document");
                         }
@@ -160,6 +155,7 @@ public class RecordatorioGeneralFragment extends Fragment {
             });
         }
     }
+ */
 
     private void ObtenerRecordatoriosGeneralUsuario() {
         recordatorios = new ArrayList<>();
@@ -168,20 +164,28 @@ public class RecordatorioGeneralFragment extends Fragment {
         for(String recordatorio : recordatoriosUsuario) {
             bandera++;
             final int finalBandera = bandera;
+
             db.collection("recordatorios")
-
                     .whereEqualTo("claveRecordatorio",recordatorio)
-
                     .get() //esto obtiene el arreglo del documento
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
-                            /*if (task.getResult().size() == 0) {
-                                //Toast.makeText(getContext(), "No se encontró ningun recordatorio.", Toast.LENGTH_SHORT).show();
-                            }*/
                                 if(task.getResult().size()>0){
                                     for (QueryDocumentSnapshot document : task.getResult()) {
+                                        String nombreG = "";
+                                        String grupoP=document.get("grupoPertenece").toString();
+
+                                        for(int i=0;i<gruposUsuario.size();i++){
+                                            if(grupoP.equals(gruposUsuario.get(i))){
+                                                nombreG = nombresGrupo.get(i);
+                                                Log.d("NOMBRE",nombreG);
+                                            }else{
+                                                Log.d("NOMBRE","No se encontró el nombre del grupo.");
+                                            }
+                                        }
+
                                         recordatorios.add(new Recordatorio(
                                                 document.get("nombreRecordatorio").toString(),
                                                 document.get("descripcion").toString(),
@@ -189,7 +193,7 @@ public class RecordatorioGeneralFragment extends Fragment {
                                                 document.get("hora").toString(),
                                                 document.get("administrador").toString(),
                                                 document.get("claveRecordatorio").toString(),
-                                                document.get("grupoPertenece").toString(),
+                                                nombreG,
                                                 document.getBoolean("estadoEnProceso")));
                                     }
                                 }
