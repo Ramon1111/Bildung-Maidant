@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -105,6 +107,7 @@
 
     <EditText
         android:id="@+id/faiETApellido"
+        android:hint="Ingrese Apellidos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -116,46 +119,22 @@
 
 
     <TextView
-        android:id="@+id/faiTVCorreo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="220dp"
-        android:layout_marginLeft="20dp"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="@color/primary_text"
-        android:text="@string/faiTVCorreo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/faiTVActualizar"
-        android:layout_marginStart="20dp" />
-
-
-    <EditText
-        android:id="@+id/faiETCorreo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/primary_text"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/faiTVCorreo" />
-
-    <TextView
         android:id="@+id/faiTVInstitucion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="320dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="216dp"
+        android:text="@string/faiTVInstitucion"
+        android:textColor="@color/primary_text"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:textColor="@color/primary_text"
-        android:text="@string/faiTVInstitucion"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/faiTVActualizar"
-        android:layout_marginStart="20dp" />
+        app:layout_constraintTop_toBottomOf="@+id/faiTVActualizar" />
 
     <EditText
         android:id="@+id/faiETInstitucion"
+        android:hint="Ingrese escuela o institución"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -165,60 +144,33 @@
         app:layout_constraintTop_toBottomOf="@+id/faiTVInstitucion" />
 
     <TextView
-        android:id="@+id/faiTVFechanacimiento"
+        android:id="@+id/faiTVDescripcion"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="420dp"
-        android:layout_marginLeft="20dp"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="@color/primary_text"
-        android:text="@string/faiTVFecha"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/faiTVActualizar"
-        />
-
-    <EditText
-        android:id="@+id/faiETDia"
-        android:layout_width="20pt"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="312dp"
+        android:text="Descripcion"
         android:textColor="@color/primary_text"
-        android:textSize="14dp"
-        android:inputType="number"
-        android:maxLength="2"
-        app:layout_constraintStart_toEndOf="@+id/faiTVFechanacimiento"
-        app:layout_constraintTop_toBottomOf="@+id/faiETInstitucion"/>
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/faiTVActualizar" />
 
     <EditText
-        android:id="@+id/faiETMes"
-        android:layout_width="20pt"
+        android:id="@+id/faiETDescripcion"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:textColor="@color/primary_text"
-        android:textSize="14dp"
-        android:inputType="number"
-        android:maxLength="2"
-        app:layout_constraintStart_toEndOf="@+id/faiTVFechanacimiento"
-        app:layout_constraintTop_toBottomOf="@+id/faiETInstitucion"/>
+        android:textSize="20dp"
+        android:minLines="3"
+        android:maxLines="6"
+        android:hint="Ingresar Descripción"
+        android:gravity="top"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/faiTVDescripcion" />
 
-    <EditText
-        android:id="@+id/faiETAnio"
-        android:layout_width="30pt"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="125dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="12dp"
-        android:textColor="@color/primary_text"
-        android:textSize="14dp"
-        android:inputType="number"
-        android:maxLength="4"
-        app:layout_constraintStart_toEndOf="@+id/faiTVFechanacimiento"
-        app:layout_constraintTop_toBottomOf="@+id/faiETInstitucion"/>
 
     <Button
         android:id="@+id/faiBTNActualizar"
