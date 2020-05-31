@@ -130,9 +130,9 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
             case R.id.Recordatorios:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new RecordatorioGeneralFragment()).commit();
                 break;
-            case R.id.Mensajes:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new MensajeMenuFragment()).commit();
-                break;
+            //case R.id.Mensajes:
+                //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new MensajeMenuFragment()).commit();
+                //break;
             case R.id.Ajustes:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new AjustesFragment()).commit();
                 break;

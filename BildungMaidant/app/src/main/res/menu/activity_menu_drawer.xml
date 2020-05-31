@@ -16,10 +16,10 @@
             android:icon="@drawable/ic_notifications_black_24dp"
             android:title="Recordatorios"
             />
-        <item android:id="@+id/Mensajes"
+        <!--<item android:id="@+id/Mensajes"
             android:icon="@drawable/ic_email"
             android:title="Mensajes"
-            />
+            />-->
         <item android:id="@+id/Ajustes"
             android:icon="@drawable/ic_settings"
             android:title="Ajustes"

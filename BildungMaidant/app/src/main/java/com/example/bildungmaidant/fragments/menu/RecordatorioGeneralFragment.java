@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,7 +27,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
@@ -46,6 +44,7 @@ public class RecordatorioGeneralFragment extends Fragment {
     private ArrayList<String> gruposUsuario;
 
     int nR,nG,nnG;
+    int finalBandera=0;
 
     @Nullable
     @Override
@@ -81,7 +80,9 @@ public class RecordatorioGeneralFragment extends Fragment {
                             for (String recordatorio : document.get("recordatoriosAbiertos").toString().split(",")) {
                                 recordatoriosUsuario.add(recordatorio);
                             }
+                            ObtenerRecordatoriosGeneralUsuario();
                             nR=recordatoriosUsuario.size();
+                            /*
                             if(document.get("gruposFormaParte").toString() != ""){
                                 for (String grupo : document.get("gruposFormaParte").toString().split(",")){
                                     gruposUsuario.add(grupo);
@@ -90,6 +91,7 @@ public class RecordatorioGeneralFragment extends Fragment {
                                 Log.d("nG",""+gruposUsuario.size());
                                 ObtenerNombreGrupo();
                             }
+                             */
                         }
                     } else {
                         Log.d(TAG, "No such document");
@@ -163,15 +165,14 @@ public class RecordatorioGeneralFragment extends Fragment {
  */
 
     private void ObtenerRecordatoriosGeneralUsuario() {
-        Log.d("nnG",""+nombresGrupo.size());
-        Log.d("nnG",""+gruposUsuario.size());
-
+        //Log.d("nnG",""+nombresGrupo.size());
+        //Log.d("nnG",""+gruposUsuario.size());
         recordatorios = new ArrayList<>();
-        int bandera=0;
+        //int bandera=0;
 
-        for(String recordatorio : recordatoriosUsuario) {
-            bandera++;
-            final int finalBandera = bandera;
+        for(final String recordatorio : recordatoriosUsuario) {
+            //bandera++;
+            //final int finalBandera = bandera;
 
             db.collection("recordatorios")
                     .whereEqualTo("claveRecordatorio",recordatorio)
@@ -182,9 +183,23 @@ public class RecordatorioGeneralFragment extends Fragment {
                             if (task.isSuccessful()) {
                                 if(task.getResult().size()>0){
                                     for (QueryDocumentSnapshot document : task.getResult()) {
-                                        String nombreG = "";
-                                        String grupoP=document.get("grupoPertenece").toString();
+                                        String nombreRecordatorio,descripcion, fecha, hora, administrador, claveRecordatorio, grupoPertenece;
+                                        Boolean estadoEnProceso;
 
+                                        nombreRecordatorio=document.get("nombreRecordatorio").toString();
+                                        descripcion=document.get("descripcion").toString();
+                                        fecha=document.get("fecha").toString();
+                                        hora=document.get("hora").toString();
+                                        administrador=document.get("administrador").toString();
+                                        claveRecordatorio=document.get("claveRecordatorio").toString();
+                                        grupoPertenece=document.get("grupoPertenece").toString();
+                                        estadoEnProceso=document.getBoolean("estadoEnProceso");
+
+                                        CambiarClaveNombreGrupo(nombreRecordatorio,descripcion,fecha,hora,administrador,claveRecordatorio,grupoPertenece,estadoEnProceso);
+
+                                        //String nombreG = "";
+                                        //String grupoP=document.get("grupoPertenece").toString();
+/*
                                         if(gruposUsuario.size() == nombresGrupo.size()){
                                             for(int i=0;i<gruposUsuario.size();i++){
                                                 if(grupoP.equals(gruposUsuario.get(i))){
@@ -199,6 +214,8 @@ public class RecordatorioGeneralFragment extends Fragment {
                                             Log.d("COINCIDENCIA","Arreglos de tamanios distintos");
                                         }
 
+ */
+                    /*
                                         recordatorios.add(new Recordatorio(
                                                 document.get("nombreRecordatorio").toString(),
                                                 document.get("descripcion").toString(),
@@ -206,29 +223,55 @@ public class RecordatorioGeneralFragment extends Fragment {
                                                 document.get("hora").toString(),
                                                 document.get("administrador").toString(),
                                                 document.get("claveRecordatorio").toString(),
-                                                nombreG,
+                                                //nombreG,
+                                                document.get("grupoPertenece").toString(),
                                                 document.getBoolean("estadoEnProceso")));
+                     */
                                     }
                                 }
                             } else {
                                 Log.d(TAG, "Error getting documents: ", task.getException());
                             }
                         }
-                    }).addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    });
+        }
+    }
+
+    private void CambiarClaveNombreGrupo(final String nombreRecordatorio, final String descripcion, final String fecha, final String hora, final String administrador, final String claveRecordatorio, final String grupoPertenece, final Boolean estadoEnProceso) {
+            db.collection("grupos")
+                    .document(grupoPertenece).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
-                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                    if(finalBandera ==nR){
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if(task.isSuccessful()){
+                        DocumentSnapshot documentSnapshot = task.getResult();
+                        if(documentSnapshot.exists()){
+                            recordatorios.add(new Recordatorio(
+                                    nombreRecordatorio,
+                                    descripcion,
+                                    fecha,
+                                    hora,
+                                    administrador,
+                                    claveRecordatorio,
+                                    documentSnapshot.get("nombreGrupo").toString(),
+                                    estadoEnProceso));
+                            finalBandera++;
+                        }
+                    }
+                }
+            }).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    if(recordatorios.size() == recordatoriosUsuario.size()){
                         inicializarAdaptadorRecordatoriosGeneral();
                     }
                 }
             });
-        }
     }
 
     private void inicializarAdaptadorRecordatoriosGeneral() {
         adapter = new RecordatorioGeneralAdapter(recordatorios,getActivity());
         listaRecordatorios.setAdapter(adapter);
-        nombresGrupo.clear();
-        gruposUsuario.clear();
+        //nombresGrupo.clear();
+        //gruposUsuario.clear();
     }
 }

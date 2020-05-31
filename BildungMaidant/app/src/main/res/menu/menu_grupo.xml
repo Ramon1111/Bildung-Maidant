@@ -19,11 +19,11 @@
         android:icon="@drawable/ic_menu_grupo_recursos_didacticos_24"
         />
 
-    <item
+    <!--<item
         android:id="@+id/menu_nav_grupo_mensajes"
         android:title="@string/mngt_mensajes"
         android:icon="@drawable/ic_menu_grupo_mensaje_24"
-        />
+        />-->
 
     <item
         android:id="@+id/menu_nav_grupo_avisos"

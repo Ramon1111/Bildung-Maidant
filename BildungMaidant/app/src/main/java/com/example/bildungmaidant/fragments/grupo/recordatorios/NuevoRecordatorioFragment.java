@@ -27,7 +27,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.bildungmaidant.R;
 import com.example.bildungmaidant.fragments.grupo.ContenedorGrupoFragment;
-import com.example.bildungmaidant.fragments.menu.TusGruposFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -109,11 +108,14 @@ public class NuevoRecordatorioFragment extends Fragment {
         regresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
                 Bundle bundle=new Bundle();
                 bundle.putString("claveGrupo",claveGrupoActual);
                 ContenedorGrupoFragment contenedor = new ContenedorGrupoFragment();
                 contenedor.setArguments(bundle);
                 cargarFragment(contenedor,v);
+                 */
+                getActivity().onBackPressed();
             }
         });
 
@@ -139,11 +141,7 @@ public class NuevoRecordatorioFragment extends Fragment {
         btCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle=new Bundle();
-                bundle.putString("claveGrupo",claveGrupoActual);
-                ContenedorGrupoFragment contenedor = new ContenedorGrupoFragment();
-                contenedor.setArguments(bundle);
-                cargarFragment(contenedor,v);
+                getActivity().onBackPressed();
             }
         });
 
@@ -284,15 +282,14 @@ public class NuevoRecordatorioFragment extends Fragment {
                     @Override
                     public void onSuccess(Void aVoid) {
                         FragmentManager fm = getActivity().getSupportFragmentManager();
-                        for(int i = 0; i < fm.getBackStackEntryCount(); ++i)
-                            fm.popBackStack();
+                        //for(int i = 0; i < fm.getBackStackEntryCount(); ++i)
+                         //   fm.popBackStack();
                         Toast.makeText(getContext(), "Se creó el recordatorio correctamente.", Toast.LENGTH_SHORT).show();
                         Bundle bundle=new Bundle();
                         bundle.putString("claveGrupo",claveGrupoActual);
                         ContenedorGrupoFragment contenedor = new ContenedorGrupoFragment();
                         contenedor.setArguments(bundle);
-                        cargarFragment(contenedor,v);
-                        //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new TusGruposFragment()).commit();
+                        getActivity().onBackPressed();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -336,13 +333,14 @@ public class NuevoRecordatorioFragment extends Fragment {
         tomarFecha.show();
     }
 
+/*
     private void cargarFragment(Fragment fragment,View v){
         AppCompatActivity activity = (AppCompatActivity) v.getContext();
-        getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        //getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         getActivity().getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container,fragment).commit();
-
     }
+ */
 
 }
