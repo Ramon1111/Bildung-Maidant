@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -76,22 +77,12 @@ public class RecordatorioGeneralFragment extends Fragment {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        if(document.get("recordatoriosAbiertos").toString()!="") {
-                            for (String recordatorio : document.get("recordatoriosAbiertos").toString().split(",")) {
-                                recordatoriosUsuario.add(recordatorio);
-                            }
+                        recordatoriosUsuario=(ArrayList)document.get("arrayRecordatoriosAbiertos");
+                        nR=recordatoriosUsuario.size();
+                        if(recordatoriosUsuario.size()>0){
                             ObtenerRecordatoriosGeneralUsuario();
-                            nR=recordatoriosUsuario.size();
-                            /*
-                            if(document.get("gruposFormaParte").toString() != ""){
-                                for (String grupo : document.get("gruposFormaParte").toString().split(",")){
-                                    gruposUsuario.add(grupo);
-                                    Log.d("nnGn",grupo);
-                                }
-                                Log.d("nG",""+gruposUsuario.size());
-                                ObtenerNombreGrupo();
-                            }
-                             */
+                        }else{
+                            Toast.makeText(getContext(),"No hay recordatorios de usuario",Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         Log.d(TAG, "No such document");
@@ -103,76 +94,10 @@ public class RecordatorioGeneralFragment extends Fragment {
         });
     }
 
-    private void ObtenerNombreGrupo() {
-        nombresGrupo = new ArrayList<>();
-        for(String clave : gruposUsuario){
-            db.collection("grupos")
-                    .whereEqualTo("claveGrupo",clave).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if (task.isSuccessful()) {
-
-                        if(task.getResult().size()>0){
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                nombresGrupo.add(document.get("nombreGrupo").toString());
-                                Log.d("nnGn",document.get("nombreGrupo").toString());
-                                Log.d("nnG",""+nombresGrupo.size());
-                            }
-                        }
-                    } else {
-                        Log.d(TAG, "Error getting documents: ", task.getException());
-                    }
-                }
-            });
-        }
-        ObtenerRecordatoriosGeneralUsuario();
-    }
-
-/*
-    private void ObtenerGruposUsuarioRecordatorio() {
-        recordatoriosGrupo=new ArrayList<>();
-
-        for(int i=0;i<gruposUsuario.size();i++){
-            final DocumentReference refGrupos = db.collection("grupos").document(gruposUsuario.get(i));
-            refGrupos.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if(task.isSuccessful()){
-                        DocumentSnapshot document = task.getResult();
-                        if(document.exists()){
-                            if (document.get("numRecordatorios").toString() != ""){
-                                for (String grupo : document.get("numRecordatorios").toString().split(","))
-                                    recordatoriosGrupo.add(grupo);
-                                    //ObtenerRecordatoriosGeneralUsuario();
-                            }else{
-
-                            }
-
-                            if(document.get("gruposFormaParte").toString() != ""){
-                                for (String grupo : document.get("gruposFormaParte").toString().split(","))
-
-                            }
-                        }else{
-                            Log.d(TAG, "No such document");
-                        }
-                    }else{
-                        Log.d(TAG, "get failed with ", task.getException());
-                    }
-                }
-            });
-        }
-    }
- */
-
     private void ObtenerRecordatoriosGeneralUsuario() {
-        //Log.d("nnG",""+nombresGrupo.size());
-        //Log.d("nnG",""+gruposUsuario.size());
         recordatorios = new ArrayList<>();
-        //int bandera=0;
 
         for(final String recordatorio : recordatoriosUsuario) {
-            //bandera++;
-            //final int finalBandera = bandera;
 
             db.collection("recordatorios")
                     .whereEqualTo("claveRecordatorio",recordatorio)
@@ -196,37 +121,6 @@ public class RecordatorioGeneralFragment extends Fragment {
                                         estadoEnProceso=document.getBoolean("estadoEnProceso");
 
                                         CambiarClaveNombreGrupo(nombreRecordatorio,descripcion,fecha,hora,administrador,claveRecordatorio,grupoPertenece,estadoEnProceso);
-
-                                        //String nombreG = "";
-                                        //String grupoP=document.get("grupoPertenece").toString();
-/*
-                                        if(gruposUsuario.size() == nombresGrupo.size()){
-                                            for(int i=0;i<gruposUsuario.size();i++){
-                                                if(grupoP.equals(gruposUsuario.get(i))){
-                                                    nombreG = nombresGrupo.get(i);
-                                                    Log.d("NOMBRE",nombreG);
-                                                }else{
-                                                    Log.d("NOMBRE","No se encontró el nombre del grupo.");
-                                                }
-                                            }
-                                        }else{
-                                            nombreG=grupoP;
-                                            Log.d("COINCIDENCIA","Arreglos de tamanios distintos");
-                                        }
-
- */
-                    /*
-                                        recordatorios.add(new Recordatorio(
-                                                document.get("nombreRecordatorio").toString(),
-                                                document.get("descripcion").toString(),
-                                                document.get("fecha").toString(),
-                                                document.get("hora").toString(),
-                                                document.get("administrador").toString(),
-                                                document.get("claveRecordatorio").toString(),
-                                                //nombreG,
-                                                document.get("grupoPertenece").toString(),
-                                                document.getBoolean("estadoEnProceso")));
-                     */
                                     }
                                 }
                             } else {
@@ -271,7 +165,5 @@ public class RecordatorioGeneralFragment extends Fragment {
     private void inicializarAdaptadorRecordatoriosGeneral() {
         adapter = new RecordatorioGeneralAdapter(recordatorios,getActivity());
         listaRecordatorios.setAdapter(adapter);
-        //nombresGrupo.clear();
-        //gruposUsuario.clear();
     }
 }

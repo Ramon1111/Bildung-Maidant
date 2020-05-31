@@ -65,7 +65,7 @@ public class RecordatoriosTareasFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         listaRecordatorios.setLayoutManager(llm);
-        inicializarListaRecordatorios();
+        ObtenerRecordatoriosUsuario();
 
         ibNuevoRecordatorio=v.findViewById(R.id.frtIBNuevoRecordatorio);
 
@@ -76,10 +76,6 @@ public class RecordatoriosTareasFragment extends Fragment {
             }
         });
         return v;
-    }
-
-    private void inicializarListaRecordatorios() {
-        ObtenerRecordatoriosUsuario();
     }
 
     private void ObtenerRecordatoriosUsuario() {

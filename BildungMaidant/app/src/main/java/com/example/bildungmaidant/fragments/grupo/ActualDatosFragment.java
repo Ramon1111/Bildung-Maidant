@@ -57,8 +57,8 @@ public class ActualDatosFragment extends Fragment {
                         faiETApellido.setText(document.get("apellidos").toString());
                         if(document.get("institucion").toString()!="")
                             faiETInstitucion.setText(document.get("institucion").toString());
-                        if(document.get("sobreMi").toString()!="")
-                            faiETDescripcion.setText(document.get("sobreMi").toString());
+                        if(document.get("descripcion").toString()!="")
+                            faiETDescripcion.setText(document.get("descripcion").toString());
                     }
                 }
             }
@@ -79,7 +79,7 @@ public class ActualDatosFragment extends Fragment {
                         .update("nombres",faiETNombre.getText().toString(),
                                 "apellidos",faiETApellido.getText().toString(),
                                 "institucion",inst,
-                                "sobreMi",desc
+                                "descripcion",desc
                         ).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {

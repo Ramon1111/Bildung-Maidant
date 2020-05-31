@@ -39,9 +39,6 @@ public class AddgrupoFragment extends Fragment {
 
     private FirebaseUser currentUser;
     private FirebaseFirestore db;
-
-    private ArrayList<String> listaGrupos;
-
     private FirebaseAuth mAuth;
     private String TAG = "MensajeCrearGrupo";
 
@@ -82,7 +79,6 @@ public class AddgrupoFragment extends Fragment {
                 }
             }
         });
-
         return v;
     }
 
@@ -98,30 +94,12 @@ public class AddgrupoFragment extends Fragment {
         Log.d(TAG,"ClaveGrupo: "+claveGrupo);
 
         db.collection("users").document(currentUser.getUid())
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-
-                                listaGrupos= new ArrayList<String>();
-
-                                if(document.get("gruposFormaParte").toString()!="")
-                                    for (String grupo : document.get("gruposFormaParte").toString().split(","))
-                                        listaGrupos.add(grupo);
-
-                                listaGrupos.add(claveGrupo);
-                                SubirGrupoCreado(claveGrupo);
-                            } else {
-                                Log.d(TAG, "No such document");
-                            }
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
-                        }
-                    }
-                });
+                .update("arrayGruposFormaParte",FieldValue.arrayUnion(claveGrupo)).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                SubirGrupoCreado(claveGrupo);
+            }
+        });
     }
 
     private void SubirGrupoCreado(final String clave) {
@@ -133,10 +111,6 @@ public class AddgrupoFragment extends Fragment {
         newGroup.put("nombreGrupo", fcgETNombreGrupo.getText().toString());
         newGroup.put("administrador", currentUser.getUid());
         newGroup.put("claveGrupo", clave);
-        //newGroup.put("numRecordatorios", "");
-        //newGroup.put("numRecursosDidacticos", "");
-        //newGroup.put("numAvisos","");
-        //newGroup.put("miembrosGrupo",currentUser.getUid());
         newGroup.put("estadoAltaBaja",true);
         newGroup.put("institucion",fcgETNEscuelaInstitucion.getText().toString());
         newGroup.put("descripcion",fcgETDescripcionGrupo.getText().toString());
@@ -152,11 +126,7 @@ public class AddgrupoFragment extends Fragment {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        //CambiarGruposUnidos(clave);
-
-                        db.collection("users").document(currentUser.getUid())
-                                .update("arrayGruposFormaParte", FieldValue.arrayUnion(clave));
-
+                        getActivity().onBackPressed();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -164,23 +134,13 @@ public class AddgrupoFragment extends Fragment {
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG, "Error adding document", e);
                     }
-                }).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-
-            }
-        });
+                });
     }
 
     View.OnClickListener onclickCancel= (new View.OnClickListener() {
        @Override
        public void onClick(View v) {
-           FragmentManager fm = getActivity().getSupportFragmentManager();
-           FragmentTransaction fr= getFragmentManager().beginTransaction();
-           for(int i = 0; i < fm.getBackStackEntryCount(); ++i)
-               fm.popBackStack();
-           fr.replace(R.id.fragment_container, new TusGruposFragment());
-           fr.commit();
+           getActivity().onBackPressed();
        }
    });
 
