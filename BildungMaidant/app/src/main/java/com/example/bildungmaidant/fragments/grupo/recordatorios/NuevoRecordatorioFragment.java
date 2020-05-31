@@ -285,10 +285,10 @@ public class NuevoRecordatorioFragment extends Fragment {
                         //for(int i = 0; i < fm.getBackStackEntryCount(); ++i)
                          //   fm.popBackStack();
                         Toast.makeText(getContext(), "Se creó el recordatorio correctamente.", Toast.LENGTH_SHORT).show();
-                        Bundle bundle=new Bundle();
-                        bundle.putString("claveGrupo",claveGrupoActual);
-                        ContenedorGrupoFragment contenedor = new ContenedorGrupoFragment();
-                        contenedor.setArguments(bundle);
+                        //Bundle bundle=new Bundle();
+                        //bundle.putString("claveGrupo",claveGrupoActual);
+                        //ContenedorGrupoFragment contenedor = new ContenedorGrupoFragment();
+                        //contenedor.setArguments(bundle);
                         getActivity().onBackPressed();
                     }
                 })

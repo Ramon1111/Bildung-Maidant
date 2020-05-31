@@ -7,8 +7,9 @@
 >
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/firLLRegresar">
         <ImageView
             android:id="@+id/firIVBackArrow"
             android:layout_width="wrap_content"
@@ -28,7 +29,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/firTWEncabezado"
+        android:id="@+id/firTVEncabezado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -60,8 +61,8 @@
             />
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/firETDescripcion"
+    <TextView
+        android:id="@+id/firTVDescripcion"
         android:layout_width="350dp"
         android:layout_height="200dp"
         android:layout_marginTop="10dp"
@@ -107,11 +108,13 @@
             android:layout_marginLeft="25dp"
             android:src="@drawable/ic_today_black_40dp"
             />
-        <EditText
-            android:id="@+id/firETFecha"
+        <TextView
+            android:id="@+id/firTVFecha"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:inputType="date"
+            android:textSize="20dp"
+            android:layout_gravity="center"
             android:focusable="false"
             android:hint="@string/firETFechah"
             />
@@ -121,10 +124,12 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_access_time_black_24dp"
             />
-        <EditText
-            android:id="@+id/firETHorario"
+        <TextView
+            android:id="@+id/firTVHorario"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20dp"
             android:inputType="time"
             android:focusable="false"
             android:hint="@string/firETHorah"

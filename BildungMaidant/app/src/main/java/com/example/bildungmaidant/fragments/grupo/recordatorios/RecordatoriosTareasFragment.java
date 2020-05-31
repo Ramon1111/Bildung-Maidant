@@ -75,23 +75,10 @@ public class RecordatoriosTareasFragment extends Fragment {
                 cargarFragment(new NuevoRecordatorioFragment(claveGrupoActual),v);
             }
         });
-
-
         return v;
     }
 
-    private void inicializarAdaptadorRecordatorios() {
-        adapter = new RecordatorioAdapter(recordatorios,getActivity());
-        listaRecordatorios.setAdapter(adapter);
-    }
-
     private void inicializarListaRecordatorios() {
-        /*
-        recordatorios=new ArrayList<Recordatorio>();
-        recordatorios.add(new Recordatorio("Terminar el proyecto de TSP I","Hace falta hacer que la inicialización de la lista Recordatorio obtenga datos desde una base de datos.","07/05/2020","10:02 AM"));
-        recordatorios.add(new Recordatorio("Terminar el proyecto de TSP I","Hace falta hacer que la inicialización de la lista Recordatorio obtenga datos desde una base de datos.","07/05/2020","10:02 AM"));
-        recordatorios.add(new Recordatorio("Terminar el proyecto de TSP I","Hace falta hacer que la inicialización de la lista Recordatorio obtenga datos desde una base de datos.","07/05/2020","10:02 AM"));
-         */
         ObtenerRecordatoriosUsuario();
     }
 
@@ -144,6 +131,12 @@ public class RecordatoriosTareasFragment extends Fragment {
                 }
             });
         }
+    }
+
+    private void inicializarAdaptadorRecordatorios() {
+        //nombre,descripcion,fecha,hora
+        adapter = new RecordatorioAdapter(recordatorios,getActivity());
+        listaRecordatorios.setAdapter(adapter);
     }
 
     private void cargarFragment(Fragment fragment, View v){

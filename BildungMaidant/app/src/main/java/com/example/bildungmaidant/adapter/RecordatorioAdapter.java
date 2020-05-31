@@ -1,6 +1,7 @@
 package com.example.bildungmaidant.adapter;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,15 @@ public class RecordatorioAdapter extends RecyclerView.Adapter<RecordatorioAdapte
         holder.titulo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cargarFragment(new InfoRecordatorioFragment(),v);
+                Bundle bundle=new Bundle();
+                bundle.putString("nombreRecordatorio",recordatorio.getTitulo());
+                bundle.putString("descripcionRecordatorio",recordatorio.getDescripcion());
+                bundle.putString("fechaRecordatorio",recordatorio.getFecha());
+                bundle.putString("horaRecordatorio",recordatorio.getHora());
+                bundle.putString("claveRecordatorio",recordatorio.getClaveRecordatorio());
+                InfoRecordatorioFragment infoRecordatorioFragment = new InfoRecordatorioFragment();
+                infoRecordatorioFragment.setArguments(bundle);
+                cargarFragment(infoRecordatorioFragment,v);
             }
         });
     }
@@ -73,9 +82,14 @@ public class RecordatorioAdapter extends RecyclerView.Adapter<RecordatorioAdapte
     }
 
     private void cargarFragment(Fragment fragment,View v){
+        /*
         AppCompatActivity activity = (AppCompatActivity) v.getContext();
         FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container,fragment).addToBackStack("").commit();
+         */
+        AppCompatActivity activity = (AppCompatActivity) v.getContext();
+        FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
     }
 
 }
