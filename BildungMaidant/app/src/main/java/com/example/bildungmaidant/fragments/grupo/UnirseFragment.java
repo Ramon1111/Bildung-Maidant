@@ -79,7 +79,8 @@ public class UnirseFragment extends Fragment {
                                                 listaMiembros.add(group);
 
                                             Log.d(TAG, document.getId() + " => " + document.getData());
-                                            ChecarGruposUnidos(document.get("claveGrupo").toString(),listaMiembros);
+                                            //ChecarGruposUnidos(document.get("claveGrupo").toString(),listaMiembros);
+                                            ChecarGruposUnidos(document.get("claveGrupo").toString(),(ArrayList)document.get("arrayMiembros"));
                                         }
                                     }
 

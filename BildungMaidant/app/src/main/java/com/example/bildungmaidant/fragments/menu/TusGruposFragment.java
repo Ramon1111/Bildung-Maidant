@@ -20,6 +20,7 @@ import com.example.bildungmaidant.fragments.grupo.AddgrupoFragment;
 import com.example.bildungmaidant.fragments.grupo.UnirseFragment;
 import com.example.bildungmaidant.pojos.Grupo;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -103,13 +104,58 @@ public class TusGruposFragment extends Fragment {
     private void inicializarListaGrupo() {
         grupos=new ArrayList<Grupo>();
         gruposUsuario=new ArrayList<String>();
+        GetGruposUnidos();
+    }
 
-        //grupos.add(new Grupo("Temas Selectos de Programacion I", "Ing. Faraday58"));
-        //grupos.add(new Grupo("Mecanismos", "Mtro. Buen Cuenqui"));
-        //grupos.add(new Grupo("Ingenieria de Manufactura", "Mtro. El Robin"));
+    private void GetGruposUnidos(){
+        db.collection("users").document(currentUser.getUid())
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot document=task.getResult();
+                    if(document.exists()){
+                        gruposUsuario=(ArrayList)document.get("arrayGruposFormaParte");
+                        creaGrupos();
+                    }
+                }
+            }
+        });
+    }
 
-        ObtenerGrupos();
+    private void creaGrupos() {
+        for(String grupo : gruposUsuario){
+            db.collection("grupos").document(grupo).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if(task.isSuccessful()){
+                        DocumentSnapshot document = task.getResult();
+                        if(document.exists())
+                            ConseguirNombreAdmin(document.get("nombreGrupo").toString(),document.get("administrador").toString());
+                    }
+                }
+            });
+        }
+    }
 
+    private void ConseguirNombreAdmin(final String nombreGrupo, String administrador) {
+        db.collection("users").document(administrador).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+                    if(document.exists()){
+                        grupos.add(new Grupo(nombreGrupo,document.get("nombres")+" "+document.get("apellidos")));
+                    }
+                }
+            }
+        }).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if(grupos.size()==gruposUsuario.size())
+                    inicializarAdaptadorGrupos();
+            }
+        });
     }
 
     private void ObtenerGrupos() {

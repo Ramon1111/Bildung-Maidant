@@ -153,7 +153,11 @@ public class AddgrupoFragment extends Fragment {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        CambiarGruposUnidos(clave);
+                        //CambiarGruposUnidos(clave);
+
+                        db.collection("users").document(currentUser.getUid())
+                                .update("arrayGruposFormaParte", FieldValue.arrayUnion(clave));
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -165,21 +169,12 @@ public class AddgrupoFragment extends Fragment {
                 }).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                db.collection("users").document(currentUser.getUid())
-                        .update("arrayGruposFormaParte", FieldValue.arrayUnion(clave));
-                db.collection("users").document(currentUser.getUid())
-                        .update("arrayGruposFormaParte", FieldValue.arrayUnion("123"));
-                db.collection("users").document(currentUser.getUid())
-                        .update("arrayGruposFormaParte", FieldValue.arrayUnion("456"));
-                db.collection("users").document(currentUser.getUid())
-                        .update("arrayGruposFormaParte", FieldValue.arrayRemove("123"));
-                db.collection("users").document(currentUser.getUid())
-                        .update("arrayGruposFormaParte", FieldValue.arrayUnion("789"));
+
             }
         });
     }
 
-    private void CambiarGruposUnidos(String clave) {
+    /*private void CambiarGruposUnidos(String clave) {
         String newList="";
 
         for(int i=0;i<listaGrupos.size();i++)
@@ -205,7 +200,7 @@ public class AddgrupoFragment extends Fragment {
                         Log.w(TAG, "Error updating document", e);
                     }
                 });
-    }
+    }*/
 
     View.OnClickListener onclickCancel= (new View.OnClickListener() {
        @Override
