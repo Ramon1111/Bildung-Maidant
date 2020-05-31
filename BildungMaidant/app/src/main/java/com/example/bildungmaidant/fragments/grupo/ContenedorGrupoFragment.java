@@ -62,37 +62,21 @@ public class ContenedorGrupoFragment extends Fragment {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
+                        miembrosGrupo=new ArrayList<>();
+                        numRecordatorios=new ArrayList<>();
+                        numRecursosDidacticos=new ArrayList<>();
+                        numAvisos=new ArrayList<>();
+
                         nombreGrupo=document.get("nombreGrupo").toString();
                         administrador=document.get("administrador").toString();
-
                         claveGrupo=clave;
-                        numRecordatorios=new ArrayList<String>();
-                        if(document.get("numRecordatorios").toString()!="")
-                            for(String rec : document.get("numRecordatorios").toString().split(","))
-                                numRecordatorios.add(rec);
-                        numRecursosDidacticos=new ArrayList<>();
-                        if(document.get("numRecursosDidacticos").toString()!="")
-                            for(String rd : document.get("numRecursosDidacticos").toString().split(","))
-                                numRecordatorios.add(rd);
-                        numAvisos=new ArrayList<>();
-                        if(document.get("numAvisos").toString()!="")
-                            for(String aviso : document.get("numAvisos").toString().split(","))
-                                numRecordatorios.add(aviso);
-
-                        miembrosGrupo=new ArrayList<String>();
-                        miembrosGrupo2=new ArrayList<>();
-                        if(document.get("miembrosGrupo").toString()!="")
-                            for(String miembro : document.get("miembrosGrupo").toString().split(","))
-                                miembrosGrupo.add(miembro);
-
-                        miembrosGrupo2=(ArrayList<String>)document.get("arrayMiembros");
-                        for(String miem : miembrosGrupo2)
-                            Log.d("De MIEMBROS 2",miem);
-
+                        miembrosGrupo=(ArrayList)document.get("arrayMiembros");
+                        numRecordatorios=(ArrayList)document.get("arrayRecordatorios");
+                        numRecursosDidacticos=(ArrayList)document.get("arrayRecursosDidactivos");
+                        numAvisos=(ArrayList)document.get("arrayAvisos");
                         estadoAltaBaja=document.getBoolean("estadoAltaBaja");
 
                         currentGroup=new Grupo(nombreGrupo,administrador,claveGrupo,numRecordatorios,numRecursosDidacticos,numAvisos,miembrosGrupo,estadoAltaBaja);
-
                         setUpViewPager();
 
                     } else {
@@ -107,14 +91,12 @@ public class ContenedorGrupoFragment extends Fragment {
 
         viewPager=v.findViewById(R.id.fcgViewPager);
         tabLayout=v.findViewById(R.id.fcgTabLayout);
-        //setUpViewPager();
         return v;
     }
 
 
     //Hay que agregar como parámetros cada cosa que pudiera ser útil en cada vista
     public ArrayList<Fragment> agregarFragments(){
-
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new GrupoFragment(currentGroup.getClaveGrupo(),currentGroup.getNombreGrupo(),currentGroup.getAdministrador(),currentGroup.getMiembrosGrupo()));
         fragments.add(new RecordatoriosTareasFragment(currentGroup.getClaveGrupo(),currentGroup.getListaRecordatorios()));

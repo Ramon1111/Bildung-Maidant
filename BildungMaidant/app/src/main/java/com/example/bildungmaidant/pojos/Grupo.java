@@ -18,12 +18,12 @@ public class Grupo {
     }
 
     //por lo mientras que aun no cargamos la info y aun no definimos bien los atributos de la clase
-    public Grupo(String nombreGrupo, String administrador){
+    public Grupo(String nombreGrupo, String administrador, String claveGrupo){
         this.nombreGrupo=nombreGrupo;
         this.administrador=administrador;
+        this.claveGrupo=claveGrupo;
     }
 
-    //puse los array para seguir la idea de relacionar la BD de Firebase con numeros enteros que se castean a cadenas
     public Grupo(String nombreGrupo, String administrador, String claveGrupo, ArrayList<String> listaRecordatorios, ArrayList<String> listaRecursosDidacticos, ArrayList<String> listaAvisos, ArrayList<String> miembrosGrupo, Boolean estadoAltaBaja) {
         this.nombreGrupo = nombreGrupo;
         this.administrador = administrador;

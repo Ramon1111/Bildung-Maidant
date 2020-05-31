@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -116,7 +117,12 @@ public class TusGruposFragment extends Fragment {
                     DocumentSnapshot document=task.getResult();
                     if(document.exists()){
                         gruposUsuario=(ArrayList)document.get("arrayGruposFormaParte");
-                        creaGrupos();
+
+                        if(gruposUsuario.size()>0){
+                            creaGrupos();
+                        }else{
+                            Toast.makeText(getContext(),"Aún no tienes ningún grupo",Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             }
@@ -124,28 +130,29 @@ public class TusGruposFragment extends Fragment {
     }
 
     private void creaGrupos() {
-        for(String grupo : gruposUsuario){
+        for(final String grupo : gruposUsuario){
+            Log.d("CLAVE",grupo);
             db.collection("grupos").document(grupo).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if(task.isSuccessful()){
                         DocumentSnapshot document = task.getResult();
                         if(document.exists())
-                            ConseguirNombreAdmin(document.get("nombreGrupo").toString(),document.get("administrador").toString());
+                            ConseguirNombreAdmin(document.get("nombreGrupo").toString(),document.get("administrador").toString(),grupo);
                     }
                 }
             });
         }
     }
 
-    private void ConseguirNombreAdmin(final String nombreGrupo, String administrador) {
+    private void ConseguirNombreAdmin(final String nombreGrupo, String administrador, final String claveGrupo) {
         db.collection("users").document(administrador).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()){
                     DocumentSnapshot document = task.getResult();
                     if(document.exists()){
-                        grupos.add(new Grupo(nombreGrupo,document.get("nombres")+" "+document.get("apellidos")));
+                        grupos.add(new Grupo(nombreGrupo,document.get("nombres")+" "+document.get("apellidos"),claveGrupo));
                     }
                 }
             }
@@ -157,7 +164,7 @@ public class TusGruposFragment extends Fragment {
             }
         });
     }
-
+/*
     private void ObtenerGrupos() {
 
         final DocumentReference docRef = db.collection("users").document(currentUser.getUid());
@@ -190,7 +197,9 @@ public class TusGruposFragment extends Fragment {
 
         });
     }
+ */
 
+/*
     private void CrearGrupos() {
         for(int i=0;i<gruposUsuario.size();i++) {
             final DocumentReference refGrupos = db.collection("grupos").document(gruposUsuario.get(i));
@@ -249,13 +258,18 @@ public class TusGruposFragment extends Fragment {
         }
     }
 
+ */
+
+/*
     private void activarF(){
         Log.d(TAG,String.valueOf(grupos.size()));
         if(nG==grupos.size()){
             inicializarAdaptadorGrupos();
         }
     }
+ */
 
+/*
     private void ObtenerMiembrosGrupo(String nGrupo,String adNom,String clavGrupo,Boolean estAB, ArrayList<String> nRec,ArrayList<String> nAv,ArrayList<String> miemG, ArrayList<String> nRD) {
         final ArrayList<String> miembros = new ArrayList<String>();
         final String[] otroMiembro = {""};
@@ -291,7 +305,9 @@ public class TusGruposFragment extends Fragment {
         Log.d("TamañoF",String.valueOf(grupos.size()));
             //miembros.add(ObtenerUsuario(miembro));
     }
+ */
 
+/*
     private void ObtenerUsuario(final String nGrupo, String adClave, final String clavGrupo,final Boolean estAB,final  ArrayList<String> nRec,final ArrayList<String> nAv,final ArrayList<String> miemG,final ArrayList<String> nRD) {
         final DocumentReference refGrupos = db.collection("users").document(adClave);
         refGrupos.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -316,4 +332,5 @@ public class TusGruposFragment extends Fragment {
             }
         });
     }
+ */
 }
