@@ -56,8 +56,8 @@ public class HomeFragment extends Fragment {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
                             nombreUsuario.setText(document.get("nombres").toString()+" "+document.get("apellidos").toString());
-                            if(document.get("sobreMi").toString()!="")
-                                sobreMi.setText(document.get("sobreMi").toString());
+                            if(document.get("descripcion").toString()!="")
+                                sobreMi.setText(document.get("descripcion").toString());
                             else
                                 sobreMi.setText("Aún no has agregado una descripción :)");
 

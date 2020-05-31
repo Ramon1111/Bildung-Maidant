@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -138,14 +139,16 @@ public class CrearCuentaActivity extends AppCompatActivity {
         usuario.put("nombres", nombres);
         usuario.put("apellidos", apellidos);
         usuario.put("usuario", nusuario);
-        usuario.put("sobreMi", "");
+        usuario.put("descripcion", "");
         usuario.put("institucion", "");
-        usuario.put("recordatorioasAbiertos", "");
-        usuario.put("recordatorioasCerados", "");
-        usuario.put("gruposFormaParte", "");
-        usuario.put("gruposLider", "");
+        //usuario.put("recordatorioasAbiertos", "");
+        //usuario.put("recordatorioasCerados", "");
+        //usuario.put("gruposFormaParte", "");
+        usuario.put("arrayGruposFormaParte", new ArrayList<>());
+        usuario.put("arrayRecordatoriosAbiertos", new ArrayList<>());
+        usuario.put("arrayRecordatoriosCerrados", new ArrayList<>());
+        //usuario.put("gruposLider", "");
         usuario.put("fotoPerfil", "");
-
 
         String id=user.getUid();
 

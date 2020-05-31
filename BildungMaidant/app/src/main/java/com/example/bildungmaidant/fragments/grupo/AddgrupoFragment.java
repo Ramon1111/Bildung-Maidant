@@ -128,21 +128,20 @@ public class AddgrupoFragment extends Fragment {
 
         ArrayList<String> arrayMiembros=new ArrayList<>();
         arrayMiembros.add(currentUser.getUid());
-        arrayMiembros.add("X6y2sN1ugzOc1upeTMJYBSh4j8g1");
 
         Map<String, Object> newGroup = new HashMap<>();
         newGroup.put("nombreGrupo", fcgETNombreGrupo.getText().toString());
         newGroup.put("administrador", currentUser.getUid());
         newGroup.put("claveGrupo", clave);
-        newGroup.put("numRecordatorios", "");
-        newGroup.put("numRecursosDidacticos", "");
-        newGroup.put("numAvisos","");
-        newGroup.put("miembrosGrupo",currentUser.getUid());
+        //newGroup.put("numRecordatorios", "");
+        //newGroup.put("numRecursosDidacticos", "");
+        //newGroup.put("numAvisos","");
+        //newGroup.put("miembrosGrupo",currentUser.getUid());
         newGroup.put("estadoAltaBaja",true);
         newGroup.put("institucion",fcgETNEscuelaInstitucion.getText().toString());
         newGroup.put("descripcion",fcgETDescripcionGrupo.getText().toString());
         newGroup.put("arrayRecordatorios",new ArrayList<String>());
-        newGroup.put("arrayRecursosDidacticos",new ArrayList<String>());
+        newGroup.put("arrayRecursos",new ArrayList<String>());
         newGroup.put("arrayAvisos",new ArrayList<String>());
         newGroup.put("arrayMiembros",arrayMiembros);
 
@@ -163,7 +162,6 @@ public class AddgrupoFragment extends Fragment {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-
                         Log.w(TAG, "Error adding document", e);
                     }
                 }).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -173,34 +171,6 @@ public class AddgrupoFragment extends Fragment {
             }
         });
     }
-
-    /*private void CambiarGruposUnidos(String clave) {
-        String newList="";
-
-        for(int i=0;i<listaGrupos.size();i++)
-            newList=newList+","+listaGrupos.get(i);
-
-        newList=newList.substring(1);
-
-        db.collection("users").document(currentUser.getUid())
-                .update("gruposFormaParte",newList)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        FragmentManager fm = getActivity().getSupportFragmentManager();
-                        for(int i = 0; i < fm.getBackStackEntryCount(); ++i)
-                            fm.popBackStack();
-                        Toast.makeText(getContext(), "Se creó el grupo correctamente", Toast.LENGTH_SHORT).show();
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new TusGruposFragment()).commit();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error updating document", e);
-                    }
-                });
-    }*/
 
     View.OnClickListener onclickCancel= (new View.OnClickListener() {
        @Override

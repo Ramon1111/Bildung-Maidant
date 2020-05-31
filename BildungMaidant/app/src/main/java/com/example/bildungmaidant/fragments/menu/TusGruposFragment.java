@@ -25,13 +25,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-
-import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class TusGruposFragment extends Fragment {
 
@@ -45,13 +42,6 @@ public class TusGruposFragment extends Fragment {
     Button fgrubtnañadir, fgrubtnunirse;
 
     private ArrayList<String> gruposUsuario;
-
-    /*private String nombreGrupo,administradorClave,administradorNombre, claveGrupo,listG;
-    private ArrayList<Integer> numRecordatorios,numRecursosDidacticos,numAvisos;
-    private ArrayList<String> miembrosGrupo;
-    private Boolean estadoAltaBaja;*/
-
-    private int nG;
 
     @Nullable
     @Override
@@ -71,7 +61,6 @@ public class TusGruposFragment extends Fragment {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         listaGrupos.setLayoutManager(llm);
         inicializarListaGrupo();
-        //inicializarAdaptadorGrupos();
 
         fgrubtnañadir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,173 +153,4 @@ public class TusGruposFragment extends Fragment {
             }
         });
     }
-/*
-    private void ObtenerGrupos() {
-
-        final DocumentReference docRef = db.collection("users").document(currentUser.getUid());
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        if(document.get("gruposFormaParte").toString()!="") {
-
-                            for (String grupo : document.get("gruposFormaParte").toString().split(","))
-                                gruposUsuario.add(grupo);
-
-                            nG=gruposUsuario.size();
-
-                            CrearGrupos();
-                        }else{
-
-                            //Poner mensaje de que aún no ha creado grupos
-                        }
-
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-
-        });
-    }
- */
-
-/*
-    private void CrearGrupos() {
-        for(int i=0;i<gruposUsuario.size();i++) {
-            final DocumentReference refGrupos = db.collection("grupos").document(gruposUsuario.get(i));
-            refGrupos.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                String adClave;
-
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-
-                            String administradorClave, listG;
-                            //ArrayList<Integer> numRecordatorios,numRecursosDidacticos,numAvisos;
-                            //ArrayList<String> miembrosGrupo;
-                            //Boolean estadoAltaBaja;
-
-                            ArrayList<String> numRecordatorios = new ArrayList<>();
-                            ArrayList<String> numRecursosDidacticos = new ArrayList<>();
-                            ArrayList<String> numAvisos = new ArrayList<>();
-                            ArrayList<String> miembrosGrupo = new ArrayList<>();
-
-                            String nombreGrupo = document.get("nombreGrupo").toString();
-                            adClave = document.get("administrador").toString();
-                            String claveGrupo = document.get("claveGrupo").toString();
-                            Boolean estadoAltaBaja = document.getBoolean("estadoAltaBaja");
-
-                            if (document.get("numRecordatorios").toString() != "")
-                                for (String recordatorio : document.get("numRecordatorios").toString().split(","))
-                                    numRecordatorios.add(recordatorio);
-
-                            if (document.get("numAvisos").toString() != "")
-                                for (String aviso : document.get("numAvisos").toString().split(","))
-                                    numAvisos.add(aviso);
-
-                            if (document.get("miembrosGrupo").toString() != "")
-                                for (String miembro : document.get("miembrosGrupo").toString().split(","))
-                                    miembrosGrupo.add(miembro);
-
-                            if(document.get("numRecursosDidacticos").toString()!="")
-                                for(String recurso:document.get("numRecursosDidacticos").toString().split(","))
-                                    numRecordatorios.add(recurso);
-
-
-                            //administradorNombre=ObtenerUsuario(administradorClave);
-                            ObtenerUsuario(nombreGrupo,adClave,claveGrupo,estadoAltaBaja,numRecordatorios,numAvisos,miembrosGrupo, numRecursosDidacticos);
-
-                        } else {
-                            Log.d(TAG, "No such document");
-                        }
-                    } else {
-                        Log.d(TAG, "get failed with ", task.getException());
-                    }
-                }
-            });
-        }
-    }
-
- */
-
-/*
-    private void activarF(){
-        Log.d(TAG,String.valueOf(grupos.size()));
-        if(nG==grupos.size()){
-            inicializarAdaptadorGrupos();
-        }
-    }
- */
-
-/*
-    private void ObtenerMiembrosGrupo(String nGrupo,String adNom,String clavGrupo,Boolean estAB, ArrayList<String> nRec,ArrayList<String> nAv,ArrayList<String> miemG, ArrayList<String> nRD) {
-        final ArrayList<String> miembros = new ArrayList<String>();
-        final String[] otroMiembro = {""};
-
-        for (String miem : miemG){
-            //final DocumentReference refGrupos = db.collection("users").document(miem);
-            final DocumentReference refGrupos = db.collection("users").document(miem);
-            refGrupos.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            miembros.add(document.get("nombres").toString()+" "+document.get("apellidos").toString());
-                        } else {
-                            Log.d(TAG, "No such document");
-                        }
-                    } else {
-                        Log.d(TAG, "get failed with ", task.getException());
-                    }
-                }
-            });
-        }
-
-
-        grupos.add(new Grupo(nGrupo,adNom,clavGrupo,nRec,nRD,nAv,miembros,estAB));
-
-        //grupos.add(new Grupo(nombreGrupo, administradorNombre));
-        //grupos.add(new Grupo(nGrupo, adNom));
-
-        activarF();
-
-        Log.d("TamañoF",String.valueOf(grupos.size()));
-            //miembros.add(ObtenerUsuario(miembro));
-    }
- */
-
-/*
-    private void ObtenerUsuario(final String nGrupo, String adClave, final String clavGrupo,final Boolean estAB,final  ArrayList<String> nRec,final ArrayList<String> nAv,final ArrayList<String> miemG,final ArrayList<String> nRD) {
-        final DocumentReference refGrupos = db.collection("users").document(adClave);
-        refGrupos.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            String adNom;
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-
-                        //administradorNombre=document.get("nombres").toString()+" "+document.get("apellidos").toString();
-                        adNom=document.get("nombres").toString()+" "+document.get("apellidos").toString();
-
-                        ObtenerMiembrosGrupo(nGrupo,adNom,clavGrupo,estAB,nRec,nAv,miemG,nRD);
-
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-        });
-    }
- */
 }

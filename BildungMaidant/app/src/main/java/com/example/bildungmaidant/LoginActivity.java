@@ -72,9 +72,6 @@ public class LoginActivity extends AppCompatActivity {
                             Intent cambiar = new Intent(LoginActivity.this, Menu.class);
                             startActivity(cambiar);
                             finish();
-                            
-
-                            //updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.d(TAG, "NO existe el usuario");
@@ -88,12 +85,9 @@ public class LoginActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser!=null) {
-            Toast.makeText(getApplicationContext(), "usuario: " + currentUser.getEmail(), Toast.LENGTH_SHORT).show();
-
             Intent cambiar = new Intent(LoginActivity.this, Menu.class);
             startActivity(cambiar);
             finish();
         }
-        //updateUI(currentUser);
     }
 }
