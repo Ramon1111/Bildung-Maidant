@@ -197,22 +197,19 @@ public class NuevoRecordatorioFragment extends Fragment {
                     public void onSuccess(Void aVoid) {
                         db.collection("grupos").document(claveGrupoActual)
                                 .update("arrayRecordatorios", FieldValue.arrayUnion(claveRecordatorio))
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()){
-                                    db.collection("users").document(currentUser.getUid())
-                                            .update("arrayRecordatoriosAbiertos",FieldValue.arrayUnion(claveRecordatorio))
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            Toast.makeText(getContext(), "Se creó el recordatorio correctamente.", Toast.LENGTH_SHORT).show();
-                                            getActivity().onBackPressed();
-                                        }
-                                    });
-                                }
-                            }
-                        });
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        db.collection("users").document(currentUser.getUid())
+                                                .update("arrayRecordatoriosAbiertos",FieldValue.arrayUnion(claveRecordatorio))
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    //Toast.makeText(getContext(), "Se creó el recordatorio correctamente.", Toast.LENGTH_SHORT).show();
+                                                }
+                                        });
+                                    }
+                                });
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -221,6 +218,7 @@ public class NuevoRecordatorioFragment extends Fragment {
                         Log.w(TAG, "Error adding document", e);
                     }
                 });
+        getActivity().onBackPressed();
     }
 
     private void obtenerHora() {

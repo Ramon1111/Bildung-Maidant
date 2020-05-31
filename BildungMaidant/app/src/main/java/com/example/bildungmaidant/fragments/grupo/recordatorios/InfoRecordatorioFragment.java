@@ -23,9 +23,11 @@ import com.example.bildungmaidant.R;
 import com.example.bildungmaidant.fragments.grupo.ContenedorGrupoFragment;
 import com.example.bildungmaidant.fragments.menu.TusGruposFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
@@ -38,7 +40,7 @@ public class InfoRecordatorioFragment extends Fragment {
     private LinearLayout llRegresar;
 
     private TextView tvNombreRecordatorio,tvDescripcionRecordatorio, tvHoraRecordatorio,tvFechaRecordatorio;
-    private String nombreRecordatorio, descripcionRecordatorio, fechaRecordatorio, horaRecordatorio, claveRecordatorio;
+    private String nombreRecordatorio, descripcionRecordatorio, fechaRecordatorio, horaRecordatorio, claveRecordatorio,administrador, grupoPertenece;
 
     private FirebaseFirestore db;
 
@@ -63,11 +65,15 @@ public class InfoRecordatorioFragment extends Fragment {
         fechaRecordatorio=bundle.getString("fechaRecordatorio");
         horaRecordatorio=bundle.getString("horaRecordatorio");
         claveRecordatorio=bundle.getString("claveRecordatorio");
+        administrador=bundle.getString("administrador");
+        grupoPertenece=bundle.getString("grupoPertenece");
 
         tvNombreRecordatorio.setText(nombreRecordatorio);
         tvDescripcionRecordatorio.setText(descripcionRecordatorio);
         tvFechaRecordatorio.setText(fechaRecordatorio);
         tvHoraRecordatorio.setText(horaRecordatorio);
+
+        db = FirebaseFirestore.getInstance();
 
         llRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,13 +85,27 @@ public class InfoRecordatorioFragment extends Fragment {
         btnCompletar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                //activity.getSupportFragmentManager().beginTransaction().remove(new ContenedorGrupoFragment).commit();
-                //getFragmentManager().popBackStack("RecordatoriosGrupoFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                //getFragmentManager().popBackStack("GruposFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                db.collection("recordatorios").document(claveRecordatorio)
+                        .update("estadoEnProceso",false).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        db.collection("users").document(administrador)
+                                .update("arrayRecordatoriosAbiertos",FieldValue.arrayRemove(claveRecordatorio)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                db.collection("users").document(administrador)
+                                        .update("arrayRecordatoriosCerrados",FieldValue.arrayUnion(claveRecordatorio));
+                            }
+                        });
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext(), "No se ha podido cambiar el estado de su recordatorio.", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
                 Toast.makeText(getContext(),"Su recordatorio ha sido completado", Toast.LENGTH_SHORT).show();
-                //cargarFragment(new ContenedorGrupoFragment(),v);
                 getActivity().onBackPressed();
             }
         });
@@ -108,7 +128,28 @@ public class InfoRecordatorioFragment extends Fragment {
         btnEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"Su recordatorio ha sido eliminado", Toast.LENGTH_SHORT).show();
+                db.collection("recordatorios").document(claveRecordatorio)
+                        .delete()
+                        //.update("estadoEnProceso",false)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        db.collection("users").document(administrador)
+                                .update("arrayRecordatoriosAbiertos", FieldValue.arrayRemove(claveRecordatorio)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                db.collection("grupos").document(grupoPertenece)
+                                        .update("arrayRecordatorios", FieldValue.arrayRemove(claveRecordatorio));
+                                //Toast.makeText(getContext(),"Su recordatorio ha sido eliminado", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(getContext(), "No se logró eliminar el recordatorio.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
                 getActivity().onBackPressed();
             }
         });
@@ -117,29 +158,14 @@ public class InfoRecordatorioFragment extends Fragment {
     }
 
     private void cargarFragment(Fragment fragment,View v){
-        /*
-        AppCompatActivity activity = (AppCompatActivity) v.getContext();
-        getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        getActivity().getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container,fragment).commit();
-         */
         AppCompatActivity activity = (AppCompatActivity) v.getContext();
         FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Toast.makeText(getContext(),"fragment destruido: InfoRecordatorios", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
-        Toast.makeText(getContext(),"Fragment reanudado", Toast.LENGTH_SHORT).show();
-        db = FirebaseFirestore.getInstance();
         db.collection("recordatorios").document(claveRecordatorio).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -160,18 +186,3 @@ public class InfoRecordatorioFragment extends Fragment {
         });
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

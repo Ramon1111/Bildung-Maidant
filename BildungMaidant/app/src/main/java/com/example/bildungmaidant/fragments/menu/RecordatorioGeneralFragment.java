@@ -44,9 +44,6 @@ public class RecordatorioGeneralFragment extends Fragment {
     private ArrayList<String> nombresGrupo;
     private ArrayList<String> gruposUsuario;
 
-    int nR,nG,nnG;
-    int finalBandera=0;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -78,7 +75,6 @@ public class RecordatorioGeneralFragment extends Fragment {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         recordatoriosUsuario=(ArrayList)document.get("arrayRecordatoriosAbiertos");
-                        nR=recordatoriosUsuario.size();
                         if(recordatoriosUsuario.size()>0){
                             ObtenerRecordatoriosGeneralUsuario();
                         }else{
@@ -139,16 +135,19 @@ public class RecordatorioGeneralFragment extends Fragment {
                     if(task.isSuccessful()){
                         DocumentSnapshot documentSnapshot = task.getResult();
                         if(documentSnapshot.exists()){
-                            recordatorios.add(new Recordatorio(
-                                    nombreRecordatorio,
-                                    descripcion,
-                                    fecha,
-                                    hora,
-                                    administrador,
-                                    claveRecordatorio,
-                                    documentSnapshot.get("nombreGrupo").toString(),
-                                    estadoEnProceso));
-                            finalBandera++;
+
+                            if(estadoEnProceso){
+                                recordatorios.add(new Recordatorio(
+                                        nombreRecordatorio,
+                                        descripcion,
+                                        fecha,
+                                        hora,
+                                        administrador,
+                                        claveRecordatorio,
+                                        documentSnapshot.get("nombreGrupo").toString(),
+                                        estadoEnProceso));
+                            }
+
                         }
                     }
                 }

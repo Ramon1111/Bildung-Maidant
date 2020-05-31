@@ -56,17 +56,15 @@ public class RecordatoriosTareasFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_recordatorios_tareas,container,false);
-
+        //Toast.makeText(getContext(),"Ocurre oncreateView", Toast.LENGTH_SHORT).show();
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
-
         listaRecordatorios=v.findViewById(R.id.frtRVRecordatorios);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         listaRecordatorios.setLayoutManager(llm);
         ObtenerRecordatoriosUsuario();
-
         ibNuevoRecordatorio=v.findViewById(R.id.frtIBNuevoRecordatorio);
 
         ibNuevoRecordatorio.setOnClickListener(new View.OnClickListener() {
@@ -96,22 +94,22 @@ public class RecordatoriosTareasFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            /*if (task.getResult().size() == 0) {
-                                //Toast.makeText(getContext(), "No se encontró ningun recordatorio.", Toast.LENGTH_SHORT).show();
-                            }*/
                             if(task.getResult().size()>0){
-                            //else{
                                 for (QueryDocumentSnapshot document : task.getResult()) {
-                                    Toast.makeText(getContext(),"Hola",Toast.LENGTH_SHORT).show();
-                                    recordatorios.add(new Recordatorio(
-                                            document.get("nombreRecordatorio").toString(),
-                                            document.get("descripcion").toString(),
-                                            document.get("fecha").toString(),
-                                            document.get("hora").toString(),
-                                            document.get("administrador").toString(),
-                                            document.get("claveRecordatorio").toString(),
-                                            document.get("grupoPertenece").toString(),
-                                            document.getBoolean("estadoEnProceso")));
+
+                                    Boolean estado = document.getBoolean("estadoEnProceso");
+
+                                    if(estado){
+                                        recordatorios.add(new Recordatorio(
+                                                document.get("nombreRecordatorio").toString(),
+                                                document.get("descripcion").toString(),
+                                                document.get("fecha").toString(),
+                                                document.get("hora").toString(),
+                                                document.get("administrador").toString(),
+                                                document.get("claveRecordatorio").toString(),
+                                                document.get("grupoPertenece").toString(),
+                                                document.getBoolean("estadoEnProceso")));
+                                    }
                                 }
                             }
                         } else {
@@ -140,4 +138,17 @@ public class RecordatoriosTareasFragment extends Fragment {
         FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
     }
+
+    /*
+    @Override
+    public void onResume() {
+        super.onResume();
+        Toast.makeText(getContext(),"Fragment RECORDATORIOS reanudado", Toast.LENGTH_SHORT).show();
+        if(cambio){
+            ObtenerRecordatoriosUsuario();
+        }
+    }
+     */
+
 }
+

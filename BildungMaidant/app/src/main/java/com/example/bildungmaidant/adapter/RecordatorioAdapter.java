@@ -54,6 +54,8 @@ public class RecordatorioAdapter extends RecyclerView.Adapter<RecordatorioAdapte
                 bundle.putString("fechaRecordatorio",recordatorio.getFecha());
                 bundle.putString("horaRecordatorio",recordatorio.getHora());
                 bundle.putString("claveRecordatorio",recordatorio.getClaveRecordatorio());
+                bundle.putString("grupoPertenece",recordatorio.getGrupoPertenece());
+                bundle.putString("administrador",recordatorio.getAdministrador());
                 InfoRecordatorioFragment infoRecordatorioFragment = new InfoRecordatorioFragment();
                 infoRecordatorioFragment.setArguments(bundle);
                 cargarFragment(infoRecordatorioFragment,v);
