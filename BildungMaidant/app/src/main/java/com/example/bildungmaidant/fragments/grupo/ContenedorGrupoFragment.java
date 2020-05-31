@@ -40,7 +40,7 @@ public class ContenedorGrupoFragment extends Fragment {
     private ArrayList<String> numRecordatorios;
     private ArrayList<String> numRecursosDidacticos;
     private ArrayList<String> numAvisos;
-    private ArrayList<String> miembrosGrupo;
+    private ArrayList<String> miembrosGrupo,miembrosGrupo2;
     private Boolean estadoAltaBaja;
 
     private Grupo currentGroup;
@@ -78,10 +78,17 @@ public class ContenedorGrupoFragment extends Fragment {
                         if(document.get("numAvisos").toString()!="")
                             for(String aviso : document.get("numAvisos").toString().split(","))
                                 numRecordatorios.add(aviso);
+
                         miembrosGrupo=new ArrayList<String>();
+                        miembrosGrupo2=new ArrayList<>();
                         if(document.get("miembrosGrupo").toString()!="")
                             for(String miembro : document.get("miembrosGrupo").toString().split(","))
                                 miembrosGrupo.add(miembro);
+
+                        miembrosGrupo2=(ArrayList<String>)document.get("arrayMiembros");
+                        for(String miem : miembrosGrupo2)
+                            Log.d("De MIEMBROS 2",miem);
+
                         estadoAltaBaja=document.getBoolean("estadoAltaBaja");
 
                         currentGroup=new Grupo(nombreGrupo,administrador,claveGrupo,numRecordatorios,numRecursosDidacticos,numAvisos,miembrosGrupo,estadoAltaBaja);

@@ -146,6 +146,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
         usuario.put("gruposLider", "");
         usuario.put("fotoPerfil", "");
 
+
         String id=user.getUid();
 
         db.collection("users")

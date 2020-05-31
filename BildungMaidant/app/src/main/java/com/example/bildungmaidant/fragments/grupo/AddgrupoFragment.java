@@ -25,6 +25,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
@@ -124,6 +125,11 @@ public class AddgrupoFragment extends Fragment {
     }
 
     private void SubirGrupoCreado(final String clave) {
+
+        ArrayList<String> arrayMiembros=new ArrayList<>();
+        arrayMiembros.add(currentUser.getUid());
+        arrayMiembros.add("X6y2sN1ugzOc1upeTMJYBSh4j8g1");
+
         Map<String, Object> newGroup = new HashMap<>();
         newGroup.put("nombreGrupo", fcgETNombreGrupo.getText().toString());
         newGroup.put("administrador", currentUser.getUid());
@@ -135,6 +141,10 @@ public class AddgrupoFragment extends Fragment {
         newGroup.put("estadoAltaBaja",true);
         newGroup.put("institucion",fcgETNEscuelaInstitucion.getText().toString());
         newGroup.put("descripcion",fcgETDescripcionGrupo.getText().toString());
+        newGroup.put("arrayRecordatorios",new ArrayList<String>());
+        newGroup.put("arrayRecursosDidacticos",new ArrayList<String>());
+        newGroup.put("arrayAvisos",new ArrayList<String>());
+        newGroup.put("arrayMiembros",arrayMiembros);
 
         // Add a new document with a generated ID
         db.collection("grupos")
@@ -149,9 +159,24 @@ public class AddgrupoFragment extends Fragment {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+
                         Log.w(TAG, "Error adding document", e);
                     }
-                });
+                }).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                db.collection("users").document(currentUser.getUid())
+                        .update("arrayGruposFormaParte", FieldValue.arrayUnion(clave));
+                db.collection("users").document(currentUser.getUid())
+                        .update("arrayGruposFormaParte", FieldValue.arrayUnion("123"));
+                db.collection("users").document(currentUser.getUid())
+                        .update("arrayGruposFormaParte", FieldValue.arrayUnion("456"));
+                db.collection("users").document(currentUser.getUid())
+                        .update("arrayGruposFormaParte", FieldValue.arrayRemove("123"));
+                db.collection("users").document(currentUser.getUid())
+                        .update("arrayGruposFormaParte", FieldValue.arrayUnion("789"));
+            }
+        });
     }
 
     private void CambiarGruposUnidos(String clave) {
