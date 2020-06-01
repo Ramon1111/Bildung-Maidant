@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,11 +21,13 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.bumptech.glide.Glide;
 import com.example.bildungmaidant.fragments.menu.AjustesFragment;
 import com.example.bildungmaidant.fragments.menu.HomeFragment;
 import com.example.bildungmaidant.fragments.menu.RecordatorioGeneralFragment;
 import com.example.bildungmaidant.fragments.menu.TusGruposFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.AuthResult;
@@ -41,8 +45,8 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
     private AppBarConfiguration mAppBarConfiguration;
     private String TAG = "Mensaje Menu", uidUsuario,emailUsuario,passUsuario;
     private FirebaseAuth mAuth;
-    TextView toolbarText;
-    private FirebaseUser user;
+    TextView toolbarText,txtUser, txtemail;
+    private FirebaseUser currentUser;
 
     private FirebaseFirestore db;
 
@@ -57,8 +61,8 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
+        currentUser = mAuth.getCurrentUser();
+        //updateNavHeader();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -168,7 +172,9 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        final String[] nom = {""};
         if(currentUser!=null) {
+
             Toast.makeText(getApplicationContext(), "usuario: " + currentUser.getEmail(), Toast.LENGTH_SHORT).show();
             final DocumentReference docRef = db.collection("users").document(currentUser.getUid());
             docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -181,9 +187,10 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
                             Log.d(TAG, "DocumentSnapshot data: " + document.get("usuario"));
                             //toolbarText.setText(document.get("usuario").toString());
                             nomUsuario=document.get("usuario").toString();
-
+                           // updateNavHeader(nomUsuario);
+                            nom[0] =document.get("nombres").toString()+" "+document.get("apellidos").toString();
                             getSupportActionBar().setTitle(nomUsuario);
-                            
+
 
                         } else {
                             Log.d(TAG, "No such document");
@@ -191,8 +198,28 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
                     } else {
                         Log.d(TAG, "get failed with ", task.getException());
                     }
+
+                }
+            }).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    updateNavHeader(nom[0]);
+
                 }
             });
         }
+    }
+    public void updateNavHeader(String nom)
+    {
+        NavigationView navigationView=findViewById(R.id.nav_view);
+        View headerView= navigationView.getHeaderView(0);
+        TextView txtemail= headerView.findViewById(R.id.txtemail);
+        TextView txtuser= headerView.findViewById(R.id.txtuser);
+        ImageView imageProfile= headerView.findViewById(R.id.imageProfile);
+        txtemail.setText(currentUser.getEmail());
+        txtuser.setText(nom);
+
+        Glide.with(this).load(currentUser.getPhotoUrl()).into(imageProfile);
+
     }
 }
