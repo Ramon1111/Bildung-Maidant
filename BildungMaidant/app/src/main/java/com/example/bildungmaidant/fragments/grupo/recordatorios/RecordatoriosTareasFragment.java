@@ -138,17 +138,5 @@ public class RecordatoriosTareasFragment extends Fragment {
         FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container,fragment).addToBackStack(null).commit();
     }
-
-    /*
-    @Override
-    public void onResume() {
-        super.onResume();
-        Toast.makeText(getContext(),"Fragment RECORDATORIOS reanudado", Toast.LENGTH_SHORT).show();
-        if(cambio){
-            ObtenerRecordatoriosUsuario();
-        }
-    }
-     */
-
 }
 

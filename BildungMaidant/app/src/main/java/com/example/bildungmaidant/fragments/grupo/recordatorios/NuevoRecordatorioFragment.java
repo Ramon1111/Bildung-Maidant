@@ -66,14 +66,9 @@ public class NuevoRecordatorioFragment extends Fragment {
     private Button btCrear;
     private Button btCancelar;
 
-    private TextView tvRegresar;
-    private ImageView ivRegresar;
-
     private EditText etNombre, etDescripcion;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseUser currentUser;
-    ArrayList<String> listaRecordatoriosAUsuario;
-    ArrayList<String> listaRecordatoriosAGrupo;
     private FirebaseAuth mAuth;
 
     private String TAG = "MensajeCrearRecordatorio";
@@ -100,8 +95,6 @@ public class NuevoRecordatorioFragment extends Fragment {
         ibtFecha=v.findViewById(R.id.fnrIBFecha);
         etHora=v.findViewById(R.id.fnrETHorario);
         ibtHora=v.findViewById(R.id.fnrIBHorario);
-        tvRegresar=v.findViewById(R.id.fnrTVRegresar);
-        ivRegresar=v.findViewById(R.id.fnrIVBackArrow);
         etNombre=v.findViewById(R.id.fnrETNombreRecordatorio);
         etDescripcion=v.findViewById(R.id.fnrETDescripcion);
         regresar=v.findViewById(R.id.fnrRLRegresar);
@@ -123,7 +116,7 @@ public class NuevoRecordatorioFragment extends Fragment {
                 }else if(TextUtils.isEmpty(etHora.getText())){
                     Toast.makeText(getActivity(), "No se agrego hora", Toast.LENGTH_SHORT).show();
                 }else if(TextUtils.isEmpty(etDescripcion.getText())){
-                    Toast.makeText(getActivity(), "No se agrego fecha", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "No se agrego descripción", Toast.LENGTH_SHORT).show();
                 }
 
                 if(!TextUtils.isEmpty(etNombre.getText()) && !TextUtils.isEmpty(etFecha.getText()) && !TextUtils.isEmpty(etHora.getText()) && !TextUtils.isEmpty(etDescripcion.getText())){
@@ -217,8 +210,12 @@ public class NuevoRecordatorioFragment extends Fragment {
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG, "Error adding document", e);
                     }
-                });
-        getActivity().onBackPressed();
+                }).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                getActivity().onBackPressed();
+            }
+        });
     }
 
     private void obtenerHora() {
