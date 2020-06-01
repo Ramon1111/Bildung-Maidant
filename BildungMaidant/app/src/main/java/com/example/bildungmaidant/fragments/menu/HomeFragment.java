@@ -1,36 +1,55 @@
 package com.example.bildungmaidant.fragments.menu;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.bildungmaidant.CrearCuentaActivity;
+import com.example.bildungmaidant.Menu;
 import com.example.bildungmaidant.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.ByteArrayOutputStream;
 
 public class HomeFragment extends Fragment {
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private String TAG="Mensaje HomeFragment";
+    private int PICK_IMAGE_REQUEST=10001;
 
     View v;
 
     TextView nombreUsuario,institucion,sobreMi;
     ImageView fotoPerfil;
+    Button fcgBTNEditarFoto;
 
     @Nullable
     @Override
@@ -46,6 +65,10 @@ public class HomeFragment extends Fragment {
         institucion=v.findViewById(R.id.fhTVIntitucionInfo);
         sobreMi=v.findViewById(R.id.textView3);
         fotoPerfil=v.findViewById(R.id.imageView);
+        fcgBTNEditarFoto= v.findViewById(R.id.fcgBTNEditarFoto);
+
+
+
 
         if(currentUser!=null) {
             final DocumentReference docRef = db.collection("users").document(currentUser.getUid());
@@ -75,11 +98,112 @@ public class HomeFragment extends Fragment {
                 }
             });
         }
+        fcgBTNEditarFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                intent.setType("image/");
+                startActivityForResult(intent,PICK_IMAGE_REQUEST);
+                /*Intent intent= new Intent( MediaStore.ACTION_IMAGE_CAPTURE);
+                if(intent.resolveActivity(getActivity().getPackageManager())!=null)
+                {
+                    getActivity().startActivityForResult(intent, TAKE_IMAGE_CODE);
+                }*/
+            }
+        });
+
         return v;
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == PICK_IMAGE_REQUEST&&resultCode==Menu.RESULT_OK)
+        {
+           //switch (resultCode)
+            //if(resultCode== Menu.RESULT_OK)
+            //{
+                //case Menu.RESULT_OK:
+                     Uri uriImage = data.getData();
+                     fotoPerfil.setImageURI(uriImage);
+            FirebaseUser user = mAuth.getCurrentUser();
+            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName("users").setPhotoUri(uriImage).build();
+            user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                     @Override
+                   public void onComplete(@NonNull Task<Void> task) {
+                  // Toast.makeText(getContext(), "Foto Actualizada", Toast.LENGTH_SHORT).show();
+                   }
+                   });
+                  //  Bitmap bitmap=(Bitmap)data.getExtras().get("data");
+                    //fotoPerfil.setImageBitmap(bitmap);
+                    //handleUpload(bitmap);
+                   // break;
+           // Bitmap bitmap= ((BitmapDrawable)fotoPerfil.getDrawable()).getBitmap();
+           // handleUpload(bitmap);
+
+
+            //}
+        }
+        Toast.makeText(getContext(), "Sigue", Toast.LENGTH_SHORT).show();
+
+    }
+
+
+    private void handleUpload(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
+        final StorageReference reference= FirebaseStorage.getInstance().getReference()
+                .child("profileImages").child(uid+".jpeg");
+
+        reference.putBytes(baos.toByteArray())
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    getDownloadUrl(reference);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                    Log.e(TAG, "onFailure", e.getCause());
+                    }
+                });
+    }
+    private void getDownloadUrl(StorageReference reference) {
+        reference.getDownloadUrl()
+                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Log.d(TAG, "onSuccess:" + uri);
+                    }
+                });
+    }
+        private void setUserProfileUrl(Uri uri)
+        {
+           FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
+            UserProfileChangeRequest request= new UserProfileChangeRequest.Builder()
+                    .setPhotoUri(uri)
+                    .build();
+            user.updateProfile(request)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(getContext(), "Updated succesfully", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getContext(), "Profile image failed", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 }
