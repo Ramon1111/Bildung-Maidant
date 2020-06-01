@@ -199,6 +199,7 @@ public class NuevoRecordatorioFragment extends Fragment {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
                                                     //Toast.makeText(getContext(), "Se creó el recordatorio correctamente.", Toast.LENGTH_SHORT).show();
+                                                    getActivity().onBackPressed();
                                                 }
                                         });
                                     }
@@ -213,9 +214,10 @@ public class NuevoRecordatorioFragment extends Fragment {
                 }).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                getActivity().onBackPressed();
+                //getActivity().onBackPressed();
             }
         });
+        //getActivity().onBackPressed();
     }
 
     private void obtenerHora() {

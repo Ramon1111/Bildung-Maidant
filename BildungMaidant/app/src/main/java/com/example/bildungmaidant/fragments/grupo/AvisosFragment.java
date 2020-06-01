@@ -48,6 +48,7 @@ public class AvisosFragment extends Fragment {
     ArrayList<String> listaAvisosGrupo;
 
     ImageButton crearAvisoIB;
+    LinearLayout crearAvisoLL;
 
     public AvisosFragment(String claveGrupo, String administradorGrupo, ArrayList<String> listaAvisosGrupo){
         this.claveGrupo=claveGrupo;
@@ -65,6 +66,7 @@ public class AvisosFragment extends Fragment {
         currentUser = mAuth.getCurrentUser();
 
         crearAvisoIB=v.findViewById(R.id.faIBNuevoAviso);
+        crearAvisoLL=v.findViewById(R.id.faLLAgregar);
 
 
         listaAvisos=v.findViewById(R.id.faRVAvisos);
@@ -74,7 +76,8 @@ public class AvisosFragment extends Fragment {
         ObtenerAvisosGrupo();
 
         if(!currentUser.getUid().equals(administradorGrupo)){
-            crearAvisoIB.setVisibility(View.GONE);
+            crearAvisoLL.setVisibility(View.GONE);
+
         }
 
         crearAvisoIB.setOnClickListener(new View.OnClickListener() {
