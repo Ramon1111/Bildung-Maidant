@@ -19,7 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.bildungmaidant.CrearCuentaActivity;
+import com.bumptech.glide.Glide;
 import com.example.bildungmaidant.Menu;
 import com.example.bildungmaidant.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,6 +42,7 @@ public class HomeFragment extends Fragment {
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
+    private FirebaseUser currentUser;
     private String TAG="Mensaje HomeFragment";
     private int PICK_IMAGE_REQUEST=10001;
 
@@ -59,16 +60,13 @@ public class HomeFragment extends Fragment {
         db = FirebaseFirestore.getInstance();
         //Toast.makeText(getContext(), "Se creó la vista", Toast.LENGTH_SHORT).show();
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        currentUser = mAuth.getCurrentUser();
 
         nombreUsuario=v.findViewById(R.id.fhTVNombreInfo);
         institucion=v.findViewById(R.id.fhTVIntitucionInfo);
         sobreMi=v.findViewById(R.id.textView3);
         fotoPerfil=v.findViewById(R.id.imageView);
         fcgBTNEditarFoto= v.findViewById(R.id.fcgBTNEditarFoto);
-
-
-
 
         if(currentUser!=null) {
             final DocumentReference docRef = db.collection("users").document(currentUser.getUid());
@@ -97,6 +95,14 @@ public class HomeFragment extends Fragment {
                     }
                 }
             });
+
+
+            if(currentUser.getPhotoUrl()!=null){
+                Glide.with(this)
+                        .load(currentUser.getPhotoUrl())
+                        .into(fotoPerfil);
+            }
+
         }
         fcgBTNEditarFoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,11 +110,6 @@ public class HomeFragment extends Fragment {
                 Intent intent= new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 intent.setType("image/");
                 startActivityForResult(intent,PICK_IMAGE_REQUEST);
-                /*Intent intent= new Intent( MediaStore.ACTION_IMAGE_CAPTURE);
-                if(intent.resolveActivity(getActivity().getPackageManager())!=null)
-                {
-                    getActivity().startActivityForResult(intent, TAKE_IMAGE_CODE);
-                }*/
             }
         });
 
@@ -120,29 +121,10 @@ public class HomeFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == PICK_IMAGE_REQUEST&&resultCode==Menu.RESULT_OK)
         {
-           //switch (resultCode)
-            //if(resultCode== Menu.RESULT_OK)
-            //{
-                //case Menu.RESULT_OK:
-                     Uri uriImage = data.getData();
-                     fotoPerfil.setImageURI(uriImage);
-            FirebaseUser user = mAuth.getCurrentUser();
-            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName("users").setPhotoUri(uriImage).build();
-            user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
-                     @Override
-                   public void onComplete(@NonNull Task<Void> task) {
-                  // Toast.makeText(getContext(), "Foto Actualizada", Toast.LENGTH_SHORT).show();
-                   }
-                   });
-                  //  Bitmap bitmap=(Bitmap)data.getExtras().get("data");
-                    //fotoPerfil.setImageBitmap(bitmap);
-                    //handleUpload(bitmap);
-                   // break;
-           // Bitmap bitmap= ((BitmapDrawable)fotoPerfil.getDrawable()).getBitmap();
-           // handleUpload(bitmap);
-
-
-            //}
+            Uri uriImage = data.getData();
+            fotoPerfil.setImageURI(uriImage);
+            Bitmap bitmap= ((BitmapDrawable)fotoPerfil.getDrawable()).getBitmap();
+            handleUpload(bitmap);
         }
         Toast.makeText(getContext(), "Sigue", Toast.LENGTH_SHORT).show();
 
@@ -176,34 +158,37 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onSuccess(Uri uri) {
                         Log.d(TAG, "onSuccess:" + uri);
+                        setUserProfileUrl(uri);
                     }
                 });
     }
-        private void setUserProfileUrl(Uri uri)
-        {
-           FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
-            UserProfileChangeRequest request= new UserProfileChangeRequest.Builder()
-                    .setPhotoUri(uri)
-                    .build();
-            user.updateProfile(request)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(getContext(), "Updated succesfully", Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(getContext(), "Profile image failed", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-        }
+
+    private void setUserProfileUrl(Uri uri)
+    {
+        UserProfileChangeRequest request= new UserProfileChangeRequest.Builder()
+                .setPhotoUri(uri)
+                .build();
+        currentUser.updateProfile(request)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(getContext(), "Updated succesfully", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext(), "Profile image failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
     }
 }

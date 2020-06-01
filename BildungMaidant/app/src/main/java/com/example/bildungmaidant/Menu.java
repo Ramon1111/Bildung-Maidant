@@ -19,7 +19,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.bildungmaidant.fragments.MensajeMenuFragment;
 import com.example.bildungmaidant.fragments.menu.AjustesFragment;
 import com.example.bildungmaidant.fragments.menu.HomeFragment;
 import com.example.bildungmaidant.fragments.menu.RecordatorioGeneralFragment;
@@ -184,6 +183,7 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
                             nomUsuario=document.get("usuario").toString();
 
                             getSupportActionBar().setTitle(nomUsuario);
+                            
 
                         } else {
                             Log.d(TAG, "No such document");
