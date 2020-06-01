@@ -183,7 +183,7 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
                             nomUsuario=document.get("usuario").toString();
 
                             getSupportActionBar().setTitle(nomUsuario);
-                            
+
 
                         } else {
                             Log.d(TAG, "No such document");
