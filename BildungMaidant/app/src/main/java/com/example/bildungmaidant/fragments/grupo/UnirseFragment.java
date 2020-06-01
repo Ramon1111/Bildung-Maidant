@@ -12,19 +12,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.bildungmaidant.R;
-import com.example.bildungmaidant.fragments.menu.TusGruposFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -74,13 +70,9 @@ public class UnirseFragment extends Fragment {
                                     }
                                     else{
                                         for (QueryDocumentSnapshot document : task.getResult()) {
-                                            ArrayList<String> listaMiembros = new ArrayList<String>();
-                                            for(String group : document.get("miembrosGrupo").toString().split(","))
-                                                listaMiembros.add(group);
-
                                             Log.d(TAG, document.getId() + " => " + document.getData());
-                                            //ChecarGruposUnidos(document.get("claveGrupo").toString(),listaMiembros);
-                                            ChecarGruposUnidos(document.get("claveGrupo").toString(),(ArrayList)document.get("arrayMiembros"));
+                                            //ChecarGruposUnidos(document.get("claveGrupo").toString(),(ArrayList)document.get("arrayMiembros"));
+                                            ChecarGruposUnidos(document.get("claveGrupo").toString());
                                         }
                                     }
 
@@ -94,7 +86,7 @@ public class UnirseFragment extends Fragment {
         return v;
     }
 
-    private void ChecarGruposUnidos(final String claveGrupo, final ArrayList<String> listaMiembros) {
+    private void ChecarGruposUnidos(final String claveGrupo) {
         final DocumentReference refGrupos = db.collection("users").document(currentUser.getUid());
         refGrupos.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -102,23 +94,11 @@ public class UnirseFragment extends Fragment {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        ArrayList<String> listaG = new ArrayList<String>();
-                        for(String group : document.get("gruposFormaParte").toString().split(",")){
-                            listaG.add(group);
-                        }
-                        if(listaG.indexOf(claveGrupo)==-1){
-                            //para hacer la cadena final de miembros
-                            listaMiembros.add(currentUser.getUid());
-                            String newList="";
-                            for(int i=0;i<listaMiembros.size();i++)
-                                newList=newList+","+listaMiembros.get(i);
-                            newList=newList.substring(1);
-
-                            listaG.add(claveGrupo);
-                            AñadirGrupo(listaG,newList,claveGrupo);
+                        if(((ArrayList)document.get("arrayGruposFormaParte")).indexOf(claveGrupo)==-1){
+                            AñadirGrupo(claveGrupo);
                         }
                         else{
-                            Toast.makeText(getContext(), "Ya tienes agregado este grupo", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Ya está agregado a este grupo", Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         Log.d(TAG, "No such document");
@@ -130,15 +110,25 @@ public class UnirseFragment extends Fragment {
         });
     }
 
-    private void AñadirGrupo(ArrayList<String> listaGrupos,String miembros,String claveG) {
-        String newList="";
+    private void AñadirGrupo(String claveGrupo) {
+        /*String newList="";
 
         for(int i=0;i<listaGrupos.size();i++)
             newList=newList+","+listaGrupos.get(i);
 
-        newList=newList.substring(1);
+        newList=newList.substring(1);*/
 
         db.collection("users").document(currentUser.getUid())
+                .update("arrayGruposFormaParte", FieldValue.arrayUnion(claveGrupo));
+        db.collection("grupos").document(claveGrupo)
+                .update("arrayMiembros",FieldValue.arrayUnion(currentUser.getUid())).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                getActivity().onBackPressed();
+            }
+        });
+
+        /*db.collection("users").document(currentUser.getUid())
                 .update("gruposFormaParte",newList)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -168,16 +158,17 @@ public class UnirseFragment extends Fragment {
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG, "Error updating document", e);
                     }
-                });
+                });*/
     }
 
     View.OnClickListener onClickCancel=(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            FragmentTransaction fr= getFragmentManager().beginTransaction();
+            /*FragmentTransaction fr= getFragmentManager().beginTransaction();
             fr.replace(R.id.fragment_container, new TusGruposFragment());
             fr.addToBackStack(null);
-            fr.commit();
+            fr.commit();*/
+            getActivity().onBackPressed();
 
         }
     });

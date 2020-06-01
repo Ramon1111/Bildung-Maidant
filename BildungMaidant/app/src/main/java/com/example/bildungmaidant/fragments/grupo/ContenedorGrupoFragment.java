@@ -40,7 +40,7 @@ public class ContenedorGrupoFragment extends Fragment {
     private ArrayList<String> numRecordatorios;
     private ArrayList<String> numRecursosDidacticos;
     private ArrayList<String> numAvisos;
-    private ArrayList<String> miembrosGrupo,miembrosGrupo2;
+    private ArrayList<String> miembrosGrupo;
     private Boolean estadoAltaBaja;
 
     private Grupo currentGroup;
@@ -103,7 +103,7 @@ public class ContenedorGrupoFragment extends Fragment {
         //fragments.add(new MensajeMenuFragment());
         fragments.add(new RecursosDidacticosFragment());
         fragments.add(new MiembrosFragment(currentGroup.getAdministrador(),currentGroup.getMiembrosGrupo(),currentGroup.getClaveGrupo(),currentGroup.getNombreGrupo()));
-        fragments.add(new AvisosFragment());
+        fragments.add(new AvisosFragment(currentGroup.getClaveGrupo(),currentGroup.getAdministrador(),currentGroup.getListaAvisos()));
         return fragments;
     }
 

@@ -142,6 +142,19 @@
     <string name="cgTVTitulo">Temas Selectos de Programación I</string>
     <string name="cgTVAdministrador">Ing. Faraday58</string>
     <string name="cgTVNombreProfesor">Profesor:</string>
+    <string name="cvaTitulo">Titulo del aviso</string>
+    <string name="cvaDescripcion">Descripcion del aviso</string>
+    <string name="faTWNuevoAviso">Nuevo aviso</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fnaTWEncabezado">Nuevo aviso</string>
+    <string name="fnaTWIndicacion01">Nombre del aviso</string>
+    <string name="fnaETIndicacion01h">Agregar el nombre del aviso</string>
+    <string name="fnaTWIndicacion02">Descripción</string>
+    <string name="fnaETIndicacion02h">Agregar una descripcion</string>
+    <string name="fnaBTNCancelar">Cancelar</string>
+    <string name="fnaBTNEnviar">ENVIAR</string>
 
 
 </resources>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <FrameLayout android:id="@+id/fnaNuevoAviso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        ></FrameLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fnaLLRegresar">
+            <ImageView
+                android:id="@+id/fnrIVBackArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="13dp"
+                android:src="@drawable/ic_keyboard_arrow_left"/>
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:id="@+id/fnrTVRegresar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:text="@string/tvRegresar"
+                style="@style/NormalTextView" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center">
+        <TextView
+            android:id="@+id/fnaTWEncabezado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="@string/fnaTWEncabezado"
+            style="@style/TitleTextView"
+            android:layout_gravity="center_vertical"
+            ></TextView>
+        <ImageView
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginLeft="10dp"
+            app:srcCompat="@drawable/ic_action_warning"
+            ></ImageView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/fnaTWIndicacion01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/fnaTWIndicacion01"
+        style="@style/NormalTextView"
+        ></TextView>
+
+    <EditText
+        android:id="@+id/fnaETNombreAviso"
+        android:layout_width="350dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        style="@style/NormalTextView"
+        android:background="@color/primary_light"
+        android:hint="@string/fnaETIndicacion01h"
+        ></EditText>
+
+    <TextView
+        android:id="@+id/fnaTWIndicacion04"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/fnaTWIndicacion02"
+        style="@style/NormalTextView"
+        ></TextView>
+
+    <EditText
+        android:id="@+id/fnaETDescripcion"
+        android:layout_width="350dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        style="@style/NormalTextView"
+        android:background="@color/primary_light"
+        android:hint="@string/fnaETIndicacion02h"
+        ></EditText>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+        <Button
+            android:id="@+id/fnaBTNCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="@string/fnaBTNCancelar"
+            style="@style/NormalButton"
+            ></Button>
+        <Button
+            android:id="@+id/fnaBTNEnviar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="140dp"
+            android:text="@string/fnaBTNEnviar"
+            style="@style/NormalButton"
+            ></Button>
+    </LinearLayout>
+</LinearLayout>
