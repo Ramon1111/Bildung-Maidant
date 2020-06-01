@@ -101,7 +101,7 @@ public class ContenedorGrupoFragment extends Fragment {
         fragments.add(new GrupoFragment(currentGroup.getClaveGrupo(),currentGroup.getNombreGrupo(),currentGroup.getAdministrador(),currentGroup.getMiembrosGrupo()));
         fragments.add(new RecordatoriosTareasFragment(currentGroup.getClaveGrupo(),currentGroup.getListaRecordatorios()));
         //fragments.add(new MensajeMenuFragment());
-        fragments.add(new RecursosDidacticosFragment());
+        //fragments.add(new RecursosDidacticosFragment());
         fragments.add(new MiembrosFragment(currentGroup.getAdministrador(),currentGroup.getMiembrosGrupo(),currentGroup.getClaveGrupo(),currentGroup.getNombreGrupo()));
         fragments.add(new AvisosFragment(currentGroup.getClaveGrupo(),currentGroup.getAdministrador(),currentGroup.getListaAvisos()));
         return fragments;
@@ -114,8 +114,8 @@ public class ContenedorGrupoFragment extends Fragment {
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_menu_grupo_grupo_24);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_menu_grupo_recordatorios_tareas_24);
         //tabLayout.getTabAt(2).setIcon(R.drawable.ic_menu_grupo_mensaje_24);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_menu_grupo_recursos_didacticos_24);
-        tabLayout.getTabAt(3).setIcon(R.drawable.ic_menu_grupo_miembros_24);
-        tabLayout.getTabAt(4).setIcon(R.drawable.ic_menu_grupo_avisos_24);
+        //tabLayout.getTabAt(2).setIcon(R.drawable.ic_menu_grupo_recursos_didacticos_24);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_menu_grupo_miembros_24);
+        tabLayout.getTabAt(3).setIcon(R.drawable.ic_menu_grupo_avisos_24);
     }
 }
