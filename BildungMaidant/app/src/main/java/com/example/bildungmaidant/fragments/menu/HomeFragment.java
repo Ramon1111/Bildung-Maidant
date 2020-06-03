@@ -126,7 +126,6 @@ public class HomeFragment extends Fragment {
             Bitmap bitmap= ((BitmapDrawable)fotoPerfil.getDrawable()).getBitmap();
             handleUpload(bitmap);
         }
-        Toast.makeText(getContext(), "Sigue", Toast.LENGTH_SHORT).show();
 
     }
 

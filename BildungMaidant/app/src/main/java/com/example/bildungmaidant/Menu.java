@@ -7,7 +7,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -30,7 +29,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -45,14 +43,11 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
     private AppBarConfiguration mAppBarConfiguration;
     private String TAG = "Mensaje Menu", uidUsuario,emailUsuario,passUsuario;
     private FirebaseAuth mAuth;
-    TextView toolbarText,txtUser, txtemail;
     private FirebaseUser currentUser;
 
     private FirebaseFirestore db;
 
     private String nomUsuario="Usuario";
-
-
 
     Map<String,Object> UsuarioActivo;
 
@@ -62,7 +57,6 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
-        //updateNavHeader();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -78,7 +72,6 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
         toggle.syncState();
 
         if(savedInstanceState==null) {
-            //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ContenedorGrupoFragment()).commit();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
 
             navigationView.setCheckedItem(R.id.Inicio);
@@ -86,34 +79,6 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
         }
     }
 
-    private void IniciarInfoUsuario(String emailUsuario, String passUsuario) {
-        mAuth.signInWithEmailAndPassword(emailUsuario, passUsuario)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-
-                            toolbarText.setText(user.getEmail());
-
-                            Toast.makeText(Menu.this,"EmailUsuario: "+user.getEmail(),Toast.LENGTH_SHORT).show();
-
-                            //updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(Menu.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
-                        }
-
-
-                        // ...
-                    }
-                });
-    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -133,9 +98,6 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
             case R.id.Recordatorios:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new RecordatorioGeneralFragment()).commit();
                 break;
-            //case R.id.Mensajes:
-                //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new MensajeMenuFragment()).commit();
-                //break;
             case R.id.Ajustes:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new AjustesFragment()).commit();
                 break;
@@ -175,7 +137,6 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
         final String[] nom = {""};
         if(currentUser!=null) {
 
-            Toast.makeText(getApplicationContext(), "usuario: " + currentUser.getEmail(), Toast.LENGTH_SHORT).show();
             final DocumentReference docRef = db.collection("users").document(currentUser.getUid());
             docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
@@ -222,4 +183,6 @@ public class Menu extends AppCompatActivity implements NavigationView.OnNavigati
         Glide.with(this).load(currentUser.getPhotoUrl()).into(imageProfile);
 
     }
+
+
 }
