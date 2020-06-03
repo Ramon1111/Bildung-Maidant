@@ -18,8 +18,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -27,21 +25,30 @@ import java.util.ArrayList;
 
 public class GrupoFragment extends Fragment {
 
-    private String claveGrupo, nombreGrupo,adminNombre,TAG="GrupoFragment Mensaje",adminClave="";
+    private String claveGrupo, nombreGrupo,adminNombre,TAG="GrupoFragment Mensaje",adminClave="",descripcion;
     private ArrayList<String> listaMiembros;
 
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     private FirebaseFirestore db;
 
-    TextView fgTVTitulo,fgTVAdminNombre,fgTVClaveGrupoInfo;
+    TextView fgTVTitulo,fgTVdescripcionSust,fgTVClaveGrupoInfo;
     Button fgBTNDarseBaja;
 
-    public GrupoFragment(String clave, String nomG, String adminNombre, ArrayList<String> listaMiembros){
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public GrupoFragment(String clave, String nomG, String adminNombre, ArrayList<String> listaMiembros, String descripcion){
         this.claveGrupo=clave;
         this.nombreGrupo=nomG;
         this.adminClave=adminNombre;
         this.listaMiembros=listaMiembros;
+        this.descripcion=descripcion;
     }
 
     @Nullable
@@ -53,35 +60,12 @@ public class GrupoFragment extends Fragment {
         currentUser=mAuth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
 
-        final DocumentReference docRef = db.collection("users").document(adminClave);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        adminNombre=document.get("nombres").toString()+" "+document.get("apellidos").toString();
-
-                        fgTVTitulo.setText(nombreGrupo);
-                        fgTVAdminNombre.setText(adminNombre);
-                        fgTVClaveGrupoInfo.setText(claveGrupo);
-
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-
-        });
-
         fgTVTitulo=v.findViewById(R.id.fgTVTitulo);
-        fgTVAdminNombre=v.findViewById(R.id.fgTVAdminNombre);
+        fgTVdescripcionSust=v.findViewById(R.id.fgTVdescripcionSust);
         fgTVClaveGrupoInfo=v.findViewById(R.id.fgTVClaveGrupoInfo);
         fgBTNDarseBaja=v.findViewById(R.id.fgBTNDarseBaja);
 
-
+        fgTVdescripcionSust.setText(descripcion);
 
         fgBTNDarseBaja.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +78,6 @@ public class GrupoFragment extends Fragment {
                     DarseDeBaja();
             }
         });
-
 
         return v;
     }

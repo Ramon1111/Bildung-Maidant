@@ -7,6 +7,7 @@ public class Grupo {
     private String nombreGrupo;
     private String administrador;
     private String claveGrupo;
+    private String descripcion;
     private ArrayList<String> listaRecordatorios;
     private ArrayList<String> listaRecursosDidacticos;
     private ArrayList<String> listaAvisos;
@@ -24,7 +25,7 @@ public class Grupo {
         this.claveGrupo=claveGrupo;
     }
 
-    public Grupo(String nombreGrupo, String administrador, String claveGrupo, ArrayList<String> listaRecordatorios, ArrayList<String> listaRecursosDidacticos, ArrayList<String> listaAvisos, ArrayList<String> miembrosGrupo, Boolean estadoAltaBaja) {
+    public Grupo(String nombreGrupo, String administrador, String claveGrupo, ArrayList<String> listaRecordatorios, ArrayList<String> listaRecursosDidacticos, ArrayList<String> listaAvisos, ArrayList<String> miembrosGrupo, Boolean estadoAltaBaja, String descripcion) {
         this.nombreGrupo = nombreGrupo;
         this.administrador = administrador;
         this.claveGrupo = claveGrupo;
@@ -33,6 +34,15 @@ public class Grupo {
         this.listaAvisos = listaAvisos;
         this.miembrosGrupo = miembrosGrupo;
         this.estadoAltaBaja = estadoAltaBaja;
+        this.descripcion=descripcion;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getNombreGrupo() {

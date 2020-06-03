@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,11 +15,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.bildungmaidant.R;
 import com.example.bildungmaidant.fragments.grupo.ActualDatosFragment;
-import com.example.bildungmaidant.fragments.grupo.NotificacionesFragment;
 
 public class AjustesFragment extends Fragment {
-   // ListView faLVajustes;
-    String ajustes[]= new String []{"Notificaciones","Actualizar Datos"};
+    String ajustes[]= new String []{"Actualizar Datos"};
 
     @Nullable
     @Override
@@ -33,15 +30,8 @@ public class AjustesFragment extends Fragment {
         faLVajustes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position==0)
-                {
-                   FragmentTransaction fr = getFragmentManager().beginTransaction();
-                    fr.replace(R.id.fragment_container, new NotificacionesFragment());
-                    fr.addToBackStack(null);
-                    fr.commit();
-                }
 
-                if (position==1)
+                if (position==0)
                 {
                     FragmentTransaction fr = getFragmentManager().beginTransaction();
                     fr.replace(R.id.fragment_container, new ActualDatosFragment());

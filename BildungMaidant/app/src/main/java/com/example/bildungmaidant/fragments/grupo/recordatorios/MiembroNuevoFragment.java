@@ -7,20 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.bildungmaidant.R;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -40,6 +36,7 @@ public class MiembroNuevoFragment extends Fragment {
     Button fmnBTNAgregar,fmnBTNCancelar;
     private String TAG="MiembroNuevo mensaje",nombreGrupo;
     TextView fmnTVEncabezado;
+    RelativeLayout fmnRLBack;
 
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
@@ -65,8 +62,16 @@ public class MiembroNuevoFragment extends Fragment {
         fmnTVEncabezado.setText(fmnTVEncabezado.getText().toString()+" a "+nombreGrupo);
         fmnBTNAgregar=v.findViewById(R.id.fmnBTNAgregar);
         fmnBTNCancelar=v.findViewById(R.id.fmnBTNCancelar);
+        fmnRLBack=v.findViewById(R.id.fmnRLBack);
 
         fmnBTNCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
+
+        fmnRLBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity().onBackPressed();
@@ -83,13 +88,13 @@ public class MiembroNuevoFragment extends Fragment {
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            //String clavePrueba="";
                             if (task.isSuccessful()) {
                                 if (task.getResult().size() == 0) {
                                     Toast.makeText(getContext(), "No existe el usuario", Toast.LENGTH_SHORT).show();
                                 }
                                 else{
                                     for (QueryDocumentSnapshot document : task.getResult()) {
+
                                         //Para confirmar si ya existe el usuario como miembro
                                         if(listaMiembros.indexOf(document.get("llavePrimaria").toString())>=0)
                                             Toast.makeText(getContext(), "Ya forma parte del grupo", Toast.LENGTH_SHORT).show();
@@ -109,13 +114,6 @@ public class MiembroNuevoFragment extends Fragment {
                                                     });
                                                 }
                                             });
-
-                                            /*newList[0] = document.get("gruposFormaParte").toString();
-                                            newList[0] = newList[0]+","+claveGrupo;
-
-                                            Toast.makeText(getContext(), "Aún no forma parte del grupo", Toast.LENGTH_SHORT).show();
-                                            listaMiembros.add(document.get("llavePrimaria").toString());
-                                            ConfirmarExistencia(newList[0],document.get("llavePrimaria").toString(),v);*/
                                         }
                                     }
                                 }
@@ -129,63 +127,5 @@ public class MiembroNuevoFragment extends Fragment {
         });
 
         return v;
-    }
-
-    private void ConfirmarExistencia(final String nuevoGruposFormaParte, final String nombreNuevoMiembro, final View v) {
-
-        String newList="";
-
-        for(String miembro:listaMiembros)
-            newList=newList+","+miembro;
-
-        newList=newList.substring(1);
-
-        db.collection("grupos").document(claveGrupo)
-                .update("miembrosGrupo",newList)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-
-                        Log.d(TAG,"Se actualizó la lista en el grupo");
-
-                        db.collection("users").document(nombreNuevoMiembro)
-                        .update("gruposFormaParte",nuevoGruposFormaParte)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(getContext(), "Se agregó el usuario", Toast.LENGTH_SHORT).show();
-
-                                /*Bundle bundle=new Bundle();
-                                bundle.putString("claveGrupo",claveGrupo);
-                                ContenedorGrupoFragment contenedor = new ContenedorGrupoFragment();
-                                contenedor.setArguments(bundle);
-
-                                cargarFragment(contenedor,v);
-*/
-                                getActivity().onBackPressed();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error updating document", e);
-                            }
-                        });
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error updating document", e);
-                    }
-                });
-
-    }
-    private void cargarFragment(Fragment fragment,View v){
-        AppCompatActivity activity = (AppCompatActivity) v.getContext();
-        getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        getActivity().getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        FragmentTransaction ft = activity.getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container,fragment).commit();
-
     }
 }

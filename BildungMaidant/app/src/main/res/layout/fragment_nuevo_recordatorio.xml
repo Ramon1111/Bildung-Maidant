@@ -48,14 +48,14 @@
             android:layout_marginLeft="30dp"
             android:text="@string/fnrTWEncabezado"
             style="@style/TitleTextView"
-            ></TextView>
+            />
         <ImageView
             android:id="@+id/fnrIVEncabezado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:src="@drawable/ic_notifications_black_40dp"
-            ></ImageView>
+            />
     </LinearLayout>
 
     <TextView

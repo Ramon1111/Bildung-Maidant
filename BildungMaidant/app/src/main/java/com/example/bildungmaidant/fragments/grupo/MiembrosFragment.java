@@ -94,27 +94,33 @@ public class MiembrosFragment extends Fragment {
                             if(document.exists()) {
                                 listaMiembros = (ArrayList) document.get("arrayMiembros");
                                 final ArrayList<Usuario> nombresMiembros = new ArrayList<>();
-                                for (String miembro : listaMiembros){
-                                    if(!miembro.equals(adminClave))
-                                    db.collection("users").document(miembro)
-                                            .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                            if (task.isSuccessful()) {
-                                                DocumentSnapshot document = task.getResult();
-                                                if (document.exists())
-                                                    nombresMiembros.add(new Usuario(document.get("nombres").toString(), document.get("apellidos").toString(), document.get("correo").toString()));
+                                if(listaMiembros.size()>1)
+                                    for (String miembro : listaMiembros){
+                                        if(!miembro.equals(adminClave))
+                                        db.collection("users").document(miembro)
+                                                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    DocumentSnapshot document = task.getResult();
+                                                    if (document.exists())
+                                                        nombresMiembros.add(new Usuario(document.get("nombres").toString(), document.get("apellidos").toString(), document.get("correo").toString()));
+                                                }
                                             }
-                                        }
-                                    }).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                        @Override
-                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                            if (listaMiembros.size()-1 == nombresMiembros.size()) {
-                                                miembroAdaptador = new MiembroAdapter(getContext(), nombresMiembros);
-                                                fmLVMiembros.setAdapter(miembroAdaptador);
+                                        }).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                if (listaMiembros.size()-1 == nombresMiembros.size()) {
+                                                    miembroAdaptador = new MiembroAdapter(getContext(), nombresMiembros);
+                                                    fmLVMiembros.setAdapter(miembroAdaptador);
+                                                }
                                             }
-                                        }
-                                    });
+                                        });
+                                    }
+                                else {
+                                    nombresMiembros.add(new Usuario("Aún no se han agregado miembros", "", "Comparta su clave de grupo o agregue un usuario"));
+                                    miembroAdaptador = new MiembroAdapter(getContext(), nombresMiembros);
+                                    fmLVMiembros.setAdapter(miembroAdaptador);
                                 }
                             }
                         }

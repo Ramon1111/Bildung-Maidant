@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,22 +8,33 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/fcgIVBackArrow"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/fcgRLBack"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="6dp"
-            android:layout_marginTop="13dp"
-            android:src="@drawable/ic_keyboard_arrow_left"
-            ></ImageView>
-        <TextView
-            android:id="@+id/fcgTVRegresar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:text="@string/tvRegresar"
-            style="@style/NormalTextView"
-            ></TextView>
+            tools:ignore="UselessParent">
+
+            <TextView
+                android:id="@+id/fcgTVFlecha"
+                style="@style/TextView_little_gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:padding="10dp"
+                android:text="&lt;"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/fcgTVRegresar"
+                style="@style/TextView_little_gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/fcgTVFlecha"
+                android:padding="10dp"
+                android:text="@string/faiTVRegresar"
+                android:layout_toEndOf="@+id/fcgTVFlecha" />
+
+        </RelativeLayout>
     </LinearLayout>
 
     <TextView
@@ -64,7 +75,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/fcgTWIndicacion02"
         style="@style/NormalTextView"
-        ></TextView>
+        />
 
     <EditText
         android:id="@+id/fcgETDescripcionGrupo"
@@ -74,7 +85,8 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:background="@color/primary_light"
-        android:hint="@string/fcgETIndicacion02h"></EditText>
+        android:hint="@string/fcgETIndicacion02h"
+        android:gravity="top"/>
 
     <TextView
         android:id="@+id/fcgTWIndicacion03"
@@ -84,7 +96,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/fcgTWIndicacion03"
         style="@style/NormalTextView"
-        ></TextView>
+        />
 
     <EditText
         android:id="@+id/fcgETNEscuelaInstitucion"
@@ -94,7 +106,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:background="@color/primary_light"
-        android:hint="@string/fcgETIndicacion03h"></EditText>
+        android:hint="@string/fcgETIndicacion03h"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -109,7 +121,7 @@
             android:layout_marginLeft="70dp"
             android:text="@string/fugBTNCancelar"
             style="@style/NormalButton"
-            ></Button>
+            />
         <Button
             android:id="@+id/fcgBTNCrear"
             android:layout_width="wrap_content"
@@ -117,7 +129,7 @@
             android:layout_marginLeft="80dp"
             android:text="@string/fcgBTNCrear"
             style="@style/NormalButton"
-            ></Button>
+            />
     </LinearLayout>
 
 </LinearLayout>

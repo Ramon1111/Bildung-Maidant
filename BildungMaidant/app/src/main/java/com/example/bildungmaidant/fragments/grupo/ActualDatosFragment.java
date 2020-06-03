@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,7 @@ public class ActualDatosFragment extends Fragment {
 
     EditText faiETNombre,faiETApellido,faiETInstitucion,faiETDescripcion;
     Button faiBTNActualizar;
+    RelativeLayout faiRLBack;
 
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
@@ -45,6 +47,14 @@ public class ActualDatosFragment extends Fragment {
         faiETInstitucion=v.findViewById(R.id.faiETInstitucion);
         faiETDescripcion=v.findViewById(R.id.faiETDescripcion);
         faiBTNActualizar=v.findViewById(R.id.faiBTNActualizar);
+        faiRLBack=v.findViewById(R.id.faiRLBack);
+
+        faiRLBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
 
         db.collection("users").document(currentUser.getUid())
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

@@ -12,29 +12,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         tools:ignore="MissingConstraints">
-        <!--<RelativeLayout
-            android:id="@+id/accRLBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/fgTVFlecha"
-                style="@style/TextView_little_gray"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:padding="10dp"
-                android:text="&lt;" />
-
-            <TextView
-                android:id="@+id/fgTVRegresar"
-                style="@style/TextView_little_gray"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/fgTVFlecha"
-                android:padding="10dp"
-                android:text="Regresar" />
-        </RelativeLayout>-->
     </LinearLayout>
 
     <TextView
@@ -51,17 +28,17 @@
         android:layout_gravity="center" />
 
     <TextView
-        android:id="@+id/fgTVAdminTexto"
+        android:id="@+id/fgTVDescripcion"
         style="@style/TextView_little_gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
-        android:text="Administrador:" />
+        android:text="Descripción del Grupo:" />
 
     <TextView
-        android:id="@+id/fgTVAdminNombre"
+        android:id="@+id/fgTVdescripcionSust"
         style="@style/TextView_little_black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -69,8 +46,8 @@
         android:layout_marginLeft="30dp"
         android:maxWidth="230dp"
         android:text="Nombre del Aministrador"
-        app:layout_constraintStart_toEndOf="@+id/fgTVAdminTexto"
-        app:layout_constraintTop_toTopOf="@+id/fgTVAdminTexto" />
+        app:layout_constraintStart_toEndOf="@+id/fgTVDescripcio"
+        app:layout_constraintTop_toTopOf="@+id/fgTVDescripcio" />
 
     <TextView
         android:id="@+id/fgTVClaveGrupoTexto"
@@ -97,144 +74,6 @@
         android:textColor="@android:color/holo_red_dark"
         app:layout_constraintStart_toEndOf="@+id/fgTVClaveGrupoTexto"
         app:layout_constraintTop_toTopOf="@+id/fgTVClaveGrupoTexto"/>
-
-    <!--<LinearLayout
-        android:id="@+id/fgLLOpcionesContenedor"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fgTVClaveGrupoInfo"
-        android:orientation="vertical">
-
-
-        <RelativeLayout
-            android:id="@+id/fgRLChatGrupal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/fgTVChatGrupal"
-                android:layout_width="270dp"
-                android:layout_height="wrap_content"
-                android:text="Chat Grupal"
-                style="@style/TextView_little_black"
-                android:textColor="@android:color/white"
-                android:background="@android:color/black"
-                android:paddingVertical="10dp"
-                android:paddingLeft="10dp"/>
-            <TextView
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text=">"
-                style="@style/TextView_little_black"
-                android:textColor="@android:color/white"
-                android:background="@android:color/black"
-                android:layout_toRightOf="@+id/fgTVChatGrupal"
-                android:paddingVertical="10dp"
-                android:paddingLeft="10dp"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/fgRLRecordatorios"
-            android:layout_width="match_parent"
-            android:background="@color/accent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/fgTVRecordatorios"
-                android:layout_width="270dp"
-                android:layout_height="wrap_content"
-                android:text="Recordatorios"
-                style="@style/TextView_little_black"
-
-                android:paddingVertical="10dp"
-                android:paddingLeft="10dp"/>
-            <TextView
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text=">"
-                style="@style/TextView_little_black"
-                android:layout_toRightOf="@+id/fgTVRecordatorios"
-                android:paddingVertical="10dp"
-                android:paddingLeft="10dp"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/fgRLRecursosD"
-            android:layout_width="match_parent"
-            android:background="@android:color/black"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/fgTVRecursosD"
-                android:layout_width="270dp"
-                android:layout_height="wrap_content"
-                android:text="Recursos Didácticos"
-                style="@style/TextView_little_black"
-                android:textColor="@android:color/white"
-                android:paddingVertical="10dp"
-                android:paddingLeft="10dp"/>
-            <TextView
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text=">"
-                style="@style/TextView_little_black"
-                android:textColor="@android:color/white"
-                android:layout_toRightOf="@+id/fgTVRecursosD"
-                android:paddingVertical="10dp"
-                android:paddingLeft="10dp"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/fgRLMiembros"
-            android:layout_width="match_parent"
-            android:background="@color/accent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/fgTVMiembros"
-                android:layout_width="270dp"
-                android:layout_height="wrap_content"
-                android:text="Miembros"
-                style="@style/TextView_little_black"
-
-                android:paddingVertical="10dp"
-                android:paddingLeft="10dp"/>
-            <TextView
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text=">"
-                style="@style/TextView_little_black"
-                android:layout_toRightOf="@+id/fgTVMiembros"
-                android:paddingVertical="10dp"
-                android:paddingLeft="10dp"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/fgRLAvisos"
-            android:layout_width="match_parent"
-            android:background="@android:color/black"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/fgTVAvisos"
-                android:layout_width="270dp"
-                android:layout_height="wrap_content"
-                android:text="Avisos"
-                style="@style/TextView_little_black"
-                android:textColor="@android:color/white"
-                android:paddingVertical="10dp"
-                android:paddingLeft="10dp"/>
-            <TextView
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text=">"
-                style="@style/TextView_little_black"
-                android:textColor="@android:color/white"
-                android:layout_toRightOf="@+id/fgTVAvisos"
-                android:paddingVertical="10dp"
-                android:paddingLeft="10dp"/>
-        </RelativeLayout>
-
-    </LinearLayout>-->
 
     <Button
         android:id="@+id/fgBTNDarseBaja"

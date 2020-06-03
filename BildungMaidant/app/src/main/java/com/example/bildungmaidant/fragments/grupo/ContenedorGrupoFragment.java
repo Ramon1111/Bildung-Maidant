@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +17,7 @@ import com.example.bildungmaidant.adapter.PageAdapter;
 import com.example.bildungmaidant.fragments.grupo.recordatorios.RecordatoriosTareasFragment;
 import com.example.bildungmaidant.pojos.Grupo;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.firestore.DocumentReference;
@@ -37,6 +39,7 @@ public class ContenedorGrupoFragment extends Fragment {
     private String nombreGrupo;
     private String administrador;
     private String claveGrupo;
+    private String descripcion;
     private ArrayList<String> numRecordatorios;
     private ArrayList<String> numRecursosDidacticos;
     private ArrayList<String> numAvisos;
@@ -75,9 +78,11 @@ public class ContenedorGrupoFragment extends Fragment {
                         numRecursosDidacticos=(ArrayList)document.get("arrayRecursosDidactivos");
                         numAvisos=(ArrayList)document.get("arrayAvisos");
                         estadoAltaBaja=document.getBoolean("estadoAltaBaja");
+                        descripcion=document.get("descripcion").toString();
 
-                        currentGroup=new Grupo(nombreGrupo,administrador,claveGrupo,numRecordatorios,numRecursosDidacticos,numAvisos,miembrosGrupo,estadoAltaBaja);
-                        setUpViewPager();
+                        Toast.makeText(getContext(), descripcion, Toast.LENGTH_SHORT).show();
+
+                        currentGroup=new Grupo(nombreGrupo,administrador,claveGrupo,numRecordatorios,numRecursosDidacticos,numAvisos,miembrosGrupo,estadoAltaBaja,descripcion);
 
                     } else {
                         Log.d(TAG, "No such document");
@@ -87,6 +92,11 @@ public class ContenedorGrupoFragment extends Fragment {
                 }
             }
 
+        }).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                setUpViewPager();
+            }
         });
 
         viewPager=v.findViewById(R.id.fcgViewPager);
@@ -98,10 +108,8 @@ public class ContenedorGrupoFragment extends Fragment {
     //Hay que agregar como parámetros cada cosa que pudiera ser útil en cada vista
     public ArrayList<Fragment> agregarFragments(){
         ArrayList<Fragment> fragments = new ArrayList<>();
-        fragments.add(new GrupoFragment(currentGroup.getClaveGrupo(),currentGroup.getNombreGrupo(),currentGroup.getAdministrador(),currentGroup.getMiembrosGrupo()));
+        fragments.add(new GrupoFragment(currentGroup.getClaveGrupo(),currentGroup.getNombreGrupo(),currentGroup.getAdministrador(),currentGroup.getMiembrosGrupo(),currentGroup.getDescripcion()));
         fragments.add(new RecordatoriosTareasFragment(currentGroup.getClaveGrupo(),currentGroup.getListaRecordatorios()));
-        //fragments.add(new MensajeMenuFragment());
-        //fragments.add(new RecursosDidacticosFragment());
         fragments.add(new MiembrosFragment(currentGroup.getAdministrador(),currentGroup.getClaveGrupo(),currentGroup.getNombreGrupo()));
         fragments.add(new AvisosFragment(currentGroup.getClaveGrupo(),currentGroup.getAdministrador(),currentGroup.getListaAvisos()));
         return fragments;
@@ -113,8 +121,6 @@ public class ContenedorGrupoFragment extends Fragment {
 
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_menu_grupo_grupo_24);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_menu_grupo_recordatorios_tareas_24);
-        //tabLayout.getTabAt(2).setIcon(R.drawable.ic_menu_grupo_mensaje_24);
-        //tabLayout.getTabAt(2).setIcon(R.drawable.ic_menu_grupo_recursos_didacticos_24);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_menu_grupo_miembros_24);
         tabLayout.getTabAt(3).setIcon(R.drawable.ic_menu_grupo_avisos_24);
     }

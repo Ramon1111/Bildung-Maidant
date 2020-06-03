@@ -25,7 +25,7 @@
     <android.widget.ListView
         android:id="@+id/faLVajustes"
         android:layout_width="wrap_content"
-        android:layout_height="138dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/faTLBajustes"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
@@ -39,26 +39,25 @@
         android:layout_marginRight="55dp"
         android:layout_marginBottom="337dp"
         android:background="@color/accent"
-        android:fontFamily="sans-serif-condensed-light" />
+        android:fontFamily="sans-serif-condensed-light"/>
 
     <TextView
         android:id="@+id/faTWajustes"
-        android:layout_width="118dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/faTLBajustes"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="157dp"
-        android:layout_marginLeft="157dp"
+        android:layout_marginStart="165dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="86dp"
-        android:layout_marginEnd="136dp"
-        android:layout_marginRight="136dp"
-        android:text="@string/Ajustes"
+        android:layout_marginEnd="67dp"
+        android:layout_marginRight="30dp"
         android:fontFamily="sans-serif-condensed-light"
+        android:text="@string/Ajustes"
         android:textColor="@color/primary"
         android:textSize="35dp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 </RelativeLayout>
