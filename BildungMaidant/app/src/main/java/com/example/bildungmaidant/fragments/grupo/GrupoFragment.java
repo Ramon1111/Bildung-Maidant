@@ -12,17 +12,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.example.bildungmaidant.R;
-import com.example.bildungmaidant.fragments.menu.TusGruposFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -102,68 +100,19 @@ public class GrupoFragment extends Fragment {
     }
 
     private void DarseDeBaja() {
-
-        String listaNueva="";
-        listaMiembros.remove(currentUser.getUid());
-
-        for(String miembro : listaMiembros)
-            listaNueva=listaNueva+","+miembro;
-
-        listaNueva=listaNueva.substring(1);
-
-        //Para actualizar la lista de miembros en el grupo
         db.collection("grupos").document(claveGrupo)
-            .update("miembrosGrupo",listaNueva)
-            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-
-                    //Para actualizar la lista de grupos en el usuario
-                    final DocumentReference docRef = db.collection("users").document(currentUser.getUid());
-                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            if (task.isSuccessful()) {
-                                DocumentSnapshot document = task.getResult();
-
-                                if (document.exists()) {
-
-                                    String gUnidos = document.get("gruposFormaParte").toString();
-                                    ArrayList<String> listaGUnidos = new ArrayList<>();
-                                    for(String grupo : gUnidos.split(","))
-                                        listaGUnidos.add(grupo);
-
-                                    listaGUnidos.remove(claveGrupo);
-                                    gUnidos="";
-                                    for(String miembro : listaGUnidos)
-                                        gUnidos=gUnidos+","+miembro;
-
-                                    gUnidos=gUnidos.substring(1);
-
-                                    db.collection("users").document(currentUser.getUid())
-                                        .update("gruposFormaParte",gUnidos)
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-
-                                                FragmentManager fm = getActivity().getSupportFragmentManager();
-                                                for(int i = 0; i < fm.getBackStackEntryCount(); ++i)
-                                                    fm.popBackStack();
-                                                Toast.makeText(getContext(), "Ya no formas parte del grupo", Toast.LENGTH_SHORT).show();
-                                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new TusGruposFragment()).commit();
-
-                                            }
-                                        });
-
-                                } else {
-                                    Log.d(TAG, "No such document");
-                                }
-                            } else {
-                                Log.d(TAG, "get failed with ", task.getException());
-                            }
-                        }
-                    });
-                }
-            });
+                .update("arrayMiembros", FieldValue.arrayRemove(currentUser.getUid())).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                db.collection("users").document(currentUser.getUid())
+                        .update("arrayGruposFormaParte",FieldValue.arrayRemove(claveGrupo)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(getContext(), "Ya no formas parte del grupo", Toast.LENGTH_SHORT).show();
+                        getActivity().onBackPressed();
+                    }
+                });
+            }
+        });
     }
 }

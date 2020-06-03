@@ -104,7 +104,6 @@ public class CrearCuentaActivity extends AppCompatActivity {
 
                             //Parte para subir los datos del usuario
                             SubirDatos(nombres,apellido,nUsuario,user);
-
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -141,14 +140,10 @@ public class CrearCuentaActivity extends AppCompatActivity {
         usuario.put("usuario", nusuario);
         usuario.put("descripcion", "");
         usuario.put("institucion", "");
-        //usuario.put("recordatorioasAbiertos", "");
-        //usuario.put("recordatorioasCerados", "");
-        //usuario.put("gruposFormaParte", "");
+        usuario.put("correo", user.getEmail());
         usuario.put("arrayGruposFormaParte", new ArrayList<>());
         usuario.put("arrayRecordatoriosAbiertos", new ArrayList<>());
         usuario.put("arrayRecordatoriosCerrados", new ArrayList<>());
-        //usuario.put("gruposLider", "");
-        usuario.put("fotoPerfil", "");
 
         String id=user.getUid();
 

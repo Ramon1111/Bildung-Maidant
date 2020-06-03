@@ -102,7 +102,7 @@ public class ContenedorGrupoFragment extends Fragment {
         fragments.add(new RecordatoriosTareasFragment(currentGroup.getClaveGrupo(),currentGroup.getListaRecordatorios()));
         //fragments.add(new MensajeMenuFragment());
         //fragments.add(new RecursosDidacticosFragment());
-        fragments.add(new MiembrosFragment(currentGroup.getAdministrador(),currentGroup.getMiembrosGrupo(),currentGroup.getClaveGrupo(),currentGroup.getNombreGrupo()));
+        fragments.add(new MiembrosFragment(currentGroup.getAdministrador(),currentGroup.getClaveGrupo(),currentGroup.getNombreGrupo()));
         fragments.add(new AvisosFragment(currentGroup.getClaveGrupo(),currentGroup.getAdministrador(),currentGroup.getListaAvisos()));
         return fragments;
     }

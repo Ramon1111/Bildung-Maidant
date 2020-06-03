@@ -107,11 +107,10 @@ public class TusGruposFragment extends Fragment {
                     if(document.exists()){
                         gruposUsuario=(ArrayList)document.get("arrayGruposFormaParte");
 
-                        if(gruposUsuario.size()>0){
+                        if(gruposUsuario.size()>0)
                             creaGrupos();
-                        }else{
+                        else
                             Toast.makeText(getContext(),"Aún no tienes ningún grupo",Toast.LENGTH_SHORT).show();
-                        }
                     }
                 }
             }

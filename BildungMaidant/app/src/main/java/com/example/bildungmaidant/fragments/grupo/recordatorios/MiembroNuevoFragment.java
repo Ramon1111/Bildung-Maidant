@@ -18,11 +18,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.bildungmaidant.R;
-import com.example.bildungmaidant.fragments.grupo.ContenedorGrupoFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -40,6 +42,8 @@ public class MiembroNuevoFragment extends Fragment {
     TextView fmnTVEncabezado;
 
     private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
 
     public MiembroNuevoFragment(String claveGrupo, ArrayList<String> listaMiembros,String nombreGrupo){
         this.claveGrupo=claveGrupo;
@@ -53,11 +57,21 @@ public class MiembroNuevoFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_miembro_nuevo,container,false);
 
         db = FirebaseFirestore.getInstance();
+        mAuth=FirebaseAuth.getInstance();
+        currentUser=mAuth.getCurrentUser();
 
         fmnETClaveMiembro=v.findViewById(R.id.fmnETClaveMiembro);
         fmnTVEncabezado=v.findViewById(R.id.fmnTVEncabezado);
         fmnTVEncabezado.setText(fmnTVEncabezado.getText().toString()+" a "+nombreGrupo);
         fmnBTNAgregar=v.findViewById(R.id.fmnBTNAgregar);
+        fmnBTNCancelar=v.findViewById(R.id.fmnBTNCancelar);
+
+        fmnBTNCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
 
         fmnBTNAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,12 +94,28 @@ public class MiembroNuevoFragment extends Fragment {
                                         if(listaMiembros.indexOf(document.get("llavePrimaria").toString())>=0)
                                             Toast.makeText(getContext(), "Ya forma parte del grupo", Toast.LENGTH_SHORT).show();
                                         else{
-                                            newList[0] = document.get("gruposFormaParte").toString();
+
+                                            db.collection("grupos").document(claveGrupo)
+                                                    .update("arrayMiembros", FieldValue.arrayUnion(currentUser.getUid())).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    db.collection("users").document(currentUser.getUid())
+                                                            .update("arrayGruposFormaParte",FieldValue.arrayUnion(claveGrupo)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            Toast.makeText(getContext(), "Se agregó el usuario", Toast.LENGTH_SHORT).show();
+                                                            getActivity().onBackPressed();
+                                                        }
+                                                    });
+                                                }
+                                            });
+
+                                            /*newList[0] = document.get("gruposFormaParte").toString();
                                             newList[0] = newList[0]+","+claveGrupo;
 
                                             Toast.makeText(getContext(), "Aún no forma parte del grupo", Toast.LENGTH_SHORT).show();
                                             listaMiembros.add(document.get("llavePrimaria").toString());
-                                            ConfirmarExistencia(newList[0],document.get("llavePrimaria").toString(),v);
+                                            ConfirmarExistencia(newList[0],document.get("llavePrimaria").toString(),v);*/
                                         }
                                     }
                                 }
@@ -125,13 +155,14 @@ public class MiembroNuevoFragment extends Fragment {
                             public void onSuccess(Void aVoid) {
                                 Toast.makeText(getContext(), "Se agregó el usuario", Toast.LENGTH_SHORT).show();
 
-                                Bundle bundle=new Bundle();
+                                /*Bundle bundle=new Bundle();
                                 bundle.putString("claveGrupo",claveGrupo);
                                 ContenedorGrupoFragment contenedor = new ContenedorGrupoFragment();
                                 contenedor.setArguments(bundle);
 
                                 cargarFragment(contenedor,v);
-
+*/
+                                getActivity().onBackPressed();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -139,12 +170,6 @@ public class MiembroNuevoFragment extends Fragment {
                                 Log.w(TAG, "Error updating document", e);
                             }
                         });
-
-                        /*FragmentManager fm = getActivity().getSupportFragmentManager();
-                        for(int i = 0; i < fm.getBackStackEntryCount(); ++i)
-                            fm.popBackStack();
-                        Toast.makeText(getContext(), "Se creó el grupo correctamente", Toast.LENGTH_SHORT).show();
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new TusGruposFragment()).commit();*/
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

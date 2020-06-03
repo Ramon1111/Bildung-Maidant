@@ -65,20 +65,14 @@ public class UnirseFragment extends Fragment {
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 //String clavePrueba="";
                                 if (task.isSuccessful()) {
-                                    if (task.getResult().size() == 0) {
+                                    if (task.getResult().size() == 0)
                                         Toast.makeText(getContext(), "No se encontró el grupo", Toast.LENGTH_SHORT).show();
-                                    }
-                                    else{
-                                        for (QueryDocumentSnapshot document : task.getResult()) {
-                                            Log.d(TAG, document.getId() + " => " + document.getData());
-                                            //ChecarGruposUnidos(document.get("claveGrupo").toString(),(ArrayList)document.get("arrayMiembros"));
+                                    else
+                                        for (QueryDocumentSnapshot document : task.getResult())
                                             ChecarGruposUnidos(document.get("claveGrupo").toString());
-                                        }
-                                    }
 
-                                } else {
+                                } else
                                     Log.d(TAG, "Error getting documents: ", task.getException());
-                                }
                             }
                         });
             }
@@ -94,30 +88,19 @@ public class UnirseFragment extends Fragment {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        if(((ArrayList)document.get("arrayGruposFormaParte")).indexOf(claveGrupo)==-1){
+                        if(((ArrayList)document.get("arrayGruposFormaParte")).indexOf(claveGrupo)==-1)
                             AñadirGrupo(claveGrupo);
-                        }
-                        else{
+                        else
                             Toast.makeText(getContext(), "Ya está agregado a este grupo", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
+                    } else
                         Log.d(TAG, "No such document");
-                    }
-                } else {
+                } else
                     Log.d(TAG, "get failed with ", task.getException());
-                }
             }
         });
     }
 
     private void AñadirGrupo(String claveGrupo) {
-        /*String newList="";
-
-        for(int i=0;i<listaGrupos.size();i++)
-            newList=newList+","+listaGrupos.get(i);
-
-        newList=newList.substring(1);*/
-
         db.collection("users").document(currentUser.getUid())
                 .update("arrayGruposFormaParte", FieldValue.arrayUnion(claveGrupo));
         db.collection("grupos").document(claveGrupo)
@@ -127,49 +110,12 @@ public class UnirseFragment extends Fragment {
                 getActivity().onBackPressed();
             }
         });
-
-        /*db.collection("users").document(currentUser.getUid())
-                .update("gruposFormaParte",newList)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error updating document", e);
-                    }
-                });
-        db.collection("grupos").document(claveG)
-                .update("miembrosGrupo",miembros)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        FragmentManager fm = getActivity().getSupportFragmentManager();
-                        for(int i = 0; i < fm.getBackStackEntryCount(); ++i)
-                            fm.popBackStack();
-                        Toast.makeText(getContext(), "Te uniste al grupo correctamente c:", Toast.LENGTH_SHORT).show();
-                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new TusGruposFragment()).commit();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error updating document", e);
-                    }
-                });*/
     }
 
     View.OnClickListener onClickCancel=(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            /*FragmentTransaction fr= getFragmentManager().beginTransaction();
-            fr.replace(R.id.fragment_container, new TusGruposFragment());
-            fr.addToBackStack(null);
-            fr.commit();*/
             getActivity().onBackPressed();
-
         }
     });
 

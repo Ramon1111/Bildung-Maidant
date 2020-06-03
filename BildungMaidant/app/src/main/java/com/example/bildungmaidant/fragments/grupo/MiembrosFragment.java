@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,12 +17,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.bildungmaidant.R;
+import com.example.bildungmaidant.adapter.MiembroAdapter;
 import com.example.bildungmaidant.fragments.grupo.recordatorios.MiembroNuevoFragment;
+import com.example.bildungmaidant.pojos.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -31,9 +34,11 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class MiembrosFragment extends Fragment {
 
-    TextView fmiemTWlistadminis,fmiemTWlistamiembro;
+    TextView fmiemTWlistadminis,fmiemTWlistamiembro,fmiemTWAdminCorreo;
     private String adminClave,claveGrupo,nombreGrupo;
     private ArrayList<String> listaMiembros;
+    ListView fmLVMiembros;
+    MiembroAdapter miembroAdaptador;
 
     Button fmiemBTNagregarmiembro;
 
@@ -41,9 +46,9 @@ public class MiembrosFragment extends Fragment {
     private FirebaseUser currentUser;
     private FirebaseAuth mAuth;
 
-    public MiembrosFragment(String adminClave, ArrayList<String> listaMiembros, String claveGrupo,String nombreGrupo){
+    public MiembrosFragment(String adminClave, String claveGrupo,String nombreGrupo){
         this.adminClave=adminClave;
-        this.listaMiembros=listaMiembros;
+        //this.listaMiembros=listaMiembros;
         this.claveGrupo=claveGrupo;
         this.nombreGrupo=nombreGrupo;
     }
@@ -71,12 +76,50 @@ public class MiembrosFragment extends Fragment {
         });
 
         fmiemTWlistadminis=v.findViewById(R.id.fmiemTWlistadminis);
-        fmiemTWlistamiembro=v.findViewById(R.id.fmiemTWlistamiembro);
+        //fmiemTWlistamiembro=v.findViewById(R.id.fmiemTWlistamiembro);
+        fmLVMiembros=v.findViewById(R.id.fmLVMiembros);
+        fmiemTWAdminCorreo=v.findViewById(R.id.fmiemTWAdminCorreo);
 
         Log.d(TAG,adminClave);
 
         ObtenerAdmin();
-        ObtenerMiembros();
+
+        db.collection("grupos").document(claveGrupo)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            DocumentSnapshot document = task.getResult();
+                            if(document.exists()) {
+                                listaMiembros = (ArrayList) document.get("arrayMiembros");
+                                final ArrayList<Usuario> nombresMiembros = new ArrayList<>();
+                                for (String miembro : listaMiembros){
+                                    if(!miembro.equals(adminClave))
+                                    db.collection("users").document(miembro)
+                                            .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                            if (task.isSuccessful()) {
+                                                DocumentSnapshot document = task.getResult();
+                                                if (document.exists())
+                                                    nombresMiembros.add(new Usuario(document.get("nombres").toString(), document.get("apellidos").toString(), document.get("correo").toString()));
+                                            }
+                                        }
+                                    }).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                            if (listaMiembros.size()-1 == nombresMiembros.size()) {
+                                                miembroAdaptador = new MiembroAdapter(getContext(), nombresMiembros);
+                                                fmLVMiembros.setAdapter(miembroAdaptador);
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    }
+                });
 
         return v;
     }
@@ -87,37 +130,25 @@ public class MiembrosFragment extends Fragment {
         ft.replace(R.id.fragment_container,fragment).addToBackStack("").commit();
     }
 
-    private void ObtenerMiembros() {
-        for(String miembro : listaMiembros){
-            ObtenerUsuario(miembro,fmiemTWlistamiembro);
-            Log.d("Siexstealv","Sientraalv");
-        }
-    }
-
     private void ObtenerAdmin() {
-        ObtenerUsuario(adminClave,fmiemTWlistadminis);
+        ObtenerUsuario(adminClave,fmiemTWlistadminis,fmiemTWAdminCorreo);
     }
 
-    private String ObtenerUsuario(String usuario, final TextView vista) {
-
-        final String[] nombreCompleto = new String[1];
-        final DocumentReference docRef = db.collection("users").document(usuario);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+    private void ObtenerUsuario(String usuario, final TextView vista1, final TextView vista2) {
+        db.collection("users").document(usuario).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        vista.setText(vista.getText().toString()+System.getProperty("line.separator")+document.get("nombres").toString()+" "+document.get("apellidos").toString());
-                    } else {
+                        vista1.setText(document.get("nombres").toString() + " " + document.get("apellidos").toString() + System.getProperty("line.separator"));
+                        vista2.setText(document.get("correo").toString());
+                    }else
                         Log.d(TAG, "No such document");
-                    }
-                } else {
+                } else
                     Log.d(TAG, "get failed with ", task.getException());
-                }
             }
 
         });
-        return nombreCompleto[0];
     }
 }
