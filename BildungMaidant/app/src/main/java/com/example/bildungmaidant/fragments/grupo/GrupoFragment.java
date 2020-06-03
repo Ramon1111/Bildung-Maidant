@@ -15,9 +15,11 @@ import androidx.fragment.app.Fragment;
 
 import com.example.bildungmaidant.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -33,7 +35,7 @@ public class GrupoFragment extends Fragment {
     private FirebaseFirestore db;
 
     TextView fgTVTitulo,fgTVdescripcionSust,fgTVClaveGrupoInfo;
-    Button fgBTNDarseBaja;
+    Button fgBTNDarseBaja,fgBTNEliminar;
 
     public String getDescripcion() {
         return descripcion;
@@ -64,6 +66,69 @@ public class GrupoFragment extends Fragment {
         fgTVdescripcionSust=v.findViewById(R.id.fgTVdescripcionSust);
         fgTVClaveGrupoInfo=v.findViewById(R.id.fgTVClaveGrupoInfo);
         fgBTNDarseBaja=v.findViewById(R.id.fgBTNDarseBaja);
+        fgBTNEliminar=v.findViewById(R.id.fgBTNEliminar);
+
+        fgBTNEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Para obtener los recordatorios del grupo actal
+                db.collection("grupos").document(claveGrupo).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            DocumentSnapshot document = task.getResult();
+                            if(document.exists()) {
+                                //para eliminar los recordatorios
+                                ArrayList<String> recordatorios = (ArrayList) document.get("arrayRecordatorios");
+                                for(String claveRecordatorio:recordatorios){
+                                    //Para eliminar cada recordatorio de quien le pertenece
+                                    db.collection("users").document(document.get("administrador").toString()).update("arrayRecordatoriosAbiertos",FieldValue.arrayRemove(claveRecordatorio));
+
+                                    db.collection("recordatorios").document(claveRecordatorio)
+                                            .delete()
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Log.d(TAG,"Se eliminaron los recordatorios");
+                                                }
+                                            });
+
+                                }
+                                for(String aviso:(ArrayList<String>)document.get("arrayAvisos")){
+                                    db.collection("avisos").document(aviso)
+                                            .delete()
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    Log.d(TAG,"Se eliminaron los avisos");
+                                                }
+                                            });
+                                }
+                                for(String miembro:(ArrayList<String>)document.get("arrayMiembros"))
+                                    db.collection("users").document(miembro).update("arrayGruposFormaParte",FieldValue.arrayRemove(claveGrupo));
+                            }
+                        }
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+                        db.collection("grupos").document(claveGrupo)
+                                .delete()
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Toast.makeText(getContext(), "Se eliminó el grupo exitosamente", Toast.LENGTH_SHORT).show();
+                                        getActivity().onBackPressed();
+                                    }
+                                });
+                    }
+                });
+            }
+        });
+
+        if(!adminClave.equals(currentUser.getUid()))
+            fgBTNEliminar.setVisibility(View.GONE);
 
         fgTVdescripcionSust.setText(descripcion);
 

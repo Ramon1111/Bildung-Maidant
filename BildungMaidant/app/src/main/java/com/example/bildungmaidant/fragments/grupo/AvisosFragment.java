@@ -20,12 +20,12 @@ import com.example.bildungmaidant.NuevoAvisoFragment;
 import com.example.bildungmaidant.R;
 import com.example.bildungmaidant.adapter.AvisosAdapter;
 import com.example.bildungmaidant.pojos.Avisos;
-import com.example.bildungmaidant.pojos.Recordatorio;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -50,10 +50,9 @@ public class AvisosFragment extends Fragment {
     ImageButton crearAvisoIB;
     LinearLayout crearAvisoLL;
 
-    public AvisosFragment(String claveGrupo, String administradorGrupo, ArrayList<String> listaAvisosGrupo){
+    public AvisosFragment(String claveGrupo, String administradorGrupo){
         this.claveGrupo=claveGrupo;
         this.administradorGrupo=administradorGrupo;
-        this.listaAvisosGrupo=listaAvisosGrupo;
     }
 
     @Nullable
@@ -73,7 +72,23 @@ public class AvisosFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         listaAvisos.setLayoutManager(llm);
-        ObtenerAvisosGrupo();
+
+        db.collection("grupos").document(claveGrupo).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if(document.exists())
+                        listaAvisosGrupo=(ArrayList)document.get("arrayAvisos");
+                }
+            }
+        }).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                ObtenerAvisosGrupo();
+            }
+        });
+
 
         if(!currentUser.getUid().equals(administradorGrupo)){
             crearAvisoLL.setVisibility(View.GONE);

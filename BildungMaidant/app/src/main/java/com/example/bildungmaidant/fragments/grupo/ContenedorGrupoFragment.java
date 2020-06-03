@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -80,8 +79,6 @@ public class ContenedorGrupoFragment extends Fragment {
                         estadoAltaBaja=document.getBoolean("estadoAltaBaja");
                         descripcion=document.get("descripcion").toString();
 
-                        Toast.makeText(getContext(), descripcion, Toast.LENGTH_SHORT).show();
-
                         currentGroup=new Grupo(nombreGrupo,administrador,claveGrupo,numRecordatorios,numRecursosDidacticos,numAvisos,miembrosGrupo,estadoAltaBaja,descripcion);
 
                     } else {
@@ -109,9 +106,9 @@ public class ContenedorGrupoFragment extends Fragment {
     public ArrayList<Fragment> agregarFragments(){
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new GrupoFragment(currentGroup.getClaveGrupo(),currentGroup.getNombreGrupo(),currentGroup.getAdministrador(),currentGroup.getMiembrosGrupo(),currentGroup.getDescripcion()));
-        fragments.add(new RecordatoriosTareasFragment(currentGroup.getClaveGrupo(),currentGroup.getListaRecordatorios()));
+        fragments.add(new RecordatoriosTareasFragment(currentGroup.getClaveGrupo()));
         fragments.add(new MiembrosFragment(currentGroup.getAdministrador(),currentGroup.getClaveGrupo(),currentGroup.getNombreGrupo()));
-        fragments.add(new AvisosFragment(currentGroup.getClaveGrupo(),currentGroup.getAdministrador(),currentGroup.getListaAvisos()));
+        fragments.add(new AvisosFragment(currentGroup.getClaveGrupo(),currentGroup.getAdministrador()));
         return fragments;
     }
 

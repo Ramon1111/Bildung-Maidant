@@ -144,6 +144,7 @@ public class CrearCuentaActivity extends AppCompatActivity {
         usuario.put("arrayGruposFormaParte", new ArrayList<>());
         usuario.put("arrayRecordatoriosAbiertos", new ArrayList<>());
         usuario.put("arrayRecordatoriosCerrados", new ArrayList<>());
+        usuario.put("clave", user.getUid());
 
         String id=user.getUid();
 

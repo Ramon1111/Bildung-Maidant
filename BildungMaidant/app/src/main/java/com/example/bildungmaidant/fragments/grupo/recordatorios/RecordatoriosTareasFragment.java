@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -48,16 +47,14 @@ public class RecordatoriosTareasFragment extends Fragment {
 
     private String claveGrupoActual;
 
-    public RecordatoriosTareasFragment(String claveGrupoActual, ArrayList<String> listaGrupoRecordatorio){
+    public RecordatoriosTareasFragment(String claveGrupoActual){
         this.claveGrupoActual=claveGrupoActual;
-        this.listaGrupoRecordatorio=listaGrupoRecordatorio;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_recordatorios_tareas,container,false);
-        //Toast.makeText(getContext(),"Ocurre oncreateView", Toast.LENGTH_SHORT).show();
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -65,18 +62,14 @@ public class RecordatoriosTareasFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         listaRecordatorios.setLayoutManager(llm);
-/*
-        listaGrupoRecordatorio=new ArrayList<>();
 
-        db.collection("grupos").document(claveGrupoActual)
-                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        db.collection("grupos").document(claveGrupoActual).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful()){
+                if(task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-                    if(document.exists()){
+                    if(document.exists())
                         listaGrupoRecordatorio=(ArrayList)document.get("arrayRecordatorios");
-                    }
                 }
             }
         }).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -85,8 +78,8 @@ public class RecordatoriosTareasFragment extends Fragment {
                 ObtenerRecordatoriosUsuario();
             }
         });
- */
-        ObtenerRecordatoriosUsuario();
+
+
         ibNuevoRecordatorio=v.findViewById(R.id.frtIBNuevoRecordatorio);
 
         ibNuevoRecordatorio.setOnClickListener(new View.OnClickListener() {

@@ -96,15 +96,15 @@ public class MiembroNuevoFragment extends Fragment {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
 
                                         //Para confirmar si ya existe el usuario como miembro
-                                        if(listaMiembros.indexOf(document.get("llavePrimaria").toString())>=0)
+                                        final String claveMiembroNuevo=document.get("clave").toString();
+                                        if(listaMiembros.indexOf(claveMiembroNuevo)>=0)
                                             Toast.makeText(getContext(), "Ya forma parte del grupo", Toast.LENGTH_SHORT).show();
                                         else{
-
                                             db.collection("grupos").document(claveGrupo)
-                                                    .update("arrayMiembros", FieldValue.arrayUnion(currentUser.getUid())).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    .update("arrayMiembros", FieldValue.arrayUnion(claveMiembroNuevo)).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
-                                                    db.collection("users").document(currentUser.getUid())
+                                                    db.collection("users").document(claveMiembroNuevo)
                                                             .update("arrayGruposFormaParte",FieldValue.arrayUnion(claveGrupo)).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
