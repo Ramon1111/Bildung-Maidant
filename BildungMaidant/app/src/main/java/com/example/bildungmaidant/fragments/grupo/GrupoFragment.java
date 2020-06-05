@@ -68,6 +68,8 @@ public class GrupoFragment extends Fragment {
         fgBTNDarseBaja=v.findViewById(R.id.fgBTNDarseBaja);
         fgBTNEliminar=v.findViewById(R.id.fgBTNEliminar);
 
+        fgTVClaveGrupoInfo.setText(claveGrupo);
+
         fgBTNEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +94,6 @@ public class GrupoFragment extends Fragment {
                                                     Log.d(TAG,"Se eliminaron los recordatorios");
                                                 }
                                             });
-
                                 }
                                 for(String aviso:(ArrayList<String>)document.get("arrayAvisos")){
                                     db.collection("avisos").document(aviso)
